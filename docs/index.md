@@ -31,4 +31,17 @@ docker compose rm db
 docker compose up
 ```
 
+## Database schema
+
 ![island is db schema](https://github.com/user-attachments/assets/44265f2d-007d-4bb0-b325-c52e05cf6532)
+
+
+The database consists of 5 tables:
+
+* `Entity`: A person or legal entity that has a national ID (kennitala). Individuals additionally can have a family number. A family number is used by the Registers Iceland to group individuals that belong to the same family. See more: https://www.skra.is/folk/eg-i-thjodskra/um-fjolskyldunumer/
+  * In this project we use the family number to demonstrate that individuals that are taxed together will have the same tax return. 
+* `Application`: A tax return application for a given family number. There will be a new application each year.
+* `Asset`: This table contains all information about financial assets, such as real estate or vehicles. This table has the nationalId to assign a given income value to a certain individual with the family. Different assets are grouped using the `assetType` column.
+* `Income`: This table contains all information about income, such as salary, benefits or grants. This table has the nationalId to assign a given income value to a certain individual with the family. It is possible to assign each income line to a certain payor using payorId, such as an employer or fund. Different assets are grouped using the `incomeType` column.
+* `Debt`: This table contains all information about debt, such as loans, short term or long term, credit card loans etc. This table has the nationalId to assign a given debt value to a certain individual with the family. It is possible to assign each debt line to a certain lender using lenderId, such as a bank or pension fund. Different debt items are grouped using the `loanType` column.
+* The `Asset`, `Income` and `Debt` tables reference the `Application` table via a foreign key relationship, so that joins can be made to pull up all data linked to an application.

@@ -65,6 +65,7 @@ type Income {
 }
 
 type Mutation {
+  updateAsset(updateAssetInput: UpdateAssetInput!): Asset!
   updateIncome(updateIncomeInput: UpdateIncomeInput!): Income!
 }
 
@@ -88,6 +89,15 @@ type Query {
   incomesByApplication(applicationId: Int!): [Income!]!
   incomesByNationalId(nationalId: String!): [Income!]!
   incomesByPayor(payorId: String!): [Income!]!
+}
+
+input UpdateAssetInput {
+  amount: Int
+  assetIdentifier: String
+  assetType: String
+  description: String
+  id: Int!
+  nationalId: String
 }
 
 input UpdateIncomeInput {

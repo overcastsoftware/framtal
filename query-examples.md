@@ -73,3 +73,18 @@ mutation {
     }
   }
 }
+
+mutation {
+  updateAsset(updateAssetInput: {
+    id: 3,
+    amount: 500000,
+    assetType: "real_estate",
+    description: "Summer house"
+  }) {
+    id
+    amount
+    assetType
+    description
+    assetIdentifier
+  }
+}

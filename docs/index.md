@@ -45,3 +45,64 @@ The database consists of 5 tables:
 * `Income`: This table contains all information about income, such as salary, benefits or grants. This table has the nationalId to assign a given income value to a certain individual with the family. It is possible to assign each income line to a certain payor using payorId, such as an employer or fund. Different assets are grouped using the `incomeType` column.
 * `Debt`: This table contains all information about debt, such as loans, short term or long term, credit card loans etc. This table has the nationalId to assign a given debt value to a certain individual with the family. It is possible to assign each debt line to a certain lender using lenderId, such as a bank or pension fund. Different debt items are grouped using the `loanType` column.
 * The `Asset`, `Income` and `Debt` tables reference the `Application` table via a foreign key relationship, so that joins can be made to pull up all data linked to an application.
+
+# The backend API: `framtal-api`
+
+The backend API is available at `http://localhost:3001/graphql`. The GraphQL implementation provides queries and mutations that can be used to fetch applications and alter them.
+
+## Get an application with all the data needed for the frontpage of the application
+
+```graphql
+query GetApplicationsByFamilyNumber {
+  applicationsByFamilyNumber(familyNumber: "1203894569") {
+    id
+    familyNumber
+    year
+    applicant {
+      nationalId
+      familyNumber
+      name
+      phone
+      email
+      address
+      postalCode
+    }
+    assets {
+      id
+      description
+      amount
+      assetType
+      assetIdentifier
+    }
+    debts {
+      id
+      amount
+      applicationId
+      deduction
+      description
+      descriptionSecondary
+      loanDate
+      loanLength
+      loanNumber
+      loanType
+      nationalId
+      principalPayment
+      totalCost
+      totalPayment
+      lender {
+        name
+        nationalId
+      }
+    }
+    incomes {
+      id
+      amount
+      incomeType
+      payor {
+        name
+        nationalId
+      }
+    }
+  }
+}
+```

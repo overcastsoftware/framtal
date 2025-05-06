@@ -31,3 +31,4 @@ docker compose rm db
 docker compose up
 ```
 
+![island is db schema](https://github.com/user-attachments/assets/44265f2d-007d-4bb0-b325-c52e05cf6532)

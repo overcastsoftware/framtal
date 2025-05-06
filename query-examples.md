@@ -14,11 +14,24 @@ query GetApplicationsByFamilyNumber {
       assetIdentifier
     }
     debts {
-      id
-      description
-      loanType
-      amount
-      totalCost
+      id,
+      amount,
+      applicationId,
+      deduction,
+      description,
+      descriptionSecondary,
+      loanDate,
+      loanLength,
+      loanNumber,
+      loanType,
+      nationalId,
+      principalPayment,
+      totalCost,
+      totalPayment,
+      lender {
+        name,
+        nationalId
+      }
     }
     incomes {
       id

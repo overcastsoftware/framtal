@@ -9,6 +9,7 @@ import { EntityModule } from './entity/entity.module';
 import { AssetModule } from './asset/asset.module';
 import { DebtModule } from './debt/debt.module';
 import { IncomeModule } from './income/income.module';
+import { DateTimeScalar } from './graphql/scalars/datetime.scalar';
 
 @Module({
   imports: [
@@ -25,5 +26,6 @@ import { IncomeModule } from './income/income.module';
     DebtModule,
     IncomeModule,
   ],
+  providers: [DateTimeScalar],
 })
 export class AppModule {}

@@ -73,4 +73,11 @@ export class Debt {
   @ManyToOne(() => EntityModel, entity => entity.debts)
   @JoinColumn({ name: 'nationalId', referencedColumnName: 'nationalId' })
   entity: EntityModel;
+
+  @Field(() => EntityModel, { nullable: true })
+  @ManyToOne(() => EntityModel, entity => entity.debts)
+  @JoinColumn({ name: 'lenderId', referencedColumnName: 'nationalId' })
+  lender: EntityModel;
+
 }
+

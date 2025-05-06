@@ -19,7 +19,9 @@ export class ApplicationService {
       where: { id },
       relations: {
         assets: true,
-        debts: true,
+        debts: {
+          lender: true
+        },
         incomes: {
           payor: true
         }
@@ -32,7 +34,9 @@ export class ApplicationService {
       where: { familyNumber },
       relations: {
         assets: true,
-        debts: true,
+        debts: {
+          lender: true
+        },
         incomes: {
           payor: true
         }

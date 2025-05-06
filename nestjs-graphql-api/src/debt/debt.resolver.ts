@@ -1,6 +1,7 @@
-import { Resolver, Query, Args, Int } from '@nestjs/graphql';
+import { Resolver, Query, Args, Int, Mutation } from '@nestjs/graphql';
 import { DebtService } from './debt.service';
 import { Debt } from '../models/debt.model';
+import { UpdateDebtInput } from '../graphql/dto/update-debt.input';
 
 @Resolver(() => Debt)
 export class DebtResolver {
@@ -28,5 +29,12 @@ export class DebtResolver {
     @Args('nationalId') nationalId: string,
   ): Promise<Debt[]> {
     return this.debtService.findByNationalId(nationalId);
+  }
+
+  @Mutation(() => Debt)
+  async updateDebt(
+    @Args('updateDebtInput') updateDebtInput: UpdateDebtInput,
+  ): Promise<Debt> {
+    return this.debtService.update(updateDebtInput);
   }
 }

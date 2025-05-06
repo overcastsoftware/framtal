@@ -88,3 +88,23 @@ mutation {
     assetIdentifier
   }
 }
+
+mutation {
+  updateDebt(updateDebtInput: {
+    id: 3,
+    amount: 850000,
+    loanType: "other",
+    description: "Refinanced loan",
+    totalCost: 76000
+  }) {
+    id
+    amount
+    loanType
+    description
+    totalCost
+    lender {
+      name
+      nationalId
+    }
+  }
+}

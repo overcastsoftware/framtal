@@ -66,6 +66,7 @@ type Income {
 
 type Mutation {
   updateAsset(updateAssetInput: UpdateAssetInput!): Asset!
+  updateDebt(updateDebtInput: UpdateDebtInput!): Debt!
   updateIncome(updateIncomeInput: UpdateIncomeInput!): Income!
 }
 
@@ -98,6 +99,23 @@ input UpdateAssetInput {
   description: String
   id: Int!
   nationalId: String
+}
+
+input UpdateDebtInput {
+  amount: Int
+  deduction: Int
+  description: String
+  descriptionSecondary: String
+  id: Int!
+  lenderId: String
+  loanDate: DateTime
+  loanLength: String
+  loanNumber: String
+  loanType: String
+  nationalId: String
+  principalPayment: Int
+  totalCost: Int
+  totalPayment: Int
 }
 
 input UpdateIncomeInput {

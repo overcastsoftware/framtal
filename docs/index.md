@@ -2,6 +2,9 @@
 
 This is an application demonstrating how an individual would view, alter and finally submit their tax return for a given year in the Island.is ecosystem.
 
+![system](https://github.com/user-attachments/assets/356d7a4d-6749-48fb-9c2d-f7fbccb3adbe)
+
+
 ## Applications
 
 This project contains two applications

@@ -185,7 +185,6 @@ mutation {
 ```
 
 ### Update assets
-=============
 
 ```graphql
 mutation {

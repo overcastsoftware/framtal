@@ -3,6 +3,7 @@
 # ------------------------------------------------------
 
 type Application {
+  applicant: Entity
   assets: [Asset!]
   debts: [Debt!]
   familyNumber: String!

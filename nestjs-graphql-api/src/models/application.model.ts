@@ -1,8 +1,9 @@
 import { Field, ObjectType, ID, Int } from '@nestjs/graphql';
-import { Entity, Column, PrimaryGeneratedColumn, OneToMany } from 'typeorm';
+import { Entity, Column, PrimaryGeneratedColumn, OneToMany, ManyToOne, JoinColumn } from 'typeorm';
 import { Asset } from './asset.model';
 import { Debt } from './debt.model';
 import { Income } from './income.model';
+import { Entity as EntityModel } from './entity.model';
 
 @ObjectType()
 @Entity({ name: 'application' })
@@ -30,4 +31,9 @@ export class Application {
   @Field(() => [Income], { nullable: true })
   @OneToMany(() => Income, income => income.application)
   incomes?: Income[];
+  
+  @Field(() => EntityModel, { nullable: true })
+  @ManyToOne(() => EntityModel)
+  @JoinColumn({ name: 'familyNumber', referencedColumnName: 'familyNumber' })
+  applicant?: EntityModel;
 }

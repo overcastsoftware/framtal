@@ -11,13 +11,16 @@ export class ApplicationService {
   ) {}
 
   async findAll(): Promise<Application[]> {
-    return this.applicationRepository.find();
+    return this.applicationRepository.find({
+      relations: ['applicant']
+    });
   }
 
   async findOne(id: number): Promise<Application> {
     return this.applicationRepository.findOne({ 
       where: { id },
       relations: {
+        applicant: true,
         assets: true,
         debts: {
           lender: true
@@ -33,6 +36,7 @@ export class ApplicationService {
     return this.applicationRepository.find({ 
       where: { familyNumber },
       relations: {
+        applicant: true,
         assets: true,
         debts: {
           lender: true

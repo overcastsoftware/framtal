@@ -6,6 +6,15 @@ query GetApplicationsByFamilyNumber {
     id
     familyNumber
     year
+    applicant {
+      nationalId
+      familyNumber
+      name
+      phone
+      email
+      address
+      postalCode
+    }
     assets {
       id
       description
@@ -14,22 +23,22 @@ query GetApplicationsByFamilyNumber {
       assetIdentifier
     }
     debts {
-      id,
-      amount,
-      applicationId,
-      deduction,
-      description,
-      descriptionSecondary,
-      loanDate,
-      loanLength,
-      loanNumber,
-      loanType,
-      nationalId,
-      principalPayment,
-      totalCost,
-      totalPayment,
+      id
+      amount
+      applicationId
+      deduction
+      description
+      descriptionSecondary
+      loanDate
+      loanLength
+      loanNumber
+      loanType
+      nationalId
+      principalPayment
+      totalCost
+      totalPayment
       lender {
-        name,
+        name
         nationalId
       }
     }
@@ -38,12 +47,13 @@ query GetApplicationsByFamilyNumber {
       amount
       incomeType
       payor {
-        name,
+        name
         nationalId
       }
     }
   }
 }
+
 
 
 

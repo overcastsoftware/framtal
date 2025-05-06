@@ -1,2 +1,2 @@
-node_modules
-framtal-api/dist/
+**/node_modules
+**/dist/

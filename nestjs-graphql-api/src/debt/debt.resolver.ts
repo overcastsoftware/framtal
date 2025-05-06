@@ -2,6 +2,7 @@ import { Resolver, Query, Args, Int, Mutation } from '@nestjs/graphql';
 import { DebtService } from './debt.service';
 import { Debt } from '../models/debt.model';
 import { UpdateDebtInput } from '../graphql/dto/update-debt.input';
+import { CreateDebtInput } from '../graphql/dto/create-debt.input';
 
 @Resolver(() => Debt)
 export class DebtResolver {
@@ -36,5 +37,17 @@ export class DebtResolver {
     @Args('updateDebtInput') updateDebtInput: UpdateDebtInput,
   ): Promise<Debt> {
     return this.debtService.update(updateDebtInput);
+  }
+  
+  @Mutation(() => Debt)
+  async createDebt(
+    @Args('createDebtInput') createDebtInput: CreateDebtInput,
+  ): Promise<Debt> {
+    return this.debtService.create(createDebtInput);
+  }
+  
+  @Mutation(() => Boolean)
+  async deleteDebt(@Args('id', { type: () => Int }) id: number): Promise<boolean> {
+    return this.debtService.delete(id);
   }
 }

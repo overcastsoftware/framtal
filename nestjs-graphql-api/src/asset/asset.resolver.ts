@@ -2,6 +2,7 @@ import { Resolver, Query, Args, Int, Mutation } from '@nestjs/graphql';
 import { AssetService } from './asset.service';
 import { Asset } from '../models/asset.model';
 import { UpdateAssetInput } from '../graphql/dto/update-asset.input';
+import { CreateAssetInput } from '../graphql/dto/create-asset.input';
 
 @Resolver(() => Asset)
 export class AssetResolver {
@@ -36,5 +37,17 @@ export class AssetResolver {
     @Args('updateAssetInput') updateAssetInput: UpdateAssetInput,
   ): Promise<Asset> {
     return this.assetService.update(updateAssetInput);
+  }
+
+  @Mutation(() => Asset)
+  async createAsset(
+    @Args('createAssetInput') createAssetInput: CreateAssetInput,
+  ): Promise<Asset> {
+    return this.assetService.create(createAssetInput);
+  }
+  
+  @Mutation(() => Boolean)
+  async deleteAsset(@Args('id', { type: () => Int }) id: number): Promise<boolean> {
+    return this.assetService.delete(id);
   }
 }

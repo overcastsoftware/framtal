@@ -3,6 +3,7 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { Asset } from '../models/asset.model';
 import { UpdateAssetInput } from '../graphql/dto/update-asset.input';
+import { CreateAssetInput } from '../graphql/dto/create-asset.input';
 
 @Injectable()
 export class AssetService {
@@ -42,5 +43,16 @@ export class AssetService {
     const { id, ...updateData } = updateAssetInput;
     await this.assetRepository.update(id, updateData);
     return this.findOne(id);
+  }
+  
+  async create(createAssetInput: CreateAssetInput): Promise<Asset> {
+    const asset = this.assetRepository.create(createAssetInput);
+    await this.assetRepository.save(asset);
+    return this.findOne(asset.id);
+  }
+  
+  async delete(id: number): Promise<boolean> {
+    const result = await this.assetRepository.delete(id);
+    return result.affected > 0;
   }
 }

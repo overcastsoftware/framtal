@@ -1,6 +1,7 @@
-Get application by family number:
+Get application by family number
+================================
 
-# Write your query or mutation here
+```graphql
 query GetApplicationsByFamilyNumber {
   applicationsByFamilyNumber(familyNumber: "1203894569") {
     id
@@ -53,11 +54,12 @@ query GetApplicationsByFamilyNumber {
     }
   }
 }
+```
 
+Update income
+=============
 
-
-
-
+```graphql
 mutation {
   updateIncome(updateIncomeInput: {
     id: 5,
@@ -72,8 +74,12 @@ mutation {
       # other fields you want to retrieve
     }
   }
-}
+}```
 
+Update assets
+=============
+
+```graphql
 mutation {
   updateAsset(updateAssetInput: {
     id: 3,
@@ -89,6 +95,10 @@ mutation {
   }
 }
 
+Update debt
+===========
+
+```graphql
 mutation {
   updateDebt(updateDebtInput: {
     id: 3,
@@ -108,3 +118,103 @@ mutation {
     }
   }
 }
+```
+
+Create asset
+============
+
+```graphql
+mutation {
+  createAsset(createAssetInput: {
+    applicationId: 1,
+    nationalId: "1203894569",
+    description: "Summer Cottage",
+    amount: 25000000,
+    assetType: "real_estate",
+    assetIdentifier: "420-1234"
+  }) {
+    id
+    nationalId
+    description
+    amount
+    assetType
+  }
+}
+```
+
+
+Create debt
+============
+
+```graphql
+mutation {
+  createDebt(createDebtInput: {
+    applicationId: 1,
+    nationalId: "1203894569",
+    description: "Car Loan",
+    amount: 3500000,
+    loanType: "vehicle_loan",
+    lenderId: "4910080160",
+    totalCost: 350000
+  }) {
+    id
+    description
+    amount
+    loanType
+    lender {
+      name
+      nationalId
+    }
+  }
+}
+```
+
+Create income
+============
+
+```graphql
+mutation {
+  createIncome(createIncomeInput: {
+    applicationId: 1,
+    nationalId: "1203894569",
+    payorId: "5501119999",
+    amount: 450000,
+    incomeType: "bonus"
+  }) {
+    id
+    amount
+    incomeType
+    payor {
+      name
+      nationalId
+    }
+  }
+}
+```
+
+Delete asset
+============
+
+```graphql
+mutation {
+  deleteAsset(id: 3)
+}
+```
+
+Delete debt
+============
+
+```graphql
+mutation {
+  deleteDebt(id: 5)
+}
+```
+
+Delete income
+============
+
+```graphql
+mutation {
+  deleteIncome(id: 4)
+}
+```

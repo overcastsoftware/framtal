@@ -2,6 +2,8 @@ import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { Income } from '../models/income.model';
+import { UpdateIncomeInput } from '../graphql/dto';
+import { CreateIncomeInput } from '../graphql/dto';
 
 @Injectable()
 export class IncomeService {
@@ -47,5 +49,16 @@ export class IncomeService {
   async updateIncome(id: number, updateData: Partial<Income>): Promise<Income> {
     await this.incomeRepository.update(id, updateData);
     return this.findOne(id);
+  }
+
+  async create(createIncomeInput: CreateIncomeInput): Promise<Income> {
+    const income = this.incomeRepository.create(createIncomeInput);
+    await this.incomeRepository.save(income);
+    return this.findOne(income.id);
+  }
+
+  async delete(id: number): Promise<boolean> {
+    const result = await this.incomeRepository.delete(id);
+    return result.affected > 0;
   }
 }

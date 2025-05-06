@@ -22,6 +22,40 @@ type Asset {
   nationalId: String!
 }
 
+input CreateAssetInput {
+  amount: Int
+  applicationId: Int!
+  assetIdentifier: String
+  assetType: String
+  description: String
+  nationalId: String!
+}
+
+input CreateDebtInput {
+  amount: Int
+  applicationId: Int!
+  deduction: Int
+  description: String
+  descriptionSecondary: String
+  lenderId: String
+  loanDate: DateTime
+  loanLength: String
+  loanNumber: String
+  loanType: String
+  nationalId: String!
+  principalPayment: Int
+  totalCost: Int
+  totalPayment: Int
+}
+
+input CreateIncomeInput {
+  amount: Int
+  applicationId: Int!
+  incomeType: String
+  nationalId: String!
+  payorId: String!
+}
+
 """Date custom scalar type"""
 scalar DateTime
 
@@ -65,6 +99,12 @@ type Income {
 }
 
 type Mutation {
+  createAsset(createAssetInput: CreateAssetInput!): Asset!
+  createDebt(createDebtInput: CreateDebtInput!): Debt!
+  createIncome(createIncomeInput: CreateIncomeInput!): Income!
+  deleteAsset(id: Int!): Boolean!
+  deleteDebt(id: Int!): Boolean!
+  deleteIncome(id: Int!): Boolean!
   updateAsset(updateAssetInput: UpdateAssetInput!): Asset!
   updateDebt(updateDebtInput: UpdateDebtInput!): Debt!
   updateIncome(updateIncomeInput: UpdateIncomeInput!): Income!

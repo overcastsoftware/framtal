@@ -1,7 +1,7 @@
 import { Resolver, Query, Args, Int, Mutation } from '@nestjs/graphql';
 import { IncomeService } from './income.service';
 import { Income } from '../models/income.model';
-import { UpdateIncomeInput } from '../graphql/dto';
+import { UpdateIncomeInput, CreateIncomeInput } from '../graphql/dto';
 
 @Resolver(() => Income)
 export class IncomeResolver {
@@ -44,5 +44,17 @@ export class IncomeResolver {
   ): Promise<Income> {
     const { id, ...updateData } = updateIncomeInput;
     return this.incomeService.updateIncome(id, updateData);
+  }
+
+  @Mutation(() => Income)
+  async createIncome(
+    @Args('createIncomeInput') createIncomeInput: CreateIncomeInput,
+  ): Promise<Income> {
+    return this.incomeService.create(createIncomeInput);
+  }
+
+  @Mutation(() => Boolean)
+  async deleteIncome(@Args('id', { type: () => Int }) id: number): Promise<boolean> {
+    return this.incomeService.delete(id);
   }
 }

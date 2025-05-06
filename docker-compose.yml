@@ -9,13 +9,13 @@ services:
   api:
     container_name: "framtal-api"
     build:
-      context: .
+      context: framtal-api
       dockerfile: Dockerfile
     volumes:
-      - .:/app
+      - ./framtal-api:/app
       - node_modules:/app/node_modules
     ports:
-      - "3000:3000"
+      - "3001:3001"
     environment:
       - NODE_ENV=development
       - DATABASE_HOST=db
@@ -23,9 +23,28 @@ services:
       - DATABASE_USER=postgres
       - DATABASE_PASSWORD=framtal
       - DATABASE_NAME=framtal
-      - PORT=3000
+      - PORT=3001
     depends_on:
       - db
+    networks:
+      - framtal-network
+    restart: on-failure
+
+  web:
+    container_name: "framtal-web"
+    build:
+      context: framtal-web
+      dockerfile: Dockerfile
+    volumes:
+      - ./framtal-web:/app
+      - node_modules:/app/node_modules
+    ports:
+      - "3000:3000"
+    environment:
+      - NODE_ENV=development
+      - PORT=3000
+    depends_on:
+      - api
     networks:
       - framtal-network
     restart: on-failure
@@ -38,7 +57,7 @@ services:
       POSTGRES_DB: framtal
       POSTGRES_PASSWORD: framtal
     volumes:
-      - ../public.sql:/docker-entrypoint-initdb.d/init.sql
+      - ./public.sql:/docker-entrypoint-initdb.d/init.sql
     ports:
       - "5432:5432"
     networks:

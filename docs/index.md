@@ -50,7 +50,9 @@ The database consists of 5 tables:
 
 The backend API is available at `http://localhost:3001/graphql`. The GraphQL implementation provides queries and mutations that can be used to fetch applications and alter them.
 
-## Get an application with all the data needed for the frontpage of the application
+## Application operations
+
+### Get an application with all the data needed for the frontpage of the application
 
 ```graphql
 query GetApplicationsByFamilyNumber {
@@ -106,3 +108,166 @@ query GetApplicationsByFamilyNumber {
   }
 }
 ```
+
+## Income operations
+
+### Create income
+
+```graphql
+mutation {
+  createIncome(createIncomeInput: {
+    applicationId: 1,
+    nationalId: "1203894569",
+    payorId: "5501119999",
+    amount: 450000,
+    incomeType: "bonus"
+  }) {
+    id
+    amount
+    incomeType
+    payor {
+      name
+      nationalId
+    }
+  }
+}
+```
+
+### Update income
+
+```graphql
+mutation {
+  updateIncome(updateIncomeInput: {
+    id: 5,
+    amount: 120000,
+    incomeType: "job_education_grant"
+  }) {
+    id
+    amount
+    incomeType
+    payor {
+      nationalId
+      # other fields you want to retrieve
+    }
+  }
+}
+```
+
+### Delete income
+
+```graphql
+mutation {
+  deleteIncome(id: 4)
+}
+```
+
+## Asset operations
+
+### Create asset
+
+```graphql
+mutation {
+  createAsset(createAssetInput: {
+    applicationId: 1,
+    nationalId: "1203894569",
+    description: "Summer Cottage",
+    amount: 25000000,
+    assetType: "real_estate",
+    assetIdentifier: "420-1234"
+  }) {
+    id
+    nationalId
+    description
+    amount
+    assetType
+  }
+}
+```
+
+### Update assets
+=============
+
+```graphql
+mutation {
+  updateAsset(updateAssetInput: {
+    id: 3,
+    amount: 500000,
+    assetType: "real_estate",
+    description: "Summer house"
+  }) {
+    id
+    amount
+    assetType
+    description
+    assetIdentifier
+  }
+}
+```
+
+### Delete asset
+
+```graphql
+mutation {
+  deleteAsset(id: 3)
+}
+```
+
+## Debt operations
+
+### Create debt
+
+```graphql
+mutation {
+  createDebt(createDebtInput: {
+    applicationId: 1,
+    nationalId: "1203894569",
+    description: "Car Loan",
+    amount: 3500000,
+    loanType: "vehicle_loan",
+    lenderId: "4910080160",
+    totalCost: 350000
+  }) {
+    id
+    description
+    amount
+    loanType
+    lender {
+      name
+      nationalId
+    }
+  }
+}
+```
+
+### Update debt
+
+```graphql
+mutation {
+  updateDebt(updateDebtInput: {
+    id: 3,
+    amount: 850000,
+    loanType: "other",
+    description: "Refinanced loan",
+    totalCost: 76000
+  }) {
+    id
+    amount
+    loanType
+    description
+    totalCost
+    lender {
+      name
+      nationalId
+    }
+  }
+}
+```
+
+### Delete debt
+
+```graphql
+mutation {
+  deleteDebt(id: 5)
+}
+```
+

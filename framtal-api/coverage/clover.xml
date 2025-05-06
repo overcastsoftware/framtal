@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1746570112319" clover="3.2.0">
-  <project timestamp="1746570112319" name="All files">
+<coverage generated="1746570529698" clover="3.2.0">
+  <project timestamp="1746570529698" name="All files">
     <metrics statements="514" coveredstatements="300" conditionals="17" coveredconditionals="0" methods="219" coveredmethods="68" elements="750" coveredelements="368" complexity="0" loc="514" ncloc="514" packages="13" files="36" classes="36"/>
     <package name="src">
       <metrics statements="21" coveredstatements="0" conditionals="2" coveredconditionals="0" methods="1" coveredmethods="0"/>
@@ -502,137 +502,137 @@
       <metrics statements="124" coveredstatements="82" conditionals="0" coveredconditionals="0" methods="52" coveredmethods="0"/>
       <file name="application.model.ts" path="/Users/som/Code/framtal/framtal-api/src/models/application.model.ts">
         <metrics statements="23" coveredstatements="14" conditionals="0" coveredconditionals="0" methods="12" coveredmethods="0"/>
-        <line num="1" count="8" type="stmt"/>
-        <line num="2" count="8" type="stmt"/>
-        <line num="3" count="8" type="stmt"/>
-        <line num="4" count="8" type="stmt"/>
-        <line num="5" count="8" type="stmt"/>
-        <line num="6" count="8" type="stmt"/>
-        <line num="10" count="8" type="stmt"/>
+        <line num="1" count="13" type="stmt"/>
+        <line num="2" count="13" type="stmt"/>
+        <line num="3" count="13" type="stmt"/>
+        <line num="4" count="13" type="stmt"/>
+        <line num="5" count="13" type="stmt"/>
+        <line num="6" count="13" type="stmt"/>
+        <line num="10" count="13" type="stmt"/>
         <line num="11" count="0" type="stmt"/>
-        <line num="13" count="8" type="stmt"/>
-        <line num="17" count="8" type="stmt"/>
-        <line num="21" count="8" type="stmt"/>
+        <line num="13" count="13" type="stmt"/>
+        <line num="17" count="13" type="stmt"/>
+        <line num="21" count="13" type="stmt"/>
         <line num="23" count="0" type="stmt"/>
         <line num="24" count="0" type="stmt"/>
-        <line num="25" count="8" type="stmt"/>
+        <line num="25" count="13" type="stmt"/>
         <line num="27" count="0" type="stmt"/>
         <line num="28" count="0" type="stmt"/>
-        <line num="29" count="8" type="stmt"/>
+        <line num="29" count="13" type="stmt"/>
         <line num="31" count="0" type="stmt"/>
         <line num="32" count="0" type="stmt"/>
-        <line num="33" count="8" type="stmt"/>
+        <line num="33" count="13" type="stmt"/>
         <line num="35" count="0" type="stmt"/>
         <line num="36" count="0" type="stmt"/>
-        <line num="38" count="8" type="stmt"/>
+        <line num="38" count="13" type="stmt"/>
       </file>
       <file name="asset.model.ts" path="/Users/som/Code/framtal/framtal-api/src/models/asset.model.ts">
         <metrics statements="19" coveredstatements="14" conditionals="0" coveredconditionals="0" methods="7" coveredmethods="0"/>
-        <line num="1" count="8" type="stmt"/>
-        <line num="2" count="8" type="stmt"/>
-        <line num="3" count="8" type="stmt"/>
-        <line num="4" count="8" type="stmt"/>
-        <line num="8" count="8" type="stmt"/>
+        <line num="1" count="13" type="stmt"/>
+        <line num="2" count="13" type="stmt"/>
+        <line num="3" count="13" type="stmt"/>
+        <line num="4" count="13" type="stmt"/>
+        <line num="8" count="13" type="stmt"/>
         <line num="9" count="0" type="stmt"/>
-        <line num="11" count="8" type="stmt"/>
+        <line num="11" count="13" type="stmt"/>
         <line num="13" count="0" type="stmt"/>
-        <line num="15" count="8" type="stmt"/>
-        <line num="19" count="8" type="stmt"/>
-        <line num="23" count="8" type="stmt"/>
+        <line num="15" count="13" type="stmt"/>
+        <line num="19" count="13" type="stmt"/>
+        <line num="23" count="13" type="stmt"/>
         <line num="25" count="0" type="stmt"/>
-        <line num="27" count="8" type="stmt"/>
-        <line num="31" count="8" type="stmt"/>
-        <line num="35" count="8" type="stmt"/>
+        <line num="27" count="13" type="stmt"/>
+        <line num="31" count="13" type="stmt"/>
+        <line num="35" count="13" type="stmt"/>
         <line num="37" count="0" type="stmt"/>
-        <line num="39" count="8" type="stmt"/>
+        <line num="39" count="13" type="stmt"/>
         <line num="41" count="0" type="stmt"/>
-        <line num="43" count="8" type="stmt"/>
+        <line num="43" count="13" type="stmt"/>
       </file>
       <file name="debt.model.ts" path="/Users/som/Code/framtal/framtal-api/src/models/debt.model.ts">
         <metrics statements="34" coveredstatements="23" conditionals="0" coveredconditionals="0" methods="14" coveredmethods="0"/>
-        <line num="1" count="8" type="stmt"/>
-        <line num="2" count="8" type="stmt"/>
-        <line num="3" count="8" type="stmt"/>
-        <line num="4" count="8" type="stmt"/>
-        <line num="8" count="8" type="stmt"/>
+        <line num="1" count="13" type="stmt"/>
+        <line num="2" count="13" type="stmt"/>
+        <line num="3" count="13" type="stmt"/>
+        <line num="4" count="13" type="stmt"/>
+        <line num="8" count="13" type="stmt"/>
         <line num="9" count="0" type="stmt"/>
-        <line num="11" count="8" type="stmt"/>
+        <line num="11" count="13" type="stmt"/>
         <line num="13" count="0" type="stmt"/>
-        <line num="15" count="8" type="stmt"/>
-        <line num="19" count="8" type="stmt"/>
-        <line num="23" count="8" type="stmt"/>
-        <line num="27" count="8" type="stmt"/>
-        <line num="31" count="8" type="stmt"/>
-        <line num="35" count="8" type="stmt"/>
-        <line num="39" count="8" type="stmt"/>
-        <line num="43" count="8" type="stmt"/>
-        <line num="47" count="8" type="stmt"/>
+        <line num="15" count="13" type="stmt"/>
+        <line num="19" count="13" type="stmt"/>
+        <line num="23" count="13" type="stmt"/>
+        <line num="27" count="13" type="stmt"/>
+        <line num="31" count="13" type="stmt"/>
+        <line num="35" count="13" type="stmt"/>
+        <line num="39" count="13" type="stmt"/>
+        <line num="43" count="13" type="stmt"/>
+        <line num="47" count="13" type="stmt"/>
         <line num="49" count="0" type="stmt"/>
-        <line num="51" count="8" type="stmt"/>
+        <line num="51" count="13" type="stmt"/>
         <line num="53" count="0" type="stmt"/>
-        <line num="55" count="8" type="stmt"/>
+        <line num="55" count="13" type="stmt"/>
         <line num="57" count="0" type="stmt"/>
-        <line num="59" count="8" type="stmt"/>
+        <line num="59" count="13" type="stmt"/>
         <line num="61" count="0" type="stmt"/>
-        <line num="63" count="8" type="stmt"/>
+        <line num="63" count="13" type="stmt"/>
         <line num="65" count="0" type="stmt"/>
-        <line num="67" count="8" type="stmt"/>
+        <line num="67" count="13" type="stmt"/>
         <line num="69" count="0" type="stmt"/>
-        <line num="71" count="8" type="stmt"/>
+        <line num="71" count="13" type="stmt"/>
         <line num="73" count="0" type="stmt"/>
-        <line num="75" count="8" type="stmt"/>
+        <line num="75" count="13" type="stmt"/>
         <line num="77" count="0" type="stmt"/>
         <line num="78" count="0" type="stmt"/>
-        <line num="80" count="8" type="stmt"/>
+        <line num="80" count="13" type="stmt"/>
       </file>
       <file name="entity.model.ts" path="/Users/som/Code/framtal/framtal-api/src/models/entity.model.ts">
         <metrics statements="22" coveredstatements="17" conditionals="0" coveredconditionals="0" methods="9" coveredmethods="0"/>
-        <line num="1" count="8" type="stmt"/>
-        <line num="2" count="8" type="stmt"/>
-        <line num="3" count="8" type="stmt"/>
-        <line num="4" count="8" type="stmt"/>
-        <line num="5" count="8" type="stmt"/>
-        <line num="9" count="8" type="stmt"/>
+        <line num="1" count="13" type="stmt"/>
+        <line num="2" count="13" type="stmt"/>
+        <line num="3" count="13" type="stmt"/>
+        <line num="4" count="13" type="stmt"/>
+        <line num="5" count="13" type="stmt"/>
+        <line num="9" count="13" type="stmt"/>
         <line num="10" count="0" type="stmt"/>
-        <line num="12" count="8" type="stmt"/>
-        <line num="16" count="8" type="stmt"/>
-        <line num="20" count="8" type="stmt"/>
-        <line num="24" count="8" type="stmt"/>
-        <line num="28" count="8" type="stmt"/>
-        <line num="32" count="8" type="stmt"/>
-        <line num="36" count="8" type="stmt"/>
+        <line num="12" count="13" type="stmt"/>
+        <line num="16" count="13" type="stmt"/>
+        <line num="20" count="13" type="stmt"/>
+        <line num="24" count="13" type="stmt"/>
+        <line num="28" count="13" type="stmt"/>
+        <line num="32" count="13" type="stmt"/>
+        <line num="36" count="13" type="stmt"/>
         <line num="38" count="0" type="stmt"/>
-        <line num="39" count="8" type="stmt"/>
+        <line num="39" count="13" type="stmt"/>
         <line num="41" count="0" type="stmt"/>
-        <line num="42" count="8" type="stmt"/>
+        <line num="42" count="13" type="stmt"/>
         <line num="44" count="0" type="stmt"/>
-        <line num="45" count="8" type="stmt"/>
+        <line num="45" count="13" type="stmt"/>
         <line num="47" count="0" type="stmt"/>
-        <line num="48" count="8" type="stmt"/>
+        <line num="48" count="13" type="stmt"/>
       </file>
       <file name="income.model.ts" path="/Users/som/Code/framtal/framtal-api/src/models/income.model.ts">
         <metrics statements="21" coveredstatements="14" conditionals="0" coveredconditionals="0" methods="10" coveredmethods="0"/>
-        <line num="1" count="8" type="stmt"/>
-        <line num="2" count="8" type="stmt"/>
-        <line num="3" count="8" type="stmt"/>
-        <line num="4" count="8" type="stmt"/>
-        <line num="8" count="8" type="stmt"/>
+        <line num="1" count="13" type="stmt"/>
+        <line num="2" count="13" type="stmt"/>
+        <line num="3" count="13" type="stmt"/>
+        <line num="4" count="13" type="stmt"/>
+        <line num="8" count="13" type="stmt"/>
         <line num="9" count="0" type="stmt"/>
-        <line num="11" count="8" type="stmt"/>
+        <line num="11" count="13" type="stmt"/>
         <line num="13" count="0" type="stmt"/>
-        <line num="15" count="8" type="stmt"/>
-        <line num="19" count="8" type="stmt"/>
-        <line num="23" count="8" type="stmt"/>
+        <line num="15" count="13" type="stmt"/>
+        <line num="19" count="13" type="stmt"/>
+        <line num="23" count="13" type="stmt"/>
         <line num="25" count="0" type="stmt"/>
-        <line num="27" count="8" type="stmt"/>
-        <line num="31" count="8" type="stmt"/>
+        <line num="27" count="13" type="stmt"/>
+        <line num="31" count="13" type="stmt"/>
         <line num="33" count="0" type="stmt"/>
-        <line num="35" count="8" type="stmt"/>
+        <line num="35" count="13" type="stmt"/>
         <line num="37" count="0" type="stmt"/>
-        <line num="39" count="8" type="stmt"/>
+        <line num="39" count="13" type="stmt"/>
         <line num="41" count="0" type="stmt"/>
         <line num="42" count="0" type="stmt"/>
-        <line num="44" count="8" type="stmt"/>
+        <line num="44" count="13" type="stmt"/>
       </file>
       <file name="index.ts" path="/Users/som/Code/framtal/framtal-api/src/models/index.ts">
         <metrics statements="5" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
@@ -655,11 +655,11 @@
       <metrics statements="6" coveredstatements="6" conditionals="0" coveredconditionals="0" methods="6" coveredmethods="6"/>
       <file name="test-utils.ts" path="/Users/som/Code/framtal/framtal-api/src/test/test-utils.ts">
         <metrics statements="6" coveredstatements="6" conditionals="0" coveredconditionals="0" methods="6" coveredmethods="6"/>
-        <line num="9" count="188" type="stmt"/>
-        <line num="25" count="75" type="stmt"/>
-        <line num="37" count="21" type="stmt"/>
-        <line num="51" count="25" type="stmt"/>
-        <line num="65" count="21" type="stmt"/>
+        <line num="9" count="208" type="stmt"/>
+        <line num="25" count="83" type="stmt"/>
+        <line num="37" count="23" type="stmt"/>
+        <line num="51" count="27" type="stmt"/>
+        <line num="65" count="23" type="stmt"/>
         <line num="90" count="32" type="stmt"/>
       </file>
     </package>

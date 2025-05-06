@@ -1,0 +1,190 @@
+/*
+ Navicat PostgreSQL Dump SQL
+
+ Source Server         : localhost-pg17
+ Source Server Type    : PostgreSQL
+ Source Server Version : 170002 (170002)
+ Source Host           : localhost:5417
+ Source Catalog        : framtal
+ Source Schema         : public
+
+ Target Server Type    : PostgreSQL
+ Target Server Version : 170002 (170002)
+ File Encoding         : 65001
+
+ Date: 06/05/2025 14:32:56
+*/
+
+
+-- ----------------------------
+-- Table structure for application
+-- ----------------------------
+DROP TABLE IF EXISTS "public"."application";
+CREATE TABLE "public"."application" (
+  "id" int8 NOT NULL,
+  "familyNumber" varchar(10) COLLATE "pg_catalog"."default" NOT NULL,
+  "year" varchar(4) COLLATE "pg_catalog"."default"
+)
+;
+ALTER TABLE "public"."application" OWNER TO "postgres";
+
+-- ----------------------------
+-- Records of application
+-- ----------------------------
+BEGIN;
+INSERT INTO "public"."application" ("id", "familyNumber", "year") VALUES (1, '1203894569', '2024');
+COMMIT;
+
+-- ----------------------------
+-- Table structure for asset
+-- ----------------------------
+DROP TABLE IF EXISTS "public"."asset";
+CREATE TABLE "public"."asset" (
+  "applicationId" int8 NOT NULL,
+  "nationalId" varchar(10) COLLATE "pg_catalog"."default" NOT NULL,
+  "description" varchar(255) COLLATE "pg_catalog"."default",
+  "amount" int4,
+  "assetType" varchar(255) COLLATE "pg_catalog"."default",
+  "assetIdentifier" varchar(255) COLLATE "pg_catalog"."default",
+  "id" int4 NOT NULL
+)
+;
+ALTER TABLE "public"."asset" OWNER TO "postgres";
+
+-- ----------------------------
+-- Records of asset
+-- ----------------------------
+BEGIN;
+INSERT INTO "public"."asset" ("applicationId", "nationalId", "description", "amount", "assetType", "assetIdentifier", "id") VALUES (1, '1203894569', 'Bláfjallagata 12', 52000000, 'domestic_property', '210-9876', 1);
+INSERT INTO "public"."asset" ("applicationId", "nationalId", "description", "amount", "assetType", "assetIdentifier", "id") VALUES (1, '1203894569', '2021', 3100000, 'vehicle', 'KB-521', 2);
+INSERT INTO "public"."asset" ("applicationId", "nationalId", "description", "amount", "assetType", "assetIdentifier", "id") VALUES (1, '1203894569', '2012', 430000, 'vehicle', 'JU-329', 3);
+COMMIT;
+
+-- ----------------------------
+-- Table structure for debt
+-- ----------------------------
+DROP TABLE IF EXISTS "public"."debt";
+CREATE TABLE "public"."debt" (
+  "applicationId" int8 NOT NULL,
+  "nationalId" varchar(10) COLLATE "pg_catalog"."default" NOT NULL,
+  "description" varchar(255) COLLATE "pg_catalog"."default",
+  "loanType" varchar(255) COLLATE "pg_catalog"."default",
+  "lenderId" varchar(10) COLLATE "pg_catalog"."default",
+  "loanNumber" varchar(255) COLLATE "pg_catalog"."default",
+  "loanDate" date,
+  "loanLength" varchar(255) COLLATE "pg_catalog"."default",
+  "totalPayment" int4,
+  "principalPayment" int4,
+  "deduction" int4,
+  "totalCost" int4,
+  "amount" int4,
+  "id" int4 NOT NULL,
+  "description_secondary" varchar(255) COLLATE "pg_catalog"."default"
+)
+;
+ALTER TABLE "public"."debt" OWNER TO "postgres";
+
+-- ----------------------------
+-- Records of debt
+-- ----------------------------
+BEGIN;
+INSERT INTO "public"."debt" ("applicationId", "nationalId", "description", "loanType", "lenderId", "loanNumber", "loanDate", "loanLength", "totalPayment", "principalPayment", "deduction", "totalCost", "amount", "id", "description_secondary") VALUES (1, '1203894569', 'Bláfjallagata 12', 'property', '4910080160', '56783900123', '2021-06-15', '30', 2280000, 1360000, 0, 920000, 28540000, 1, NULL);
+INSERT INTO "public"."debt" ("applicationId", "nationalId", "description", "loanType", "lenderId", "loanNumber", "loanDate", "loanLength", "totalPayment", "principalPayment", "deduction", "totalCost", "amount", "id", "description_secondary") VALUES (1, '1203894569', 'Eftirstöðvar á korti númer: 4469 88XX XXXX 4567', 'other', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 39200, 217000, 2, NULL);
+INSERT INTO "public"."debt" ("applicationId", "nationalId", "description", "loanType", "lenderId", "loanNumber", "loanDate", "loanLength", "totalPayment", "principalPayment", "deduction", "totalCost", "amount", "id", "description_secondary") VALUES (1, '1203894569', 'Aukalán', 'other', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 86000, 980000, 3, NULL);
+INSERT INTO "public"."debt" ("applicationId", "nationalId", "description", "loanType", "lenderId", "loanNumber", "loanDate", "loanLength", "totalPayment", "principalPayment", "deduction", "totalCost", "amount", "id", "description_secondary") VALUES (1, '1203894569', '0142-26-732645 Varðan', 'other', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 14500, 52000, 4, NULL);
+INSERT INTO "public"."debt" ("applicationId", "nationalId", "description", "loanType", "lenderId", "loanNumber", "loanDate", "loanLength", "totalPayment", "principalPayment", "deduction", "totalCost", "amount", "id", "description_secondary") VALUES (1, '1203894569', 'Kílómetragjald, Skatturinn', 'other', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, 2370, 5, NULL);
+INSERT INTO "public"."debt" ("applicationId", "nationalId", "description", "loanType", "lenderId", "loanNumber", "loanDate", "loanLength", "totalPayment", "principalPayment", "deduction", "totalCost", "amount", "id", "description_secondary") VALUES (1, '1203894569', 'Þing- og sveitarsjóðsgjöld, Skatturinn', 'other', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 224, 0, 6, NULL);
+COMMIT;
+
+-- ----------------------------
+-- Table structure for entity
+-- ----------------------------
+DROP TABLE IF EXISTS "public"."entity";
+CREATE TABLE "public"."entity" (
+  "nationalId" varchar(10) COLLATE "pg_catalog"."default" NOT NULL,
+  "familyNumber" varchar(10) COLLATE "pg_catalog"."default" NOT NULL,
+  "name" varchar(255) COLLATE "pg_catalog"."default",
+  "address" varchar(255) COLLATE "pg_catalog"."default",
+  "email" varchar(255) COLLATE "pg_catalog"."default",
+  "phone" varchar(255) COLLATE "pg_catalog"."default",
+  "postal_code" varchar(255) COLLATE "pg_catalog"."default"
+)
+;
+ALTER TABLE "public"."entity" OWNER TO "postgres";
+
+-- ----------------------------
+-- Records of entity
+-- ----------------------------
+BEGIN;
+INSERT INTO "public"."entity" ("nationalId", "familyNumber", "name", "address", "email", "phone", "postal_code") VALUES ('1203894569', '1203894569', 'Jökull Þórðarson', 'Bláfjallagata 12', 'jokull.thordarson@email.is', '772-8391', '105 Reykjavík');
+INSERT INTO "public"."entity" ("nationalId", "familyNumber", "name", "address", "email", "phone", "postal_code") VALUES ('5501119999', '5501119999', 'Norðurljós Software ehf.', NULL, NULL, NULL, NULL);
+INSERT INTO "public"."entity" ("nationalId", "familyNumber", "name", "address", "email", "phone", "postal_code") VALUES ('4401129999', '4401129999', 'Mús & Merki ehf.', NULL, NULL, NULL, NULL);
+INSERT INTO "public"."entity" ("nationalId", "familyNumber", "name", "address", "email", "phone", "postal_code") VALUES ('6902692019', '6902692019', 'VR', NULL, NULL, NULL, NULL);
+INSERT INTO "public"."entity" ("nationalId", "familyNumber", "name", "address", "email", "phone", "postal_code") VALUES ('4910080160', '4910080160', 'Íslandsbanki hf.', NULL, NULL, NULL, NULL);
+COMMIT;
+
+-- ----------------------------
+-- Table structure for income
+-- ----------------------------
+DROP TABLE IF EXISTS "public"."income";
+CREATE TABLE "public"."income" (
+  "applicationId" int4 NOT NULL,
+  "nationalId" varchar(10) COLLATE "pg_catalog"."default" NOT NULL,
+  "payorId" varchar(10) COLLATE "pg_catalog"."default" NOT NULL,
+  "amount" int4,
+  "incomeType" varchar(255) COLLATE "pg_catalog"."default",
+  "id" int4 NOT NULL
+)
+;
+ALTER TABLE "public"."income" OWNER TO "postgres";
+
+-- ----------------------------
+-- Records of income
+-- ----------------------------
+BEGIN;
+INSERT INTO "public"."income" ("applicationId", "nationalId", "payorId", "amount", "incomeType", "id") VALUES (1, '1203894569', '5501119999', 9360000, 'salary', 1);
+INSERT INTO "public"."income" ("applicationId", "nationalId", "payorId", "amount", "incomeType", "id") VALUES (1, '1203894569', '4401129999', 900000, 'salary', 2);
+INSERT INTO "public"."income" ("applicationId", "nationalId", "payorId", "amount", "incomeType", "id") VALUES (1, '1203894569', '5501119999', 75000, 'sports', 4);
+INSERT INTO "public"."income" ("applicationId", "nationalId", "payorId", "amount", "incomeType", "id") VALUES (1, '1203894569', '5501119999', 120000, 'perdiem', 3);
+INSERT INTO "public"."income" ("applicationId", "nationalId", "payorId", "amount", "incomeType", "id") VALUES (1, '1203894569', '6902692019', 130000, 'job_education_grant', 5);
+COMMIT;
+
+-- ----------------------------
+-- Primary Key structure for table application
+-- ----------------------------
+ALTER TABLE "public"."application" ADD CONSTRAINT "application_pkey" PRIMARY KEY ("id");
+
+-- ----------------------------
+-- Primary Key structure for table asset
+-- ----------------------------
+ALTER TABLE "public"."asset" ADD CONSTRAINT "asset_pkey" PRIMARY KEY ("id");
+
+-- ----------------------------
+-- Primary Key structure for table debt
+-- ----------------------------
+ALTER TABLE "public"."debt" ADD CONSTRAINT "debt_pkey" PRIMARY KEY ("id");
+
+-- ----------------------------
+-- Primary Key structure for table entity
+-- ----------------------------
+ALTER TABLE "public"."entity" ADD CONSTRAINT "person_pkey" PRIMARY KEY ("nationalId", "familyNumber");
+
+-- ----------------------------
+-- Primary Key structure for table income
+-- ----------------------------
+ALTER TABLE "public"."income" ADD CONSTRAINT "income_pkey" PRIMARY KEY ("id");
+
+-- ----------------------------
+-- Foreign Keys structure for table asset
+-- ----------------------------
+ALTER TABLE "public"."asset" ADD CONSTRAINT "applicationId" FOREIGN KEY ("applicationId") REFERENCES "public"."application" ("id") ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+-- ----------------------------
+-- Foreign Keys structure for table debt
+-- ----------------------------
+ALTER TABLE "public"."debt" ADD CONSTRAINT "applicationId" FOREIGN KEY ("applicationId") REFERENCES "public"."application" ("id") ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+-- ----------------------------
+-- Foreign Keys structure for table income
+-- ----------------------------
+ALTER TABLE "public"."income" ADD CONSTRAINT "applicationId" FOREIGN KEY ("applicationId") REFERENCES "public"."application" ("id") ON DELETE NO ACTION ON UPDATE NO ACTION;

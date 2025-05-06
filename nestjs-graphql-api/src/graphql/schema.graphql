@@ -1,0 +1,99 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+type Application {
+  assets: [Asset!]
+  debts: [Debt!]
+  familyNumber: String!
+  id: ID!
+  incomes: [Income!]
+  year: String!
+}
+
+type Asset {
+  amount: Int
+  applicationId: Int!
+  assetIdentifier: String
+  assetType: String
+  description: String
+  id: ID!
+  nationalId: String!
+}
+
+"""
+A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date-time format.
+"""
+scalar DateTime
+
+type Debt {
+  amount: Int
+  applicationId: Int!
+  deduction: Int
+  description: String
+  descriptionSecondary: String
+  id: ID!
+  lenderId: String
+  loanDate: DateTime
+  loanLength: String
+  loanNumber: String
+  loanType: String
+  nationalId: String!
+  principalPayment: Int
+  totalCost: Int
+  totalPayment: Int
+}
+
+type Entity {
+  address: String
+  email: String
+  familyNumber: String!
+  name: String
+  nationalId: ID!
+  phone: String
+  postalCode: String
+}
+
+type Income {
+  amount: Int
+  applicationId: Int!
+  id: ID!
+  incomeType: String
+  nationalId: String!
+  payor: Entity
+  payorId: String!
+}
+
+type Mutation {
+  updateIncome(updateIncomeInput: UpdateIncomeInput!): Income!
+}
+
+type Query {
+  application(id: Int!): Application
+  applications: [Application!]!
+  applicationsByFamilyNumber(familyNumber: String!): [Application!]!
+  asset(id: Int!): Asset
+  assets: [Asset!]!
+  assetsByApplication(applicationId: Int!): [Asset!]!
+  assetsByNationalId(nationalId: String!): [Asset!]!
+  debt(id: Int!): Debt
+  debts: [Debt!]!
+  debtsByApplication(applicationId: Int!): [Debt!]!
+  debtsByNationalId(nationalId: String!): [Debt!]!
+  entities: [Entity!]!
+  entitiesByFamily(familyNumber: String!): [Entity!]!
+  entity(nationalId: String!): Entity
+  income(id: Int!): Income
+  incomes: [Income!]!
+  incomesByApplication(applicationId: Int!): [Income!]!
+  incomesByNationalId(nationalId: String!): [Income!]!
+  incomesByPayor(payorId: String!): [Income!]!
+}
+
+input UpdateIncomeInput {
+  amount: Int
+  id: Int!
+  incomeType: String
+  nationalId: String
+  payorId: String
+}

@@ -11,7 +11,7 @@ const nextConfig: NextConfig = {
     return [
       {
         source: '/api/graphql',
-        destination: 'http://localhost:3000/graphql',
+        destination: 'http://localhost:3001/graphql',
       },
     ];
   },

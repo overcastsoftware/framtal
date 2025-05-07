@@ -1,3 +1,5 @@
+'use client';
+
 import { useQuery } from '@apollo/client';
 import { GET_CURRENT_USER } from '../../graphql/queries/getUserInfo';
 
@@ -11,17 +13,9 @@ export default function CurrentUserInfo() {
   const { currentUser } = data;
 
   return (
-    <div className="bg-white dark:bg-gray-800 p-4 rounded-lg shadow mb-4">
-      <h2 className="text-xl font-bold mb-2">Current User Information</h2>
-      <div className="space-y-2">
-        <p><span className="font-semibold">Name:</span> {currentUser.name}</p>
-        <p><span className="font-semibold">ID:</span> {currentUser.nationalId}</p>
-        <p><span className="font-semibold">Email:</span> {currentUser.email}</p>
-        <p><span className="font-semibold">Phone:</span> {currentUser.phone}</p>
-        <p><span className="font-semibold">Address:</span> {currentUser.address}</p>
-        <p><span className="font-semibold">Postal Code:</span> {currentUser.postalCode}</p>
-        <p><span className="font-semibold">Family Number:</span> {currentUser.familyNumber}</p>
-      </div>
-    </div>
+    <button className="bg-gray-100 hover:bg-gray-200 text-black px-4 py-2 rounded-md flex font-medium flex-row items-center gap-2.5">
+      <div className='rounded-2xl bg-amber-200 h-4 w-4'></div>
+      {currentUser.name}
+    </button>
   );
 }

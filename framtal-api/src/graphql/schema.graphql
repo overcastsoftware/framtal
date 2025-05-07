@@ -119,6 +119,7 @@ type Query {
   assets: [Asset!]!
   assetsByApplication(applicationId: Int!): [Asset!]!
   assetsByNationalId(nationalId: String!): [Asset!]!
+  currentUser: Entity
   debt(id: Int!): Debt
   debts: [Debt!]!
   debtsByApplication(applicationId: Int!): [Debt!]!

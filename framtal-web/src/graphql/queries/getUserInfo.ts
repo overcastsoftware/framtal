@@ -35,6 +35,21 @@ export const GET_APPLICATIONS_BY_FAMILY_NUMBER = gql`
 
 `;
 
+// Query to fetch the currently logged in user
+export const GET_CURRENT_USER = gql`
+  query GetCurrentUser {
+    currentUser {
+      nationalId
+      familyNumber
+      name
+      phone
+      email
+      address
+      postalCode
+    }
+  }
+`;
+
 // Example of a query with parameters
 export const GET_ITEM_BY_ID = gql`
   query GetItemById($id: ID!) {

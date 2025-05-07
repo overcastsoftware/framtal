@@ -8,18 +8,28 @@
   --font-sans: var(--ibm-plex-sans);
   --font-mono: var(--ibm-plex-sans);
 }
-
-@media (prefers-color-scheme: light) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
-
 body {
   background: var(--background);
   color: var(--foreground);
   font-family: var(--ibm-plex-sans), Helvetica, sans-serif;
+  font-size: 18px;
+  font-weight: 300
+}
+h1{
+  font-size: 42px;
+}
+h2{
+  font-size: 34px;
+}
+h3{
+  font-size: 24px;
+}
+
+.bg-blue{
+  background-color: #f2f7ff;
+}
+.bg-gray{
+  background-color: #f8f5fa;
 }
 
 @theme {

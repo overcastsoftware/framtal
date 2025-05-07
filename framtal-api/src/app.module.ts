@@ -10,6 +10,8 @@ import { AssetModule } from './asset/asset.module';
 import { DebtModule } from './debt/debt.module';
 import { IncomeModule } from './income/income.module';
 import { DateTimeScalar } from './graphql/scalars/datetime.scalar';
+import { LoginModule } from './login/login.module';
+import { UserModule } from './user/user.module';
 
 @Module({
   imports: [
@@ -25,6 +27,8 @@ import { DateTimeScalar } from './graphql/scalars/datetime.scalar';
     AssetModule,
     DebtModule,
     IncomeModule,
+    LoginModule,
+    UserModule,
   ],
   providers: [DateTimeScalar],
 })

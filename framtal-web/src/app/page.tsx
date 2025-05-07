@@ -63,7 +63,7 @@ export default function Home() {
 
         {/* Content Column */}
         <main className="space-y-8">
-        <div data-level="3" className="h-8 inline-flex justify-start items-center gap-2 overflow-hidden">
+        <div data-level="3" className="h-8 inline-flex justify-start items-center gap-2 overflow-hidden text-sm">
             <div data-state="Default" className="flex justify-start items-center gap-2.5">
               <div className="justify-center text-blue-600  font-semibold  leading-none">Ísland.is</div>
             </div>
@@ -83,7 +83,7 @@ export default function Home() {
           <section className="space-y-4">
             <div className="bg-blue rounded-xl text-blue-700 p-6 flex justify-between items-center mb-8">
               <h3 className="font-bold">Skil á skattframtali</h3>
-                <a className="bg-blue-600 text-white font-bold rounded-lg p-4 flex" href="/login">Opna framtal <svg className="ml-4" viewBox="0 0 512 512" data-testid="icon-open" fill="currentColor" color="currentColor" width="24px" height="24px"><path d="M384 224v184a40 40 0 01-40 40H104a40 40 0 01-40-40V168a40 40 0 0140-40h167.48M336 64h112v112M224 288L440 72" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="32"></path></svg></a>
+                <a className="bg-blue-600 text-white font-bold rounded-lg p-4 flex" href="/login">Opna framtal <svg className="ml-4" viewBox="0 0 512 512" data-testid="icon-open" fill="currentColor" color="currentColor" width="24px" height="24px"><path d="M384 224v184a40 40 0 01-40 40H104a40 40 0 01-40-40V168a40 40 0 0140-40h167.48M336 64h112v112M224 288L440 72" fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="32"></path></svg></a>
             </div>
             <h2 className="text-2xl font-semibold">Hér getur þú skilað skattframtali einstaklinga fyrir árið 2025</h2>
             <p className="text-gray-700  leading-relaxed">

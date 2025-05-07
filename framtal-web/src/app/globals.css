@@ -33,6 +33,13 @@ h3{
 }
 
 @theme {
+  --color-accent-mint-800: #005B52;
+  --color-accent-mint-600: #00B39E;
+  --color-accent-mint-400: #00E4CA;
+  --color-accent-mint-300: #99F4EA;
+  --color-accent-mint-200: #CCFAF4;
+  --color-accent-mint-100: #F2FEFC;
+
   --color-primary-blue-600: #0044B3;
   --color-primary-blue-400: #0061FF;
   --color-primary-blue-300: #99C0FF;

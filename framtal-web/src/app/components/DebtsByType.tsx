@@ -55,7 +55,6 @@ const DEBT_TYPES: Record<string, DebtTypeInfo> = {
 }
 
 export const DebtsByType: React.FC<DebtsByTypeProps> = ({ debts }) => {
-  console.log('🚀 ~ DebtsByType.tsx ~ debts:', debts)
   // Group debts by type
   const debtsByType: Record<string, Debt[]> = {}
 
@@ -64,7 +63,6 @@ export const DebtsByType: React.FC<DebtsByTypeProps> = ({ debts }) => {
 
   debts.forEach((debt) => {
     const type = debt.loanType || 'other'
-    console.log(type)
     if (!debtsByType[type]) {
       debtsByType[type] = []
     }

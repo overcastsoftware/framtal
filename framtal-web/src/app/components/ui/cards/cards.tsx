@@ -1,5 +1,11 @@
 import React from 'react'
 
+type Entity = {
+  __typename: string
+  name: string
+  nationalId: string
+}
+
 type CardItem = {
   id: string
   amount: number
@@ -10,6 +16,7 @@ type CardItem = {
   assetIdentifier?: string
   identifier?: string
   totalCost: number
+  payor: Entity
 }
 
 type DisplayCardProps = {
@@ -18,7 +25,6 @@ type DisplayCardProps = {
   title: string
   totalAmount: number
   items: CardItem[]
-  type?: string
   showTotal?: boolean
   parentType?: string
 }
@@ -39,10 +45,6 @@ const DisplayCard: React.FC<DisplayCardProps> = ({
   category,
   parentType,
 }) => {
-  if (parentType === 'debt') {
-    console.log(type)
-  }
-  console.log(parentType)
   return (
     <div className="bg-white rounded-lg justify-between min-h-80 flex flex-col p-6 border border-primary-blue-200 hover:border-primary-blue-300">
       <div>
@@ -111,16 +113,18 @@ const DisplayCard: React.FC<DisplayCardProps> = ({
                   </div>
                 </div>
               )} */}
-              {type === 'income' && (
-                <div className="flex justify-between">
-                  <span className="text-gray-600">{item.entity}</span>
-                  <span className="text-gray-600">{formatCurrency(item.amount)}</span>
+              {category === 'tekjur' && (
+                <div>
+                  <div className="flex justify-between">
+                    <span className="text-gray-600">{item.entity}</span>
+                    <span className="text-gray-600">{formatCurrency(item.amount)}</span>
+                  </div>
                 </div>
               )}
               {/* <div className="text-xs text-gray-500">Kennitala: {item.nationalId}</div> */}
             </div>
           ))}
-          {parentType === 'salary' && (
+          {category === 'tekjur' && type === 'salary' && (
             <div className="flex justify-between mt-3">
               <span className="text-gray-600">Samtals:</span>
               <span className="text-md text-right font-bold text-primary-header">
@@ -131,7 +135,10 @@ const DisplayCard: React.FC<DisplayCardProps> = ({
         </div>
       </div>
       <div className="w-full flex justify-end">
-        <a href={`/${category}/${type}`} className="mt-4 cursor-pointer bg-white text-primary-header border border-primary-blue-200 rounded-lg font-semibold py-2 px-4">
+        <a
+          href={`/${category}/${type}`}
+          className="mt-4 cursor-pointer bg-white text-primary-header border border-primary-blue-200 rounded-lg font-semibold py-2 px-4"
+        >
           Breyta
         </a>
       </div>

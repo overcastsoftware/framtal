@@ -39,7 +39,7 @@ const IncomeForm: React.FC<IncomeFormProps> = ({ income, familyNumber }) => {
 
   const [updateIncome] = useMutation(UPDATE_INCOME, {
     onCompleted: () => {
-      setSaveMessage('Saved!');
+      setSaveMessage('Vistað!');
       setTimeout(() => setSaveMessage(''), 2000);
     },
     refetchQueries: [

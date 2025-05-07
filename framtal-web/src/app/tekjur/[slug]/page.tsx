@@ -8,6 +8,12 @@ import { useQuery } from '@apollo/client';
 import IncomeForm from '../../components/IncomeForm';
 import NewIncomeForm from '../../components/NewIncomeForm';
 
+const sortById = (a, b) => {
+  if (a.id < b.id) return -1;
+  if (a.id > b.id) return 1;
+  return 0;
+}
+
 export default function IncomePage() {
   
   const { slug } = useParams();

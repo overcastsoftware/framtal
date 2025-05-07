@@ -18,7 +18,7 @@ export default function Cards() {
     <div className="bg-gray-100 dark:bg-gray-800 p-4 rounded-lg shadow mb-4">
       <h2 className="text-xl font-bold mb-2">Velkominn {data.applicationsByFamilyNumber[0].familyNumber}</h2>
       <p className="text-gray-700 dark:text-gray-300 mb-4">
-        Þú getur ferið yfir, bætt við breytt og staðfest þegar þú ert tilbúin
+        Þú getur ferið yfir, bætt við breytt og staðfest þegar þú ert tilbúinn
       </p>
       <pre className="bg-gray-200 dark:bg-gray-700 p-3 rounded overflow-auto">
         {JSON.stringify(data, null, 2)}

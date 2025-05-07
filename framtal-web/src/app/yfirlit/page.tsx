@@ -89,10 +89,10 @@ export default function Home() {
                 </div>
               </div>
               <h1 className="text-5xl text-color-primary-dark-400 font-bold">
-                Velkominn {firstName}! Hér að neðan er yfirlit yfir framtalið þitt.
+                Velkominn {firstName}!<br />Hér að neðan er yfirlit yfir framtalið þitt.
               </h1>
               <p className="text-lg">
-                Þú getur farið yfir, bætt við, breytt og skilað þegar þú ert tilbúin.
+                Þú getur farið yfir, bætt við, breytt og skilað þegar þú ert tilbúinn.
               </p>
 
               <button
@@ -195,36 +195,7 @@ export default function Home() {
             </a>
           </div> */}
         </main>
-        <footer className="w-full h-96 bg-primary-blue-100 row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-          <p>s</p>
-          {/* <a
-            className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-            href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image aria-hidden src="/file.svg" alt="File icon" width={16} height={16} />
-            Learn
-          </a>
-          <a
-            className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-            href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image aria-hidden src="/window.svg" alt="Window icon" width={16} height={16} />
-            Examples
-          </a>
-          <a
-            className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-            href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image aria-hidden src="/globe.svg" alt="Globe icon" width={16} height={16} />
-            Go to nextjs.org →
-          </a> */}
-        </footer>
+
       </div>
     </Layout>
   )

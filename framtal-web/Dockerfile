@@ -1,4 +1,4 @@
-FROM node:18-alpine
+FROM node:20-alpine
 
 WORKDIR /app
 
@@ -6,8 +6,16 @@ COPY package*.json ./
 
 RUN npm install
 
+# USER nextjs
+
 COPY . .
 
-RUN npm run build
+EXPOSE 3000
 
-CMD ["npm", "run", "start:dev"]
+ENV PORT=3000
+
+ENV HOSTNAME="0.0.0.0"
+
+# RUN npm run build
+
+CMD ["npx", "next", "dev"]

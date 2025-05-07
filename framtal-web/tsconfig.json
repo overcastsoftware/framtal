@@ -1,0 +1,42 @@
+{
+  "compilerOptions": {
+    "target": "ES2017",
+    "lib": ["dom", "dom.iterable", "esnext"],
+    "allowJs": true,
+    "skipLibCheck": true,
+    "strict": true,
+    "noEmit": true,
+    "esModuleInterop": true,
+    "module": "esnext",
+    "moduleResolution": "bundler",
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "jsx": "preserve",
+    "incremental": true,
+    "plugins": [
+      {
+        "name": "next"
+      }
+    ],
+    "paths": {
+      "@/*": ["./src/*"],
+      "@island.is/island-ui/core": [
+        "./src/lib/island-ui/core/src/index.ts"
+      ],
+      "@island.is/island-ui/core/types": [
+        "./src/lib/island-ui/core/types.ts"
+      ],
+      "@island.is/island-ui/theme": [
+        "./src/lib/island-ui/theme/src/index.ts"
+      ],
+      "@island.is/island-ui/utils": [
+        "./src/lib/island-ui/utils/src/index.ts"
+      ],
+      "@island.is/island-ui/vanilla-extract-utils": [
+        "./src/lib/island-ui/vanilla-extract-utils/src/index.ts"
+      ],
+    }
+  },
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
+  "exclude": ["node_modules"]
+}

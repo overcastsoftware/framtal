@@ -87,7 +87,11 @@ export default function Home() {
             </div>
             <h2 className="text-2xl font-semibold">Hér getur þú skilað skattframtali einstaklinga fyrir árið 2025</h2>
             <p className="text-gray-700  leading-relaxed">
-              Foreldrar geta átt rétt á fæðingarorlofi þegar barn þeirra fæðist, er frumburður eða tekið í varanlegt fóstur. Hvort foreldri á rétt á 6 mánuðum í fæðingarorlof og heildaréttur beggja foreldra er því 12 mánuðir.
+            Flestar upplýsingar eru forskráðar en gott er að yfirfara. Þú getur bætt við og breytt upplýsingum. Að lokum þarft þú að staðfesta og skila framtali.
+            </p>
+            <p className="text-gray-700  leading-relaxed">
+            Þú skráir þig inn með rafrænum skilríkjum eða veflykli ríkisskattstjóra
+            Framtalið er opið frá 1.-14.mars. Ekki er hægt að sækja um lengri frest.
             </p>
           </section>
         </main>

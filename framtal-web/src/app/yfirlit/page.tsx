@@ -127,29 +127,25 @@ export default function Home() {
               </div>
             </div>
             <div className="flex flex-row gap-4">
-              <button className="bg-white cursor-pointer hover:bg-secondary-blueberry-400 duration-100 text-lg font-semibold text-primary-blue-400 border border-primary-blue-400 rounded-lg h-fit px-4 py-2">
-                Vista
-              </button>
-              <button className="bg-primary-blue-400 cursor-pointer hover:bg-secondary-blueberry-400 duration-100 text-lg font-semibold text-white rounded-lg h-fit px-4 py-2">
-                Skila framtali
-              </button>
+              <button className="btn-ghost">Vista</button>
+              <button className="btn-primary">Skila framtali</button>
             </div>
           </div>
 
           {/* SECTIONS */}
 
           <div className="flex flex-col w-full space-y-12">
-            <h3 className="text-2xl text-primary-header font-bold mb-4">Tekjur</h3>
+            <h3 className="section-header">Tekjur</h3>
 
             {/* CARDS */}
             <IncomesByType incomes={incomes} />
 
-            <h3 className="text-2xl text-primary-header font-bold mb-4">Eignir</h3>
+            <h3 className="section-header">Eignir</h3>
 
             {/* CARDS */}
             <AssetsByType assets={assets} />
 
-            <h3 className="text-2xl text-primary-header font-bold mb-4">Skuldir</h3>
+            <h3 className="section-header">Skuldir</h3>
 
             {/* CARDS */}
             <DebtsByType debts={debts} />

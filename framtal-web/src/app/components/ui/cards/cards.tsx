@@ -135,10 +135,7 @@ const DisplayCard: React.FC<DisplayCardProps> = ({
         </div>
       </div>
       <div className="w-full flex justify-end">
-        <a
-          href={`/${category}/${type}`}
-          className="mt-4 cursor-pointer bg-white text-primary-header border border-primary-blue-200 rounded-lg font-semibold py-2 px-4"
-        >
+        <a href={`/${category}/${type}`} className="btn-ghost">
           Breyta
         </a>
       </div>

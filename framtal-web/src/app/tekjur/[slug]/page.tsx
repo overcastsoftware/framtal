@@ -35,26 +35,6 @@ export default function IncomePage() {
     return <Layout><p className="text-center">No application found</p></Layout>;
   }
 
-  // Filter incomes based on the income type from the URL
-  const incomes = application.incomes.filter((income) => income.incomeType === slug);
-    
-  if (!incomes || incomes.length === 0) { 
-    return (
-      <Layout>
-        <div className="max-w-4xl mx-auto">
-          <h1 className="text-2xl font-bold mb-4">Engar línur fundust.</h1>
-          <p className="mb-6">Það eru engar línur af þessari tegund ennþá.</p>
-          
-          <NewIncomeForm 
-            applicationId={parseInt(application.id)} 
-            nationalId={familyNumber} 
-            familyNumber={familyNumber}
-          />
-        </div>
-      </Layout>
-    );
-  }
-
   // Get income type display name
   const incomeTypeLabels = {
     salary: 'Launatekjur',
@@ -63,33 +43,71 @@ export default function IncomePage() {
     job_education_grant: 'Starfs- og menntunar styrkir'
   };
 
+  // Group incomes by their type
+  const groupedIncomes = {};
+  application.incomes.forEach(income => {
+    const type = income.incomeType;
+    if (!groupedIncomes[type]) {
+      groupedIncomes[type] = [];
+    }
+    groupedIncomes[type].push(income);
+  });
+
+  // Filter to only include the requested type if slug is provided
+  const incomeTypesToShow = slug ? [slug] : Object.keys(groupedIncomes);
+
   return (
     <Layout>
       <div className="max-w-4xl mx-auto">
-        <h1 className="text-2xl font-bold mb-6">
-          {incomeTypeLabels[slug] || 'Launatekjur og starfstengdar greiðslur'}
+        <h1 className="text-2xl font-bold mb-3">
+          Tekjur
         </h1>
-        
-        <div className="mb-6">
-          {incomes.map((income) => (
-            <div key={income.id} className="bg-white shadow rounded-lg p-6 mb-4">
-              <IncomeForm 
-                income={income} 
-                applicationId={parseInt(application.id)}
-                nationalId={familyNumber}
-                familyNumber={familyNumber}
-              />
-            </div>
-          ))}
-        </div>
-        
-        <div className="mt-8 border-t pt-6">
-          <NewIncomeForm 
-            applicationId={parseInt(application.id)}
-            nationalId={familyNumber}
-            familyNumber={familyNumber}
-          />
-        </div>
+        <h3 className="mb-7">Launatekjur og starfstengdar greiðslur</h3>
+
+        {incomeTypesToShow.length === 0 ? (
+          <p className="mb-6">Engar tekjulínur fundust</p>
+        ) : (
+          <>
+            {incomeTypesToShow.map(type => {
+              const incomes = groupedIncomes[type] || [];
+              if (incomes.length === 0) return null;
+              
+              return (
+                <div key={type} className="mb-8  border-b border-blue-600 pb-5">
+                  <h2 className="text-xl font-semibold text-blue-600">
+                    {incomeTypeLabels[type] || type}
+                  </h2>
+                  
+                  <div className="mb-6">
+                    {incomes.map((income) => (
+                      <div key={income.id}>
+                        <IncomeForm 
+                          income={income} 
+                          applicationId={parseInt(application.id)}
+                          nationalId={familyNumber}
+                          familyNumber={familyNumber}
+                        />
+                      </div>
+                    ))}
+                  </div>
+                  <div>
+                    <NewIncomeForm 
+                      applicationId={parseInt(application.id)}
+                      nationalId={familyNumber}
+                      familyNumber={familyNumber}
+                    />
+                  </div>
+                </div>
+              );
+            })}
+          </>
+        )}
+      </div>
+
+      <div className="flex justify-center mt-8">
+        <Link href="/yfirlit" className="text-blue-600 hover:underline">
+          Til baka
+        </Link>
       </div>
     </Layout>
   );

@@ -16,10 +16,23 @@ export const GET_APPLICATIONS_BY_FAMILY_NUMBER = gql`
     }
     debts {
       id
-      description
-      loanType
       amount
+      applicationId
+      deduction
+      description
+      descriptionSecondary
+      loanDate
+      loanLength
+      loanNumber
+      loanType
+      nationalId
+      principalPayment
       totalCost
+      totalPayment
+      lender {
+        name
+        nationalId
+      }
     }
     incomes {
       id
@@ -59,4 +72,67 @@ export const GET_ITEM_BY_ID = gql`
       description
     }
   }
+`;
+
+
+export const GET_APPLICATIONS_BY_FAMILY_NUMBER_ONLY_INCOME = gql`
+  query GetApplicationsByFamilyNumber($familyNumber: String!) {
+  applicationsByFamilyNumber(familyNumber: $familyNumber) {
+    incomes {
+      id
+      amount
+      incomeType
+      payor {
+        name,
+        nationalId
+      }
+    }
+  }
+}
+
+`;
+
+
+export const GET_APPLICATIONS_BY_FAMILY_NUMBER_ONLY_ASSETS = gql`
+  query GetApplicationsByFamilyNumber($familyNumber: String!) {
+  applicationsByFamilyNumber(familyNumber: $familyNumber) {
+    assets {
+      id
+      description
+      amount
+      assetType
+      assetIdentifier
+    }
+  }
+}
+
+`;
+
+
+export const GET_APPLICATIONS_BY_FAMILY_NUMBER_ONLY_DEBT = gql`
+  query GetApplicationsByFamilyNumber($familyNumber: String!) {
+  applicationsByFamilyNumber(familyNumber: $familyNumber) {
+    debts {
+      id
+      amount
+      applicationId
+      deduction
+      description
+      descriptionSecondary
+      loanDate
+      loanLength
+      loanNumber
+      loanType
+      nationalId
+      principalPayment
+      totalCost
+      totalPayment
+      lender {
+        name
+        nationalId
+      }
+    }
+  }
+}
+
 `;

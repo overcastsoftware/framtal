@@ -7,12 +7,8 @@ import { GET_APPLICATIONS_BY_FAMILY_NUMBER_ONLY_INCOME } from '@/graphql/queries
 import { useQuery } from '@apollo/client'
 import IncomeForm from '../../components/IncomeForm'
 import NewIncomeForm from '../../components/NewIncomeForm'
+import { sortById } from '../../../lib/utils'
 
-const sortById = (a, b) => {
-  if (a.id < b.id) return -1
-  if (a.id > b.id) return 1
-  return 0
-}
 
 export default function IncomePage() {
   const { slug } = useParams()

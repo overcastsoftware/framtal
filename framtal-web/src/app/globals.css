@@ -1,0 +1,51 @@
+@import "tailwindcss";
+
+:root {
+  --background: #ffffff;
+  --foreground: #171717;
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--ibm-plex-sans);
+  --font-mono: var(--ibm-plex-sans);
+}
+
+@media (prefers-color-scheme: light) {
+  :root {
+    --background: #0a0a0a;
+    --foreground: #ededed;
+  }
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--ibm-plex-sans), Helvetica, sans-serif;
+}
+
+@theme {
+  --color-primary-blue-600: #0044B3;
+  --color-primary-blue-400: #0061FF;
+  --color-primary-blue-300: #99C0FF;
+  --color-primary-blue-200: #CCDFFF;
+  --color-primary-blue-100: #F2F7FF;
+
+  --color-primary-red-600: #B30038;
+  --color-primary-red-400: #FF0050;
+  --color-primary-red-300: #FF99B9;
+  --color-primary-red-200: #FFCCDC;
+  --color-primary-red-100: #FFF2F6;
+  
+  --color-primary-dark-400: #00003C;
+  --color-primary-dark-300: #9999B1;
+  --color-primary-dark-200: #CCCCD8;
+  --color-primary-dark-100: #F2F2F5;
+
+  --color-secondary-blueberry-600: #24268E;
+  --color-secondary-blueberry-400: #4649D0;
+  --color-secondary-blueberry-300: #B5B6EC;
+  --color-secondary-blueberry-200: #DADBF6;
+  --color-secondary-blueberry-100: #F6F6FD;
+
+  --shadow-light: 0 4px 30px 0px rgb(var(--color-primary-blue-400) / 0.08);
+  --shadow-strong: 0 4px 30px 0px rgb(var(--color-primary-blue-400) / 0.16);
+}

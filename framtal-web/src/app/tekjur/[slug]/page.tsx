@@ -19,7 +19,7 @@ export default function IncomePage() {
   const familyNumber = '1203894569' // In a real app, this should come from user context/auth
 
   // Validate the income type from URL parameter
-  if (!['salary', 'sports', 'perdiem', 'job_education_grant'].includes(slug)) {
+  if (!['salary', 'perdiem', 'education_and_sports'].includes(slug)) {
     return <Layout>Síða fannst ekki</Layout>
   }
 
@@ -67,9 +67,12 @@ export default function IncomePage() {
     groupedIncomes[type].push(income)
   })
 
+  let incomeTypesToShow = slug ? [slug] : Object.keys(groupedIncomes)
   // Filter to only include the requested type if slug is provided
-  const incomeTypesToShow = slug ? [slug] : Object.keys(groupedIncomes)
-
+  if (slug === 'education_and_sports') {
+    incomeTypesToShow = ['sports', 'job_education_grant']
+  }
+  
   return (
     <Layout>
       <div className="max-w-4xl mx-auto">
@@ -89,12 +92,12 @@ export default function IncomePage() {
           <p className="mb-6">Engar tekjulínur fundust</p>
         ) : (
           <>
-            {incomeTypesToShow.map((type) => {
+            {incomeTypesToShow.map((type, i) => {
               const incomes = groupedIncomes[type] || []
               if (incomes.length === 0) return null
 
               return (
-                <div key={type} className="mb-8  border-b border-blue-600 pb-5">
+                <div key={type} className={`mb-8 ${ i !== incomeTypesToShow.length-1 ? 'border-b' : ''} border-blue-600 pb-5`}>
                   <h2 className="text-xl font-semibold text-blue-600">
                     {incomeTypeLabels[type] || type}
                   </h2>

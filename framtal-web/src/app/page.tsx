@@ -92,9 +92,42 @@ export default function Home() {
             <p className="text-gray-700  leading-relaxed">
             Flestar upplýsingar eru forskráðar en gott er að yfirfara. Þú getur bætt við og breytt upplýsingum. Að lokum þarft þú að staðfesta og skila framtali.
             </p>
+            <h3 className="font-semibold">Almennar upplýsingar</h3>
             <p className="text-gray-700  leading-relaxed">
-            Þú skráir þig inn með rafrænum skilríkjum eða veflykli ríkisskattstjóra
-            Framtalið er opið frá 1.-14.mars. Ekki er hægt að sækja um lengri frest.
+            Flestar upplýsingar í framtalinu eru forskráðar. Þú þarft að yfirfara þær og staðfesta eða breyta ef nauðsyn krefur. Þegar öll gögn eru rétt og tilbúin skilarðu framtalinu með einföldum hætti í lok ferlisins.
+Þú skráir þig inn með rafrænum skilríkjum eða veflykli frá Skattinum.
+Framtalið er opið frá 1. mars til 14. mars 2025. Ekki er hægt að sækja um framlengdan skilafrest.
+Allir einstaklingar 16 ára og eldri sem voru búsettir á Íslandi árið 2024, höfðu tekjur eða áttu eignir, þurfa að skila framtali.
+            </p>
+            <h3 className="font-semibold">Að skrá sig inn</h3>
+            <p className="text-gray-700  leading-relaxed">
+            Smelltu á hnappinn „Opna framtal“ til að hefja ferlið.
+Þú getur auðkennt þig með rafrænum skilríkjum eða veflykli frá Skattinum.
+Ef þú ert ekki með veflykil geturðu sótt hann á skattur.is með því að slá inn kennitölu og velja afhendingarmáta.
+            </p>
+            <h3 className="font-semibold">Hvað gerist eftir að framtali er skilað?</h3>
+            <p className="text-gray-700  leading-relaxed">
+            Þú færð staðfestingu á vefnum þegar skilað hefur verið.
+Skilaboð berast einnig í pósthólfið þitt á Ísland.is.
+Fæ ég endurgreiðslu eða þarf ég að borga?
+Niðurstöður álagningar birtast í lok maí.
+Ef of mikið var dregið af í staðgreiðslu færðu endurgreiðslu.
+Ef of lítið var dregið af þarftu að greiða mismuninn.
+            </p>
+            <h3 className="font-semibold">Greidd leiga og fylgiskjöl</h3>
+            <p className="text-gray-700  leading-relaxed">
+            Ef þú greiddir leigu á árinu 2024 þarftu að skila upplýsingum um leigusala og greiðslur.
+Þetta er gert með því að fylla út fylgiskjal RSK 2.02 sem þú sendir með framtalinu.
+            </p>
+            <h3 className="font-semibold">Tekjur erlendis frá</h3>
+            <p className="text-gray-700  leading-relaxed">
+            Ef þú hafðir tekjur erlendis árið 2024 þarftu að skrá þær sérstaklega í framtalinu.
+Þú þarft einnig að gera grein fyrir uppruna þeirra og skattlagningu í viðkomandi landi.
+            </p>
+            <h3 className="font-semibold">Þarftu aðstoð?</h3>
+            <p className="text-gray-700  leading-relaxed">
+            Sími: 442 1414
+Netfang: framtal@skatturinn.is
             </p>
           </section>
         </main>

@@ -9,6 +9,12 @@ const formatCurrency = (amount: number) => {
   }).format(amount)
 }
 
+type Lender = {
+  __typename: string
+  name: string
+  nationalId: string
+}
+
 type Debt = {
   __typename: string
   id: string
@@ -16,6 +22,7 @@ type Debt = {
   loanType: string
   amount: number
   totalCost: number
+  lender?: Lender
 }
 
 interface DebtsByTypeProps {
@@ -71,13 +78,15 @@ export const DebtsByType: React.FC<DebtsByTypeProps> = ({ debts }) => {
     totalCost += debt.totalCost || 0
   })
 
+  console.log(debts)
+
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
       {Object.entries(debtsByType).map(([type, typeDebts]) => {
         const typeInfo = DEBT_TYPES[type] || { label: type, icon: '❓' }
         const typeTotal = typeDebts.reduce((sum, debt) => sum + (debt.amount || 0), 0)
         const typeTotalCost = typeDebts.reduce((sum, debt) => sum + (debt.totalCost || 0), 0)
-
+        console.log(typeDebts)
         return (
           <DisplayCard
             key={type}
@@ -91,6 +100,7 @@ export const DebtsByType: React.FC<DebtsByTypeProps> = ({ debts }) => {
               description: debt.description,
               amount: debt.amount || 0,
               totalCost: debt.totalCost || 0,
+              lender: debt.lender,
             }))}
             className="mb-4"
             footer={

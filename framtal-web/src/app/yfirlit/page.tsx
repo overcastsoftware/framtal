@@ -43,7 +43,13 @@ export default function Home() {
 
   // {data.applicationsByFamilyNumber[0].familyNumber}
 
-  if (loading || userLoading) return <p className="text-center">Í vinnslu...</p>
+  if (loading || userLoading) {
+    return (
+      <div className="flex flex-col items-center justify-center min-h-screen">
+        <p className="text-center">Í vinnslu...</p>
+      </div>
+    )
+  }
   if (error || userError) return <p className="text-center text-red-500">Villa: {error.message}</p>
 
   const firstName = userData?.currentUser.name.split(' ')[0]
@@ -77,8 +83,8 @@ export default function Home() {
                   data-state="Default"
                   className="p-2 bg-sky-50 rounded-lg flex justify-start items-center overflow-hidden"
                 >
-                  <div className="justify-end text-blue-600 text-sm font-semibold  leading-none">
-                    skil á skattframtali
+                  <div className="justify-end text-blue-600 text-sm font-semibold leading-none">
+                    Skil á skattframtali
                   </div>
                 </div>
               </div>

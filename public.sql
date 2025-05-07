@@ -55,9 +55,9 @@ ALTER TABLE "public"."asset" OWNER TO "postgres";
 -- Records of asset
 -- ----------------------------
 BEGIN;
-INSERT INTO "public"."asset" ("applicationId", "nationalId", "description", "amount", "assetType", "assetIdentifier", "id") VALUES (1, '1203894569', 'Bláfjallagata 12', 52000000, 'domestic_property', '210-9876', 1);
-INSERT INTO "public"."asset" ("applicationId", "nationalId", "description", "amount", "assetType", "assetIdentifier", "id") VALUES (1, '1203894569', '2021', 3100000, 'vehicle', 'KB-521', 2);
-INSERT INTO "public"."asset" ("applicationId", "nationalId", "description", "amount", "assetType", "assetIdentifier", "id") VALUES (1, '1203894569', '2012', 430000, 'vehicle', 'JU-329', 3);
+INSERT INTO "public"."asset" ("applicationId", "nationalId", "description", "amount", "assetType", "assetIdentifier") VALUES (1, '1203894569', 'Bláfjallagata 12', 52000000, 'domestic_property', '210-9876');
+INSERT INTO "public"."asset" ("applicationId", "nationalId", "description", "amount", "assetType", "assetIdentifier") VALUES (1, '1203894569', '2021', 3100000, 'vehicle', 'KB-521');
+INSERT INTO "public"."asset" ("applicationId", "nationalId", "description", "amount", "assetType", "assetIdentifier") VALUES (1, '1203894569', '2012', 430000, 'vehicle', 'JU-329');
 COMMIT;
 
 -- ----------------------------
@@ -88,12 +88,12 @@ ALTER TABLE "public"."debt" OWNER TO "postgres";
 -- Records of debt
 -- ----------------------------
 BEGIN;
-INSERT INTO "public"."debt" ("applicationId", "nationalId", "description", "loanType", "lenderId", "loanNumber", "loanDate", "loanLength", "totalPayment", "principalPayment", "deduction", "totalCost", "amount", "id", "description_secondary") VALUES (1, '1203894569', 'Bláfjallagata 12', 'property', '4910080160', '56783900123', '2021-06-15', '30', 2280000, 1360000, 0, 920000, 28540000, 1, NULL);
-INSERT INTO "public"."debt" ("applicationId", "nationalId", "description", "loanType", "lenderId", "loanNumber", "loanDate", "loanLength", "totalPayment", "principalPayment", "deduction", "totalCost", "amount", "id", "description_secondary") VALUES (1, '1203894569', 'Eftirstöðvar á korti númer: 4469 88XX XXXX 4567', 'other', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 39200, 217000, 2, NULL);
-INSERT INTO "public"."debt" ("applicationId", "nationalId", "description", "loanType", "lenderId", "loanNumber", "loanDate", "loanLength", "totalPayment", "principalPayment", "deduction", "totalCost", "amount", "id", "description_secondary") VALUES (1, '1203894569', 'Aukalán', 'other', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 86000, 980000, 3, NULL);
-INSERT INTO "public"."debt" ("applicationId", "nationalId", "description", "loanType", "lenderId", "loanNumber", "loanDate", "loanLength", "totalPayment", "principalPayment", "deduction", "totalCost", "amount", "id", "description_secondary") VALUES (1, '1203894569', '0142-26-732645 Varðan', 'other', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 14500, 52000, 4, NULL);
-INSERT INTO "public"."debt" ("applicationId", "nationalId", "description", "loanType", "lenderId", "loanNumber", "loanDate", "loanLength", "totalPayment", "principalPayment", "deduction", "totalCost", "amount", "id", "description_secondary") VALUES (1, '1203894569', 'Kílómetragjald, Skatturinn', 'other', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, 2370, 5, NULL);
-INSERT INTO "public"."debt" ("applicationId", "nationalId", "description", "loanType", "lenderId", "loanNumber", "loanDate", "loanLength", "totalPayment", "principalPayment", "deduction", "totalCost", "amount", "id", "description_secondary") VALUES (1, '1203894569', 'Þing- og sveitarsjóðsgjöld, Skatturinn', 'other', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 224, 0, 6, NULL);
+INSERT INTO "public"."debt" ("applicationId", "nationalId", "description", "loanType", "lenderId", "loanNumber", "loanDate", "loanLength", "totalPayment", "principalPayment", "deduction", "totalCost", "amount", "description_secondary") VALUES (1, '1203894569', 'Bláfjallagata 12', 'property', '4910080160', '56783900123', '2021-06-15', '30', 2280000, 1360000, 0, 920000, 28540000, NULL);
+INSERT INTO "public"."debt" ("applicationId", "nationalId", "description", "loanType", "lenderId", "loanNumber", "loanDate", "loanLength", "totalPayment", "principalPayment", "deduction", "totalCost", "amount", "description_secondary") VALUES (1, '1203894569', 'Eftirstöðvar á korti númer: 4469 88XX XXXX 4567', 'other', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 39200, 217000, NULL);
+INSERT INTO "public"."debt" ("applicationId", "nationalId", "description", "loanType", "lenderId", "loanNumber", "loanDate", "loanLength", "totalPayment", "principalPayment", "deduction", "totalCost", "amount", "description_secondary") VALUES (1, '1203894569', 'Aukalán', 'other', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 86000, 980000, NULL);
+INSERT INTO "public"."debt" ("applicationId", "nationalId", "description", "loanType", "lenderId", "loanNumber", "loanDate", "loanLength", "totalPayment", "principalPayment", "deduction", "totalCost", "amount", "description_secondary") VALUES (1, '1203894569', '0142-26-732645 Varðan', 'other', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 14500, 52000, NULL);
+INSERT INTO "public"."debt" ("applicationId", "nationalId", "description", "loanType", "lenderId", "loanNumber", "loanDate", "loanLength", "totalPayment", "principalPayment", "deduction", "totalCost", "amount", "description_secondary") VALUES (1, '1203894569', 'Kílómetragjald, Skatturinn', 'other', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, 2370, NULL);
+INSERT INTO "public"."debt" ("applicationId", "nationalId", "description", "loanType", "lenderId", "loanNumber", "loanDate", "loanLength", "totalPayment", "principalPayment", "deduction", "totalCost", "amount", "description_secondary") VALUES (1, '1203894569', 'Þing- og sveitarsjóðsgjöld, Skatturinn', 'other', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 224, 0, NULL);
 COMMIT;
 
 -- ----------------------------
@@ -142,11 +142,11 @@ ALTER TABLE "public"."income" OWNER TO "postgres";
 -- Records of income
 -- ----------------------------
 BEGIN;
-INSERT INTO "public"."income" ("applicationId", "nationalId", "payorId", "amount", "incomeType", "id") VALUES (1, '1203894569', '5501119999', 9360000, 'salary', 1);
-INSERT INTO "public"."income" ("applicationId", "nationalId", "payorId", "amount", "incomeType", "id") VALUES (1, '1203894569', '4401129999', 900000, 'salary', 2);
-INSERT INTO "public"."income" ("applicationId", "nationalId", "payorId", "amount", "incomeType", "id") VALUES (1, '1203894569', '5501119999', 75000, 'sports', 4);
-INSERT INTO "public"."income" ("applicationId", "nationalId", "payorId", "amount", "incomeType", "id") VALUES (1, '1203894569', '5501119999', 120000, 'perdiem', 3);
-INSERT INTO "public"."income" ("applicationId", "nationalId", "payorId", "amount", "incomeType", "id") VALUES (1, '1203894569', '6902692019', 130000, 'job_education_grant', 5);
+INSERT INTO "public"."income" ("applicationId", "nationalId", "payorId", "amount", "incomeType") VALUES (1, '1203894569', '5501119999', 9360000, 'salary');
+INSERT INTO "public"."income" ("applicationId", "nationalId", "payorId", "amount", "incomeType") VALUES (1, '1203894569', '4401129999', 900000, 'salary');
+INSERT INTO "public"."income" ("applicationId", "nationalId", "payorId", "amount", "incomeType") VALUES (1, '1203894569', '5501119999', 75000, 'sports');
+INSERT INTO "public"."income" ("applicationId", "nationalId", "payorId", "amount", "incomeType") VALUES (1, '1203894569', '5501119999', 120000, 'perdiem');
+INSERT INTO "public"."income" ("applicationId", "nationalId", "payorId", "amount", "incomeType") VALUES (1, '1203894569', '6902692019', 130000, 'job_education_grant');
 COMMIT;
 
 

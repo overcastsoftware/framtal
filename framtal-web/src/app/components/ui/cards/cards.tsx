@@ -77,6 +77,14 @@ const DisplayCard: React.FC<DisplayCardProps> = ({
                   </div>
                 </div>
               )}
+              {parentType === 'other' && (
+                <div className="flex flex-col">
+                  <div className="flex justify-between">
+                    <span className="text-gray-600">{item.identifier}</span>
+                    <span className="text-gray-600">{formatCurrency(item.amount)}</span>
+                  </div>
+                </div>
+              )}
               {parentType === 'debt' && type === 'property' && (
                 <div className="flex flex-col">
                   <div className="flex justify-between mt-3">

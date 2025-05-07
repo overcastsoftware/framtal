@@ -44,7 +44,7 @@ export default function IncomePage() {
   if (!application) {
     return (
       <Layout>
-        <p className="text-center">No application found</p>
+        <p className="text-center">Ekkert framtal fannst</p>
       </Layout>
     )
   }
@@ -103,7 +103,7 @@ export default function IncomePage() {
                   </h2>
 
                   <div className="mb-6">
-                    {incomes.map((income) => (
+                    {incomes.sort(sortById).map((income) => (
                       <div key={income.id}>
                         <IncomeForm
                           income={income}

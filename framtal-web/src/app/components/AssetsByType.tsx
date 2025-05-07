@@ -37,7 +37,7 @@ const ASSET_TYPES: Record<string, AssetTypeInfo> = {
     icon: '🏙️',
   },
   vehicle: {
-    label: 'Ökutæki',
+    label: 'Bifreiðir',
     icon: '🚗',
   },
   cash: {
@@ -80,14 +80,14 @@ export const AssetsByType: React.FC<AssetsByTypeProps> = ({ assets }) => {
             title={typeInfo.label}
             parentType={type}
             category="eignir"
-            type="asset"
+            type={type}
             amount={typeTotal || 0}
             items={typeAssets.map((asset) => ({
               id: asset.id,
               entity: asset.description,
               description: asset.description,
               amount: asset.amount || 0,
-              identifier: asset.assetIdentifier,
+              identifier: asset.assetType === 'other' ? `${asset.description} ${asset.assetIdentifier}` : asset.assetIdentifier,
             }))}
             className="mb-4"
           />

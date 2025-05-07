@@ -78,7 +78,7 @@ const NewIncomeForm: React.FC<NewIncomeFormProps> = ({ applicationId, nationalId
     <div className="mt-4 rounded-lg bg-white">
       <div className="flex justify-end mb-2 relative">
         {message && (
-          <span className={message.startsWith('Error') ? 'text-red-500' : 'text-green-500'}>
+          <span className={message.startsWith('Error') ? 'text-sm text-red-500 font-bold' : 'text-sm text-green-500 font-bold'} style={{ position: 'absolute', right: '80px', top: '0' }}>
             {message}
           </span>
         )}

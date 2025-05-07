@@ -92,7 +92,7 @@ const IncomeForm: React.FC<IncomeFormProps> = ({ income, familyNumber }) => {
     <div className="mb-4">
       <div className="flex justify-end mb-2">
         <div className="flex items-center space-x-2 relative">
-          {saveMessage && <span className="text-green-500 text-sm">{saveMessage}</span>}
+          {saveMessage && <span className="text-green-500 text-sm font-bold"  style={{ position: 'absolute', right: '40px', top: '0' }}>{saveMessage}</span>}
           <button
             onClick={handleDelete}
             className="text-red-500 hover:text-red-700 font-bold text-sm"

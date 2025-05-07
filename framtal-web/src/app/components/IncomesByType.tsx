@@ -98,6 +98,7 @@ const IncomesByType: React.FC<IncomesByTypeProps> = ({ incomes }) => {
 
   // Get all unique income types
   const incomeTypes = Object.keys(groupedIncomes)
+  console.log(incomeTypes)
 
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -108,8 +109,11 @@ const IncomesByType: React.FC<IncomesByTypeProps> = ({ incomes }) => {
         return (
           <DisplayCard
             key={type}
+            type="income"
+            parentType={type}
             title={incomeTypeLabels[type] || type}
             totalAmount={totalAmount}
+            showTotal={true}
             items={groupedByPayor.map((group) => ({
               id: group.nationalId,
               amount: group.totalAmount,

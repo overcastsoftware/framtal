@@ -30,29 +30,22 @@ import { DebtsByType } from '../components/DebtsByType'
 // const CurrentUserInfo = dynamic(() => import('../components/CurrentUserInfo'), { ssr: true })
 
 export default function Home() {
-  const { loading: userLoading, error: userError, data: userData } = useQuery(GET_CURRENT_USER);
+  const { loading: userLoading, error: userError, data: userData } = useQuery(GET_CURRENT_USER)
   const { loading, error, data } = useQuery(GET_APPLICATIONS_BY_FAMILY_NUMBER, {
     variables: { familyNumber: '1203894569' }, // Replace with actual ID or variable
   })
 
-  const { familyNumber } = data?.applicationsByFamilyNumber[0] || {}
-
   const { assets } = data?.applicationsByFamilyNumber[0] || {}
   const { incomes } = data?.applicationsByFamilyNumber[0] || {}
   const { debts } = data?.applicationsByFamilyNumber[0] || {}
-  console.log('assets', assets)
-  console.log('incomes', incomes)
-  console.log('debts', debts)
-
 
   // const incomesByType = groupIncomesByType(incomes)
-  // console.log('incomesByType', incomesByType)
 
   // {data.applicationsByFamilyNumber[0].familyNumber}
 
   if (loading || userLoading) return <p className="text-center">Í vinnslu...</p>
   if (error || userError) return <p className="text-center text-red-500">Villa: {error.message}</p>
-  
+
   const firstName = userData?.currentUser.name.split(' ')[0]
 
   return (
@@ -101,7 +94,7 @@ export default function Home() {
                 data-size="Small"
                 data-state="Default"
                 data-type="Back button"
-                className="py-1 max-w-fit bg-white shadow-[inset_0px_-1px_0px_0px_rgba(0,97,255,1.00)] inline-flex justify-start items-center gap-1 overflow-hidden"
+                className="py-1 max-w-fit bg-white cursor-pointer duration-100 hover:shadow-[inset_0px_-2px_0px_0px_rgba(0,97,255,1.00)]  shadow-[inset_0px_-1px_0px_0px_rgba(0,97,255,1.00)] inline-flex justify-start items-center gap-1 overflow-hidden"
               >
                 <div className="justify-end text-blue-600 text-sm font-semibold  leading-none ">
                   Eldri framtöl
@@ -133,9 +126,14 @@ export default function Home() {
                 </div>
               </div>
             </div>
-            <button className="bg-primary-blue-400 text-lg font-semibold text-white rounded-lg h-fit px-4 py-2.5">
-              Skila framtali
-            </button>
+            <div className="flex flex-row gap-4">
+              <button className="bg-white cursor-pointer hover:bg-secondary-blueberry-400 duration-100 text-lg font-semibold text-primary-blue-400 border border-primary-blue-400 rounded-lg h-fit px-4 py-2">
+                Vista
+              </button>
+              <button className="bg-primary-blue-400 cursor-pointer hover:bg-secondary-blueberry-400 duration-100 text-lg font-semibold text-white rounded-lg h-fit px-4 py-2">
+                Skila framtali
+              </button>
+            </div>
           </div>
 
           {/* SECTIONS */}

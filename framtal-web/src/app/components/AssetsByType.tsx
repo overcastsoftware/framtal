@@ -68,8 +68,6 @@ export const AssetsByType: React.FC<AssetsByTypeProps> = ({ assets }) => {
     totalAmount += asset.amount || 0
   })
 
-  console.log(assetsByType)
-
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
       {Object.entries(assetsByType).map(([type, typeAssets]) => {

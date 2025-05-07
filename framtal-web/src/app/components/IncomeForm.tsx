@@ -32,13 +32,12 @@ const IncomeForm: React.FC<IncomeFormProps> = ({ income, familyNumber }) => {
   const { control, handleSubmit, formState: { errors } } = useForm({
     defaultValues: {
       amount: income.amount,
-      incomeType: income.incomeType,
     }
   });
 
   const [updateIncome] = useMutation(UPDATE_INCOME, {
     onCompleted: () => {
-      setSaveMessage('Saved!');
+      setSaveMessage('Vistað!');
       setTimeout(() => setSaveMessage(''), 2000);
     },
     refetchQueries: [
@@ -126,30 +125,6 @@ const IncomeForm: React.FC<IncomeFormProps> = ({ income, familyNumber }) => {
             )}
           </div>
 
-          <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1">
-              Tegund
-            </label>
-            <Controller
-              name="incomeType"
-              control={control}
-              rules={{ required: 'Tegund er nauðsynleg' }}
-              render={({ field }) => (
-                <select
-                  className="w-full px-3 py-2 border rounded-md"
-                  {...field}
-                >
-                  <option value="salary">Laun</option>
-                  <option value="sports">Líkamsræktarstyrkur</option>
-                  <option value="perdiem">Dagpeningar</option>
-                  <option value="job_education_grant">Starfs- og menntastyrkir</option>
-                </select>
-              )}
-            />
-            {errors.incomeType && (
-              <p className="text-red-500 text-sm mt-1">{errors.incomeType.message}</p>
-            )}
-          </div>
         </div>
       </form>
     </div>

@@ -18,13 +18,19 @@ export default function Home() {
       <div className="grid grid-cols-1 lg:grid-cols-[300px_1fr] gap-8">
         {/* Navigation Column */}
         <aside className="space-y-4">
-          <div className="bg-gray p-4 rounded-xl">
-            <div className="font-semibold text-lg mb-2">Stofnun</div>
-            <div className="text-gray-700">Skatturinn</div>
+          <div className="bg-gray p-8 rounded-xl flex">
+          <svg width="68" height="68" viewBox="0 0 68 68" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M39.4806 27.6674C42.4055 27.6674 45.16 28.8226 47.2323 30.9208L53.6462 37.4143C54.2102 37.9854 54.2102 38.9149 53.6462 39.486L52.5838 40.5615L34.6144 58.7941H34.6275L32.6732 60.7727C32.1616 61.2906 32.1616 62.1405 32.6732 62.6717L37.5525 67.6116C38.0771 68.1295 38.9034 68.1295 39.4281 67.6116L67.3528 39.3399C67.5627 39.1274 67.707 38.8619 67.7463 38.5697C67.7988 38.1713 67.6676 37.7729 67.3922 37.494L52.4395 22.3423C49.672 19.5404 45.9863 18 42.0645 18H37.9722C36.9098 18 35.8867 18.425 35.139 19.1819L26.7577 27.6674H39.4806Z" fill="#1B1C8A"/>
+            <path d="M21.2831 37.1065L15.058 30.8255C14.6903 30.4545 14.5064 29.9509 14.5589 29.4209C14.5983 28.9968 14.8085 28.5993 15.1105 28.2945L15.8985 27.4994L15.8854 27.5128L36.0185 7.21195C36.5438 6.69515 36.5438 5.84707 36.0185 5.31703L31.1198 0.387597C30.6076 -0.129199 29.7671 -0.129199 29.2418 0.387597L1.16306 28.7186C0.952929 28.9307 0.808465 29.1956 0.769065 29.4871C0.716532 29.8846 0.847864 30.2822 1.12366 30.5604L16.0955 45.6668C18.8666 48.4628 22.557 50 26.4838 50H30.5157C31.5795 50 32.6039 49.5759 33.3525 48.8206L41.7577 40.3399H29.0448C26.1424 40.3531 23.345 39.187 21.2831 37.1065Z" fill="#1B1C8A"/>
+          </svg>
+          <div className="flex flex-col ml-4">
+            <div className="font-semibold text-sm mb-1">Stofnun</div>
+            <div className="text-gray-700 text-xl font-bold">Skatturinn</div>
+          </div>
           </div>
 
           <nav className="bg-blue p-4 rounded-xl">
-            <h2 className="font-semibold text-lg mb-2">Efnisyfirlit</h2>
+            <div className="font-semibold text-lg mb-2 text-blue-800 py-2 px-2">Efnisyfirlit</div>
             <ul className="space-y-2 text-blue-700 font-light">
               <li className="p-2"><a href="#">Álagningarseðill</a></li>
               <li className="p-2"><a href="#">Bráðabirgðaútreikningur</a></li>
@@ -83,16 +89,6 @@ export default function Home() {
             <p className="text-gray-700  leading-relaxed">
               Foreldrar geta átt rétt á fæðingarorlofi þegar barn þeirra fæðist, er frumburður eða tekið í varanlegt fóstur. Hvort foreldri á rétt á 6 mánuðum í fæðingarorlof og heildaréttur beggja foreldra er því 12 mánuðir.
             </p>
-            <p className="text-gray-700  leading-relaxed">
-              Skilyrði er að hafa unnið á Íslandi samfellt síðustu 6 mánuðina fyrir fæðingardag barns, í að minnsta kosti 25% starfshlutfalli í hverjum mánuði.
-            </p>
-            <a href="#" className="text-blue-700  underline">Nánar um rétt til fæðingarorlofs</a>
-          </section>
-
-          <section className="space-y-2">
-            <h2 className="text-2xl font-semibold">Að sækja um</h2>
-            <p className=" text-gray-700">Hvenær á ég að sækja um?</p>
-            {/* Additional content here */}
           </section>
         </main>
       </div>

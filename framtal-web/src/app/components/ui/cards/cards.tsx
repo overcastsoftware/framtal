@@ -52,9 +52,9 @@ const DisplayCard: React.FC<DisplayCardProps> = ({
         <h3 className="text-sm xl:text-2xl font-semibold text-primary-blue-400 mb-2">{title}</h3>
         <div className="space-y-2">
           {parentType === 'debt' && type === 'other' && (
-            <div className="flex justify-between gap-2 mt-3">
-              <span className="text-gray-600 font-semibold">Tegund</span>
-              <span className="text-md text-right font-semibold text-primary-header">
+            <div className="flex justify-between gap-2 lg:mt-2 ">
+              <span className="text-primary-dark-400 font-semibold  flex-1">Tegund</span>
+              <span className="text-md text-right font-semibold text-primary-header  flex-1">
                 Eftirstöðvar
               </span>
             </div>
@@ -64,17 +64,21 @@ const DisplayCard: React.FC<DisplayCardProps> = ({
               {parentType === 'domestic_property' && (
                 <div className="flex flex-col">
                   <div className="flex justify-between gap-2">
-                    <span className="text-gray-600">{item.description}</span>
-                    <span className="text-gray-600">{formatCurrency(item.amount)}</span>
+                    <span className="text-primary-dark-400 flex-1">{item.description}</span>
+                    <span className="text-primary-dark-400 flex-1  text-right">
+                      {formatCurrency(item.amount)}
+                    </span>
                   </div>
-                  <span className="text-gray-600">{item.identifier}</span>
+                  <span className="text-primary-dark-400">{item.identifier}</span>
                 </div>
               )}
               {parentType === 'vehicle' && (
                 <div className="flex flex-col">
                   <div className="flex justify-between gap-2">
-                    <span className="text-gray-600">{item.identifier}</span>
-                    <span className="text-gray-600">{formatCurrency(item.amount)}</span>
+                    <span className="text-primary-dark-400 flex-1">{item.identifier}</span>
+                    <span className="text-primary-dark-400 flex-1  text-right">
+                      {formatCurrency(item.amount)}
+                    </span>
                   </div>
                 </div>
               )}
@@ -88,19 +92,19 @@ const DisplayCard: React.FC<DisplayCardProps> = ({
               )}
               {parentType === 'debt' && type === 'property' && (
                 <div className="flex flex-col">
-                  <div className="flex justify-between gap-2 mt-3">
-                    <span className="text-gray-600">{item.description}</span>
-                    <span className="text-md text-right text-primary-header"></span>
+                  <div className="flex justify-between gap-2 lg:mt-2">
+                    <span className="text-primary-dark-400 flex-1">{item.description}</span>
+                    <span className="text-md text-right text-primary-header flex-1"></span>
                   </div>
-                  <div className="flex justify-between gap-2 mt-3">
-                    <span className="text-gray-600">Eftirstöðvar:</span>
-                    <span className="text-md text-right text-primary-header">
+                  <div className="flex justify-between gap-2 lg:mt-2">
+                    <span className="text-primary-header flex-1">Eftirstöðvar:</span>
+                    <span className="text-md text-right text-primary-header flex-1">
                       {formatCurrency(item.amount)}
                     </span>
                   </div>
-                  <div className="flex justify-between gap-2 mt-3">
-                    <span className="text-gray-600">Lánsveitandi:</span>
-                    <span className="text-md text-right text-primary-header">
+                  <div className="flex justify-between gap-2 lg:mt-2">
+                    <span className="text-primary-dark-400 flex-1">Lánsveitandi:</span>
+                    <span className="text-md text-right text-primary-header flex-1">
                       {item.lender.name}
                     </span>
                   </div>
@@ -108,9 +112,9 @@ const DisplayCard: React.FC<DisplayCardProps> = ({
               )}
               {parentType === 'debt' && type === 'other' && (
                 <div className="flex flex-col">
-                  <div className="flex justify-between gap-2 mt-3">
-                    <span className="text-gray-600">{item.description}</span>
-                    <span className="text-md text-right text-primary-header">
+                  <div className="flex justify-between gap-2 lg:mt-2">
+                    <span className="text-primary-dark-400 flex-1">{item.description}</span>
+                    <span className="text-md text-right text-primary-header flex-1">
                       {formatCurrency(item.totalCost)}
                     </span>
                   </div>
@@ -119,8 +123,10 @@ const DisplayCard: React.FC<DisplayCardProps> = ({
               {category === 'tekjur' && (
                 <div>
                   <div className="flex justify-between gap-2">
-                    <span className="text-gray-600">{item.entity}</span>
-                    <span className="text-gray-600">{formatCurrency(item.amount)}</span>
+                    <span className="text-primary-dark-400 flex-1">{item.entity}</span>
+                    <span className="text-primary-dark-400 flex-1 text-right">
+                      {formatCurrency(item.amount)}
+                    </span>
                   </div>
                 </div>
               )}
@@ -128,9 +134,9 @@ const DisplayCard: React.FC<DisplayCardProps> = ({
             </div>
           ))}
           {category === 'tekjur' && type === 'salary' && (
-            <div className="flex justify-between gap-2 mt-3">
-              <span className="text-gray-600">Samtals:</span>
-              <span className="text-md text-right font-bold text-primary-header">
+            <div className="flex justify-between gap-2 lg:mt-2">
+              <span className="text-primary-dark-400 flex-1">Samtals:</span>
+              <span className="text-md text-right font-bold text-primary-header flex-1">
                 {formatCurrency(totalAmount)}
               </span>
             </div>
@@ -138,7 +144,11 @@ const DisplayCard: React.FC<DisplayCardProps> = ({
         </div>
       </div>
       <div className="w-full mt-2 flex justify-end">
-        <a href={`/${category}/${type}`} className="btn-utility">
+        <a
+          href={`/${category}/${type}`}
+          // className="btn-link hover:shadow-[inset_0px_-2px_0px_0px_rgba(0,97,255,1.00)]  shadow-[inset_0px_-1px_0px_0px_rgba(0,97,255,1.00)]"
+          className="btn-utility"
+        >
           Breyta
         </a>
       </div>

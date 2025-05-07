@@ -101,7 +101,7 @@ export default function Home() {
                 data-type="Back button"
                 className="py-1 max-w-fit bg-white cursor-pointer duration-100 hover:shadow-[inset_0px_-2px_0px_0px_rgba(0,97,255,1.00)]  shadow-[inset_0px_-1px_0px_0px_rgba(0,97,255,1.00)] inline-flex justify-start items-center gap-1 overflow-hidden"
               >
-                <div className="justify-end text-primary-blue-400 text-sm font-semibold  leading-none ">
+                <div className="justify-end text-primary-blue-400 text-sm font-semibold leading-none">
                   Eldri framtöl
                 </div>
               </button>

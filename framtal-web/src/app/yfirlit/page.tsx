@@ -54,8 +54,8 @@ export default function Home() {
 
   // {data.applicationsByFamilyNumber[0].familyNumber}
 
-  if (loading || userLoading) return <p className="text-center">Loading...</p>
-  if (error || userError) return <p className="text-center text-red-500">Error: {error.message}</p>
+  if (loading || userLoading) return <p className="text-center">Í vinnslu...</p>
+  if (error || userError) return <p className="text-center text-red-500">Villa: {error.message}</p>
   
   const firstName = userData?.currentUser.name.split(' ')[0]
 
@@ -148,17 +148,17 @@ export default function Home() {
             <h3 className="text-2xl text-primary-header font-bold mb-4">Tekjur</h3>
 
             {/* CARDS */}
-            <IncomesByType incomes={incomes} />
+            <IncomesByType incomes={incomes} category={"tekjur"}/>
 
             <h3 className="text-2xl text-primary-header font-bold mb-4">Eignir</h3>
 
             {/* CARDS */}
-            <IncomesByType incomes={incomes} />
+            <IncomesByType incomes={incomes} category={"eignir"} />
 
             <h3 className="text-2xl text-primary-header font-bold mb-4">Skuldir</h3>
 
             {/* CARDS */}
-            <IncomesByType incomes={incomes} />
+            <IncomesByType incomes={incomes} category={"skuldir"}  />
           </div>
 
           {/* <Cards /> */}

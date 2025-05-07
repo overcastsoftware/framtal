@@ -8,6 +8,8 @@ type CardItem = {
 }
 
 type DisplayCardProps = {
+  type: string
+  category: string
   title: string
   totalAmount: number
   items: CardItem[]
@@ -21,7 +23,7 @@ const formatCurrency = (amount: number) => {
   }).format(amount)
 }
 
-const DisplayCard: React.FC<DisplayCardProps> = ({ title, totalAmount, items }) => {
+const DisplayCard: React.FC<DisplayCardProps> = ({ type, category, title, totalAmount, items }) => {
   return (
     <div className="bg-white rounded-lg justify-between min-h-80 flex flex-col p-6 border border-primary-blue-200 hover:border-primary-blue-300">
       <div>
@@ -45,9 +47,9 @@ const DisplayCard: React.FC<DisplayCardProps> = ({ title, totalAmount, items }) 
         </div>
       </div>
       <div className="w-full flex justify-end">
-        <button className="mt-4 cursor-pointer bg-white text-primary-header border border-primary-blue-200 rounded-lg font-semibold py-2 px-4">
+        <a href={`/${category}/${type}`} className="mt-4 cursor-pointer bg-white text-primary-header border border-primary-blue-200 rounded-lg font-semibold py-2 px-4">
           Breyta
-        </button>
+        </a>
       </div>
     </div>
   )

@@ -16,6 +16,7 @@ type Income = {
 }
 
 type IncomesByTypeProps = {
+  category: string
   incomes: Income[]
 }
 
@@ -93,7 +94,7 @@ const incomeTypeLabels: Record<string, string> = {
     'Lífeyrisgreiðslur. Greiðslur frá Tryggingastofnun. Aðrar bótagreiðslur, styrkir o.fl. ', // Combined category
 }
 
-const IncomesByType: React.FC<IncomesByTypeProps> = ({ incomes }) => {
+const IncomesByType: React.FC<IncomesByTypeProps> = ({ incomes, category }) => {
   const groupedIncomes = groupIncomesByTypeAndPayor(incomes)
 
   // Get all unique income types
@@ -108,6 +109,8 @@ const IncomesByType: React.FC<IncomesByTypeProps> = ({ incomes }) => {
         return (
           <DisplayCard
             key={type}
+            type={type}
+            category={category}
             title={incomeTypeLabels[type] || type}
             totalAmount={totalAmount}
             items={groupedByPayor.map((group) => ({

@@ -3,7 +3,7 @@ import Image from 'next/image'
 import dynamic from 'next/dynamic'
 // import Navigation from './components/Navigation';
 import { useQuery } from '@apollo/client'
-import { GET_APPLICATIONS_BY_FAMILY_NUMBER } from '@/graphql/queries/getUserInfo'
+import { GET_APPLICATIONS_BY_FAMILY_NUMBER, GET_CURRENT_USER } from '@/graphql/queries/getUserInfo'
 import IncomesByType from '../components/IncomesByType'
 import Layout from '../components/Layout'
 import { AssetsByType } from '../components/AssetsByType'
@@ -30,6 +30,7 @@ import { DebtsByType } from '../components/DebtsByType'
 // const CurrentUserInfo = dynamic(() => import('../components/CurrentUserInfo'), { ssr: true })
 
 export default function Home() {
+  const { loading: userLoading, error: userError, data: userData } = useQuery(GET_CURRENT_USER);
   const { loading, error, data } = useQuery(GET_APPLICATIONS_BY_FAMILY_NUMBER, {
     variables: { familyNumber: '1203894569' }, // Replace with actual ID or variable
   })
@@ -43,13 +44,16 @@ export default function Home() {
   console.log('incomes', incomes)
   console.log('debts', debts)
 
+
   // const incomesByType = groupIncomesByType(incomes)
   // console.log('incomesByType', incomesByType)
 
   // {data.applicationsByFamilyNumber[0].familyNumber}
 
-  if (loading) return <p className="text-center">Loading...</p>
-  if (error) return <p className="text-center text-red-500">Error: {error.message}</p>
+  if (loading || userLoading) return <p className="text-center">Loading...</p>
+  if (error || userError) return <p className="text-center text-red-500">Error: {error.message}</p>
+  
+  const firstName = userData?.currentUser.name.split(' ')[0]
 
   return (
     <Layout>
@@ -86,7 +90,7 @@ export default function Home() {
                 </div>
               </div>
               <h1 className="text-5xl text-color-primary-dark-400 font-bold">
-                Velkominn {familyNumber}! Hér að neðan er yfirlit yfir framtalið þitt.
+                Velkominn {firstName}! Hér að neðan er yfirlit yfir framtalið þitt.
               </h1>
               <p className="text-lg">
                 Þú getur farið yfir, bætt við, breytt og skilað þegar þú ert tilbúin.

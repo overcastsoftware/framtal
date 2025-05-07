@@ -26,6 +26,7 @@
     "react": "^19.0.0",
     "react-datepicker": "8.3.0",
     "react-dom": "^19.0.0",
+    "react-hook-form": "^7.56.2",
     "react-select": "^5.10.1",
     "react-top-loading-bar": "^3.0.2",
     "react-use": "^17.6.0"

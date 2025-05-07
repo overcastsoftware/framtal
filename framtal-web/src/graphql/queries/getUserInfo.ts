@@ -78,6 +78,7 @@ export const GET_ITEM_BY_ID = gql`
 export const GET_APPLICATIONS_BY_FAMILY_NUMBER_ONLY_INCOME = gql`
   query GetApplicationsByFamilyNumber($familyNumber: String!) {
   applicationsByFamilyNumber(familyNumber: $familyNumber) {
+    id
     incomes {
       id
       amount
@@ -96,6 +97,7 @@ export const GET_APPLICATIONS_BY_FAMILY_NUMBER_ONLY_INCOME = gql`
 export const GET_APPLICATIONS_BY_FAMILY_NUMBER_ONLY_ASSETS = gql`
   query GetApplicationsByFamilyNumber($familyNumber: String!) {
   applicationsByFamilyNumber(familyNumber: $familyNumber) {
+    id
     assets {
       id
       description
@@ -112,6 +114,7 @@ export const GET_APPLICATIONS_BY_FAMILY_NUMBER_ONLY_ASSETS = gql`
 export const GET_APPLICATIONS_BY_FAMILY_NUMBER_ONLY_DEBT = gql`
   query GetApplicationsByFamilyNumber($familyNumber: String!) {
   applicationsByFamilyNumber(familyNumber: $familyNumber) {
+    id
     debts {
       id
       amount

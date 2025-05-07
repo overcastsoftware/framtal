@@ -28,7 +28,7 @@ export default function LoginForm() {
         }
       },
       onError: (error) => {
-        setError(`Error: ${error.message}`);
+        setError(`${error.message}`);
       }
     });
   
@@ -38,7 +38,7 @@ export default function LoginForm() {
       
       // Simple validation
       if (!phoneNumber || phoneNumber.trim() === "") {
-        setError("Please enter a phone number");
+        setError("Símanúmer er ekki gilt.");
         return;
       }
       
@@ -47,7 +47,7 @@ export default function LoginForm() {
       
       // Validate phone number format (basic check)
       if (cleanPhoneNumber.length < 7) {
-        setError("Please enter a valid phone number");
+        setError("Símanúmer er ekki gilt.");
         return;
       }
       
@@ -73,7 +73,7 @@ export default function LoginForm() {
         <h1 className="text-center text-2xl font-bold text-gray-900 mb-1">Skráðu þig inn</h1>
         <p className="text-center  mb-6">Mínar síður - skatturinn</p>
         {error && (
-          <div className="mb-4 bg-red-100 border-l-4 border-red-500 text-red-700 p-4" role="alert">
+          <div className="mb-4 bg-red-50 border-1 rounded border-red-200 font-bold p-4" role="alert">
             <p>{error}</p>
           </div>
         )}

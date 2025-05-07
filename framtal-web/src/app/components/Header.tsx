@@ -26,11 +26,15 @@ const Header = ({ showCurrentUser = true}) => {
                 className="mr-2"
               />
             </Link>
-              <hr className="h-16 w-0.5 border-t-0 bg-black/35 dark:bg-black/10" />
-              <div className='flex flex-col'>
-                <span className="text-xl font-bold text-gray-700">Skatturinn</span>
-                <span className="text-sm font-medium text-gray-500">Skattxxxxframtal x2025</span>
-              </div>
+                { showCurrentUser &&
+                  <>
+                    <hr className="h-16 w-0.5 border-t-0 bg-black/35 dark:bg-black/10" />
+                    <div className='flex flex-col'>
+                      <span className="text-xl font-bold text-gray-700">Skatturinn</span>
+                      <span className="text-sm font-medium text-gray-500">Framtalsskil</span>
+                    </div>
+                  </>
+                }
           </div>
           
           {/* Navigation */}

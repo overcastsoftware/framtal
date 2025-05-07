@@ -10,7 +10,7 @@ const CurrentUserInfo = dynamic(
   { ssr: false }
 );
 
-const Header = () => {
+const Header = ({ showCurrentUser = true}) => {
   return (
     <header className="bg-white min-h-28 content-center">
       <div className="container mx-auto px-4">
@@ -38,7 +38,9 @@ const Header = () => {
           
           {/* Right side - account, search, etc */}
           <div className="flex items-center space-x-4 flex-row px-6">
-            <CurrentUserInfo />
+            { showCurrentUser &&
+              <CurrentUserInfo />
+            }
           </div>
         </div>
       </div>

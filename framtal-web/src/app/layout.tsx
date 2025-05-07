@@ -20,10 +20,7 @@ export default function RootLayout({
         className={`${ibmPlexSans.className} antialiased`}
       >
         <ApolloProvider>
-          <Header />
-          <main className="container mx-auto px-4 py-6">
-            {children}
-          </main>
+          {children}
         </ApolloProvider>
       </body>
     </html>

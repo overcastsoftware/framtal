@@ -26,7 +26,6 @@ import { DebtsByType } from '../components/DebtsByType'
 // }
 // Dynamic import for the GraphQL components to avoid SSR issues
 // const Cards = dynamic(() => import('../components/Cards'), { ssr: true })
-
 // const CurrentUserInfo = dynamic(() => import('../components/CurrentUserInfo'), { ssr: true })
 
 export default function Home() {
@@ -56,7 +55,7 @@ export default function Home() {
 
   return (
     <Layout>
-      <div className="grid grid-rows-[0fr_2fr_400px] items-center justify-items-center min-h-screen sm:p-0 font-[family-name:var(--font-geist-sans)]">
+      <div className="grid grid-rows-[0fr_2fr_400px] items-center justify-items-center min-h-screen sm:p-0">
         {/* <Navigation /> */}
         <main className="flex flex-col gap-[32px] w-full row-start-2 items-center sm:items-start">
           <div className="flex flex-row gap-2 w-full justify-between items-center sm:items-center">
@@ -66,30 +65,30 @@ export default function Home() {
                 className="h-8 inline-flex justify-start items-center gap-2 overflow-hidden"
               >
                 <div data-state="Default" className="flex justify-start items-center gap-2.5">
-                  <div className="justify-center text-blue-600 text-sm font-semibold  leading-none">
+                  <div className="justify-center text-primary-blue-400 text-sm font-semibold leading-none">
                     Ísland.is
                   </div>
                 </div>
-                <div className="w-1 h-1 bg-blue-600 rounded-full" />
+                <div className="w-1 h-1 bg-primary-blue-400 rounded-full" />
                 <div data-state="Default" className="flex justify-start items-center gap-2.5">
-                  <div className="justify-center text-blue-600 text-sm font-semibold  leading-none">
+                  <div className="justify-center text-primary-blue-400 text-sm font-semibold leading-none">
                     Skatturinn
                   </div>
                 </div>
-                <div className="w-1 h-1 bg-blue-600 rounded-full" />
+                <div className="w-1 h-1 bg-primary-blue-400 rounded-full" />
                 <div
                   data-color="Blue"
                   data-filled="True"
                   data-state="Default"
                   className="p-2 bg-sky-50 rounded-lg flex justify-start items-center overflow-hidden"
                 >
-                  <div className="justify-end text-blue-600 text-sm font-semibold leading-none">
+                  <div className="justify-end text-primary-blue-400 text-sm font-semibold leading-none">
                     Skil á skattframtali
                   </div>
                 </div>
               </div>
-              <h1 className="text-5xl text-color-primary-dark-400 font-bold">
-                Velkominn {firstName}!<br />Hér að neðan er yfirlit yfir framtalið þitt.
+              <h1 className="text-color-primary-dark-400 font-bold">
+                Velkominn {firstName}! Hér að neðan er yfirlit yfir framtalið þitt.
               </h1>
               <p className="text-lg">
                 Þú getur farið yfir, bætt við, breytt og skilað þegar þú ert tilbúinn.
@@ -102,26 +101,19 @@ export default function Home() {
                 data-type="Back button"
                 className="py-1 max-w-fit bg-white cursor-pointer duration-100 hover:shadow-[inset_0px_-2px_0px_0px_rgba(0,97,255,1.00)]  shadow-[inset_0px_-1px_0px_0px_rgba(0,97,255,1.00)] inline-flex justify-start items-center gap-1 overflow-hidden"
               >
-                <div className="justify-end text-blue-600 text-sm font-semibold  leading-none ">
+                <div className="justify-end text-primary-blue-400 text-sm font-semibold  leading-none ">
                   Eldri framtöl
                 </div>
               </button>
             </div>
-            <Image
-              src={'/digital-service.svg'}
-              alt="digital service"
-              width={500}
-              height={500}
-              className="-translate-y-12"
-            />
+            <div className="hidden md:block bg-[url(/digital-service.svg)] bg-auto md:bg-contain h-96 w-96 -translate-y-12 bg-contain bg-center bg-no-repeat"></div>
           </div>
-
-          <div className="flex flex-row w-full justify-between rounded-lg items-center bg-secondary-blueberry-100 p-6">
+          <div className="flex flex-col gap-4 md:gap-3 md:flex-row w-full justify-between rounded-lg bg-secondary-blueberry-100 p-6">
             <div>
               <h3 className="text-2xl text-primary-blue-400 font-bold mb-4">
-                Bráðabirgðaútreikningur:
+                Bráðabirgðaútreikningur
               </h3>
-              <div className="flex flex-row gap-4">
+              <div className="flex flex-col gap-4 xl:flex-row">
                 <div className="flex flex-row gap-2">
                   <span>Áætluð upphæð skatta og gjalda:</span>
                   <span className="font-semibold">177.533 kr.</span>
@@ -132,7 +124,7 @@ export default function Home() {
                 </div>
               </div>
             </div>
-            <div className="flex flex-row gap-4">
+            <div className="flex flex-row justify-end items-center gap-4">
               <button className="btn-ghost">Vista</button>
               <button className="btn-primary">Skila framtali</button>
             </div>
@@ -141,20 +133,9 @@ export default function Home() {
           {/* SECTIONS */}
 
           <div className="flex flex-col w-full space-y-12">
-            <h3 className="section-header">Tekjur</h3>
-
-            {/* CARDS */}
-            <IncomesByType incomes={incomes} />
-
-            <h3 className="section-header">Eignir</h3>
-
-            {/* CARDS */}
-            <AssetsByType assets={assets} />
-
-            <h3 className="section-header">Skuldir</h3>
-
-            {/* CARDS */}
-            <DebtsByType debts={debts} />
+            <IncomesByType title="Tekjur" incomes={incomes} />
+            <AssetsByType title="Eignir" assets={assets} />
+            <DebtsByType title="Skuldir" debts={debts} />
           </div>
         </main>
       </div>

@@ -19,6 +19,7 @@ type Asset = {
 }
 
 interface AssetsByTypeProps {
+  title: string
   assets: Asset[]
 }
 
@@ -54,7 +55,7 @@ const ASSET_TYPES: Record<string, AssetTypeInfo> = {
   },
 }
 
-export const AssetsByType: React.FC<AssetsByTypeProps> = ({ assets }) => {
+export const AssetsByType: React.FC<AssetsByTypeProps> = ({ assets, title }) => {
   // Group assets by type
   const assetsByType: Record<string, Asset[]> = {}
   let totalAmount = 0
@@ -69,30 +70,34 @@ export const AssetsByType: React.FC<AssetsByTypeProps> = ({ assets }) => {
   })
 
   return (
-    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-      {Object.entries(assetsByType).map(([type, typeAssets]) => {
-        const typeInfo = ASSET_TYPES[type] || { label: type, icon: '❓' }
-        const typeTotal = typeAssets.reduce((sum, asset) => sum + (asset.amount || 0), 0)
+    <div>
+      <h3 className="section-header">{title}</h3>
 
-        return (
-          <DisplayCard
-            key={type}
-            title={typeInfo.label}
-            parentType={type}
-            category="eignir"
-            type="asset"
-            amount={typeTotal || 0}
-            items={typeAssets.map((asset) => ({
-              id: asset.id,
-              entity: asset.description,
-              description: asset.description,
-              amount: asset.amount || 0,
-              identifier: asset.assetIdentifier,
-            }))}
-            className="mb-4"
-          />
-        )
-      })}
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {Object.entries(assetsByType).map(([type, typeAssets]) => {
+          const typeInfo = ASSET_TYPES[type] || { label: type, icon: '❓' }
+          const typeTotal = typeAssets.reduce((sum, asset) => sum + (asset.amount || 0), 0)
+
+          return (
+            <DisplayCard
+              key={type}
+              title={typeInfo.label}
+              parentType={type}
+              category="eignir"
+              type="asset"
+              amount={typeTotal || 0}
+              items={typeAssets.map((asset) => ({
+                id: asset.id,
+                entity: asset.description,
+                description: asset.description,
+                amount: asset.amount || 0,
+                identifier: asset.assetIdentifier,
+              }))}
+              className="mb-4"
+            />
+          )
+        })}
+      </div>
     </div>
   )
 }

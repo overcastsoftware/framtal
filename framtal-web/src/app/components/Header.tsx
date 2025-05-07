@@ -1,55 +1,44 @@
-'use client';
+'use client'
 
-import Link from 'next/link';
+import Link from 'next/link'
 // import Navigation from './Navigation';
-import Image from 'next/image';
-import dynamic from 'next/dynamic';
+import Image from 'next/image'
+import dynamic from 'next/dynamic'
 
-const CurrentUserInfo = dynamic(
-  () => import('../components/CurrentUserInfo'),
-  { ssr: false }
-);
+const CurrentUserInfo = dynamic(() => import('../components/CurrentUserInfo'), { ssr: false })
 
-const Header = ({ showCurrentUser = true}) => {
+const Header = ({ showCurrentUser = true }) => {
   return (
-    <header className="bg-white min-h-28 px-12 content-center">
-      <div className="container h-[112px] mx-auto px-4">
+    <header className="bg-white min-h-28 px-2 xl:px-12 content-center">
+      <div className="h-[112px] mx-auto px-4">
         <div className="flex h-full justify-between items-center">
           {/* Logo and site title */}
           <div className="flex h-full items-center space-x-1 gap-4">
             <Link href="/" className="flex items-center">
-              <Image
-                src="/islandis.svg"
-                alt="Logo"
-                width={160}
-                height={32}
-                className="mr-2"
-              />
+              <Image src="/islandis.svg" alt="Logo" width={160} height={32} className="mr-2" />
             </Link>
-                { showCurrentUser &&
-                  <>
-                    <hr className="h-16 w-0.5 border-t-0 bg-black/35 dark:bg-black/10" />
-                    <div className='flex flex-col'>
-                      <span className="text-xl font-bold text-gray-700">Skatturinn</span>
-                      <span className="text-sm font-medium text-gray-500">Framtalsskil</span>
-                    </div>
-                  </>
-                }
+            {showCurrentUser && (
+              <>
+                <hr className="h-16 w-0.5 border-t-0 bg-black/35 dark:bg-black/10" />
+                <div className="flex flex-col">
+                  <span className="text-xl font-bold text-gray-700">Skatturinn</span>
+                  <span className="text-sm font-medium text-gray-500">Framtalsskil</span>
+                </div>
+              </>
+            )}
           </div>
-          
+
           {/* Navigation */}
           {/* <Navigation /> */}
-          
+
           {/* Right side - account, search, etc */}
           <div className="flex items-center space-x-4 flex-row px-6">
-            { showCurrentUser &&
-              <CurrentUserInfo />
-            }
+            {showCurrentUser && <CurrentUserInfo />}
           </div>
         </div>
       </div>
     </header>
-  );
-};
+  )
+}
 
-export default Header;
+export default Header

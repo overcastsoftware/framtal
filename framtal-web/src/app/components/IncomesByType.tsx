@@ -16,6 +16,7 @@ type Income = {
 }
 
 type IncomesByTypeProps = {
+  title: string
   incomes: Income[]
 }
 
@@ -93,37 +94,40 @@ const incomeTypeLabels: Record<string, string> = {
     'Lífeyrisgreiðslur. Greiðslur frá Tryggingastofnun. Aðrar bótagreiðslur, styrkir o.fl. ', // Combined category
 }
 
-const IncomesByType: React.FC<IncomesByTypeProps> = ({ incomes }) => {
+const IncomesByType: React.FC<IncomesByTypeProps> = ({ incomes, title }) => {
   const groupedIncomes = groupIncomesByTypeAndPayor(incomes)
 
   // Get all unique income types
   const incomeTypes = Object.keys(groupedIncomes)
 
   return (
-    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-      {incomeTypes.map((type) => {
-        const groupedByPayor = groupedIncomes[type]
-        const totalAmount = groupedByPayor.reduce((sum, group) => sum + group.totalAmount, 0)
+    <div>
+      <h3 className="section-header">{title}</h3>
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {incomeTypes.map((type) => {
+          const groupedByPayor = groupedIncomes[type]
+          const totalAmount = groupedByPayor.reduce((sum, group) => sum + group.totalAmount, 0)
 
-        return (
-          <DisplayCard
-            key={type}
-            type={type}
-            category="tekjur"
-            title={incomeTypeLabels[type] || type}
-            totalAmount={totalAmount}
-            showTotal={true}
-            items={groupedByPayor.map((group) => ({
-              id: group.nationalId,
-              amount: group.totalAmount,
-              entity: group.entity,
-              nationalId: group.nationalId,
-              // Add original types for detailed display if needed
-              originalTypes: [...new Set(group.items.map((item) => item.incomeType))],
-            }))}
-          />
-        )
-      })}
+          return (
+            <DisplayCard
+              key={type}
+              type={type}
+              category="tekjur"
+              title={incomeTypeLabels[type] || type}
+              totalAmount={totalAmount}
+              showTotal={true}
+              items={groupedByPayor.map((group) => ({
+                id: group.nationalId,
+                amount: group.totalAmount,
+                entity: group.entity,
+                nationalId: group.nationalId,
+                // Add original types for detailed display if needed
+                originalTypes: [...new Set(group.items.map((item) => item.incomeType))],
+              }))}
+            />
+          )
+        })}
+      </div>
     </div>
   )
 }

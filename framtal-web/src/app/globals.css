@@ -81,6 +81,25 @@ h3{
     margin-bottom: 16px !important;
   }
 
+  .btn-utility {
+    cursor: pointer;
+    background-color: var(--color-white);
+    font-size: var(--text-sm);
+    font-weight: var(--font-weight-semibold);
+    color: var(--color-primary-dark-400);
+    border-radius: 8px;
+    border: 2px solid var(--color-primary-blue-200);
+    border-color: var(--color-primary-blue-200);
+    padding: 10px 16px;
+    transition: 0.1s;
+
+    &:hover {
+      @media (hover: hover) {
+        border-color: var(--color-primary-blue-400);
+      }
+    }
+  }
+
   .btn-primary {
     cursor: pointer;
     background-color: var(--color-primary-blue-400);
@@ -90,11 +109,11 @@ h3{
     border-radius: 8px;
     padding: 10px 16px;
     box-shadow: var(--shadow-light);
+    transition: 0.3s;
 
     &:hover {
       @media (hover: hover) {
         background-color: var(--color-secondary-blueberry-400);
-        box-shadow: var(--shadow-strong);
       }
     }
   }
@@ -109,6 +128,7 @@ h3{
     border: 2px solid var(--color-primary-blue-400);
     border-color: var(--color-primary-blue-400);
     padding: 10px 16px;
+    transition: 0.3s;
 
     &:hover {
       @media (hover: hover) {

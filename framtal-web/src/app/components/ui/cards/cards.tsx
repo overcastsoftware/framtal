@@ -1,6 +1,6 @@
 import React from 'react'
 
-type Entity = {
+type Lender = {
   __typename: string
   name: string
   nationalId: string
@@ -16,7 +16,7 @@ type CardItem = {
   assetIdentifier?: string
   identifier?: string
   totalCost: number
-  payor: Entity
+  lender: Lender
 }
 
 type DisplayCardProps = {
@@ -46,7 +46,7 @@ const DisplayCard: React.FC<DisplayCardProps> = ({
   parentType,
 }) => {
   return (
-    <div className="bg-white rounded-lg justify-between min-h-80 flex flex-col p-6 border border-primary-blue-200 hover:border-primary-blue-300">
+    <div className="bg-white rounded-lg justify-between min-h-80 flex flex-col p-6 border-2 border-primary-blue-200 duration-100 ease-in hover:border-primary-blue-400">
       <div>
         <h3 className="text-2xl font-semibold text-primary-blue-400 mb-2">{title}</h3>
         <div className="space-y-2">
@@ -78,11 +78,23 @@ const DisplayCard: React.FC<DisplayCardProps> = ({
                 </div>
               )}
               {parentType === 'debt' && type === 'property' && (
-                <div className="flex justify-between mt-3">
-                  <span className="text-gray-600">Samtals:</span>
-                  <span className="text-md text-right font-bold text-primary-header">
-                    {formatCurrency(item.amount)}
-                  </span>
+                <div className="flex flex-col">
+                  <div className="flex justify-between mt-3">
+                    <span className="text-gray-600">{item.description}</span>
+                    <span className="text-md text-right text-primary-header"></span>
+                  </div>
+                  <div className="flex justify-between mt-3">
+                    <span className="text-gray-600">Eftirstöðvar:</span>
+                    <span className="text-md text-right text-primary-header">
+                      {formatCurrency(item.amount)}
+                    </span>
+                  </div>
+                  <div className="flex justify-between mt-3">
+                    <span className="text-gray-600">Lánsveitandi:</span>
+                    <span className="text-md text-right text-primary-header">
+                      {item.lender.name}
+                    </span>
+                  </div>
                 </div>
               )}
               {parentType === 'debt' && type === 'other' && (
@@ -135,7 +147,7 @@ const DisplayCard: React.FC<DisplayCardProps> = ({
         </div>
       </div>
       <div className="w-full flex justify-end">
-        <a href={`/${category}/${type}`} className="btn-ghost">
+        <a href={`/${category}/${type}`} className="btn-utility">
           Breyta
         </a>
       </div>

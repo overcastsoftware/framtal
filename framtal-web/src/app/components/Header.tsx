@@ -12,11 +12,11 @@ const CurrentUserInfo = dynamic(
 
 const Header = ({ showCurrentUser = true}) => {
   return (
-    <header className="bg-white min-h-28 content-center">
-      <div className="container mx-auto px-4">
-        <div className="flex justify-between items-center">
+    <header className="bg-white min-h-28 px-12 content-center">
+      <div className="container h-[112px] mx-auto px-4">
+        <div className="flex h-full justify-between items-center">
           {/* Logo and site title */}
-          <div className="flex items-center space-x-1 gap-4">
+          <div className="flex h-full items-center space-x-1 gap-4">
             <Link href="/" className="flex items-center">
               <Image
                 src="/islandis.svg"

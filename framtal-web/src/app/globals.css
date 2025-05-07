@@ -55,6 +55,10 @@ h3{
   --color-secondary-blueberry-300: #B5B6EC;
   --color-secondary-blueberry-200: #DADBF6;
   --color-secondary-blueberry-100: #F6F6FD;
+  
+  --color-secondary-purple-100: #F8F5FA;
+  
+  --color-primary-header: #00003c;
 
   --shadow-light: 0 4px 30px 0px rgb(var(--color-primary-blue-400) / 0.08);
   --shadow-strong: 0 4px 30px 0px rgb(var(--color-primary-blue-400) / 0.16);

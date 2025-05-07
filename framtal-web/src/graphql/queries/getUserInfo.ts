@@ -130,6 +130,7 @@ export const GET_APPLICATIONS_BY_FAMILY_NUMBER_ONLY_DEBT = gql`
       principalPayment
       totalCost
       totalPayment
+      lenderId
       lender {
         name
         nationalId

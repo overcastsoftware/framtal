@@ -5,16 +5,16 @@ import Link from 'next/link'
 import Layout from '../../components/Layout'
 import { GET_APPLICATIONS_BY_FAMILY_NUMBER_ONLY_DEBT } from '@/graphql/queries/getUserInfo'
 import { useQuery } from '@apollo/client'
-import IncomeForm from '../../components/IncomeForm'
-import NewIncomeForm from '../../components/NewIncomeForm'
+import DebtForm from '../../components/DebtForm'
+import NewDebtForm from '../../components/NewDebtForm'
 import { sortById } from '../../../lib/utils'
 
-export default function IncomePage() {
+export default function DebtPage() {
   const { slug } = useParams()
   const familyNumber = '1203894569' // In a real app, this should come from user context/auth
 
-  // Validate the income type from URL parameter
-  if (!['salary', 'perdiem', 'education_and_sports'].includes(slug)) {
+  // Validate the debt type from URL parameter
+  if (!['property', 'other'].includes(slug)) {
     return <Layout>Síða fannst ekki</Layout>
   }
 
@@ -44,29 +44,24 @@ export default function IncomePage() {
     )
   }
 
-  // Get income type display name
-  const incomeTypeLabels = {
-    salary: 'Launatekjur',
-    sports: 'Líkamsræktar- og íþróttastyrkir',
-    perdiem: 'Dagpeningar',
-    job_education_grant: 'Starfs- og menntunar styrkir',
+  // Get debt type display name
+  const loanTypeLabels = {
+    property: 'Vaxtagjöld af húsnæðislánum',
+    other: 'Vaxtagjöld vegna annarra lána',
   }
 
-  // Group incomes by their type
-  const groupedIncomes = {}
-  application.incomes.forEach((income) => {
-    const type = income.incomeType
-    if (!groupedIncomes[type]) {
-      groupedIncomes[type] = []
+  // Group debts by their type
+  const groupedDebts = {}
+  application.debts.forEach((debt) => {
+    const type = debt.loanType
+    if (!groupedDebts[type]) {
+      groupedDebts[type] = []
     }
-    groupedIncomes[type].push(income)
+    groupedDebts[type].push(debt)
   })
 
-  let incomeTypesToShow = slug ? [slug] : Object.keys(groupedIncomes)
   // Filter to only include the requested type if slug is provided
-  if (slug === 'education_and_sports') {
-    incomeTypesToShow = ['sports', 'job_education_grant']
-  }
+  let loanTypesToShow = slug ? [slug] : Object.keys(groupedDebts)
   
   return (
     <Layout>
@@ -80,28 +75,28 @@ export default function IncomePage() {
           </Link>
         </div>
 
-        <h1 className="text-2xl font-bold mb-3">Tekjur</h1>
-        <h3 className="mb-7">Launatekjur og starfstengdar greiðslur</h3>
+        <h1 className="text-2xl font-bold mb-3">Skuldir</h1>
+        <h3 className="mb-7">Vaxtagjöld af lánum</h3>
 
-        {incomeTypesToShow.length === 0 ? (
+        {loanTypesToShow.length === 0 ? (
           <p className="mb-6">Engar tekjulínur fundust</p>
         ) : (
           <>
-            {incomeTypesToShow.map((type, i) => {
-              const incomes = groupedIncomes[type] || []
-              if (incomes.length === 0) return null
+            {loanTypesToShow.map((type, i) => {
+              const debts = groupedDebts[type] || []
+              if (debts.length === 0) return null
 
               return (
-                <div key={type} className={`mb-8 ${ i !== incomeTypesToShow.length-1 ? 'border-b' : ''} border-blue-600 pb-5`}>
+                <div key={type} className={`mb-8 ${ i !== loanTypesToShow.length-1 ? 'border-b' : ''} border-blue-600 pb-5`}>
                   <h2 className="text-xl font-semibold text-blue-600">
-                    {incomeTypeLabels[type] || type}
+                    {loanTypeLabels[type] || type}
                   </h2>
 
                   <div className="mb-6">
-                    {incomes.sort(sortById).map((income) => (
-                      <div key={income.id}>
-                        <IncomeForm
-                          income={income}
+                    {debts.sort(sortById).map((debt) => (
+                      <div key={debt.id}>
+                        <DebtForm
+                          debt={debt}
                           applicationId={parseInt(application.id)}
                           nationalId={familyNumber}
                           familyNumber={familyNumber}
@@ -110,7 +105,7 @@ export default function IncomePage() {
                     ))}
                   </div>
                   <div>
-                    <NewIncomeForm
+                    <NewDebtForm
                       applicationId={parseInt(application.id)}
                       nationalId={familyNumber}
                       familyNumber={familyNumber}
@@ -122,18 +117,6 @@ export default function IncomePage() {
           </>
         )}
       </div>
-
-      {/* <button
-        data-icon="True"
-        data-size="Small"
-        data-state="Default"
-        data-type="Back button"
-        className="py-1 max-w-fit bg-white cursor-pointer duration-100 hover:shadow-[inset_0px_-2px_0px_0px_rgba(0,97,255,1.00)]  shadow-[inset_0px_-1px_0px_0px_rgba(0,97,255,1.00)] inline-flex justify-start items-center gap-1 overflow-hidden"
-      >
-        <div className="justify-end text-blue-600 text-sm font-semibold  leading-none ">
-          Eldri framtöl
-        </div>
-      </button> */}
     </Layout>
   )
 }

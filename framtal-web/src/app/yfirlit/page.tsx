@@ -5,9 +5,14 @@ import dynamic from 'next/dynamic';
 import { useQuery } from "@apollo/client";
 import { GET_APPLICATIONS_BY_FAMILY_NUMBER } from "@/graphql/queries/getUserInfo";
 
-// Dynamic import for the GraphQL component to avoid SSR issues
+// Dynamic import for the GraphQL components to avoid SSR issues
 const Cards = dynamic(
   () => import('../components/Cards'),
+  { ssr: true }
+);
+
+const CurrentUserInfo = dynamic(
+  () => import('../components/CurrentUserInfo'),
   { ssr: true }
 );
 

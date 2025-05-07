@@ -3,7 +3,7 @@ import { useForm } from 'react-hook-form';
 import { useMutation } from '@apollo/client';
 import { CREATE_DEBT } from '@/graphql/mutations/debtOperations';
 import { GET_APPLICATIONS_BY_FAMILY_NUMBER_ONLY_DEBT } from '@/graphql/queries/getUserInfo';
-import FormField from './FormField';
+import FormField, { FormValues } from './FormField';
 
 type NewDebtFormProps = {
   applicationId: number
@@ -114,7 +114,7 @@ const NewDebtForm: React.FC<NewDebtFormProps> = ({ applicationId, nationalId, fa
 
       <form onSubmit={handleSubmit(onSubmit)}>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-4">
-          <FormField
+          <FormField<FormValues>
             name="loanType"
             label="Tegund"
             control={control}
@@ -130,7 +130,7 @@ const NewDebtForm: React.FC<NewDebtFormProps> = ({ applicationId, nationalId, fa
 
         { loanType === 'other' && (
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-4">
-            <FormField
+            <FormField<FormValues>
               name="description"
               label="Lýsing"
               control={control}
@@ -138,7 +138,7 @@ const NewDebtForm: React.FC<NewDebtFormProps> = ({ applicationId, nationalId, fa
               error={errors.description}
             />
 
-            <FormField
+            <FormField<FormValues>
               name="totalCost"
               label="Vaxtagjöld"
               type="tel"
@@ -147,7 +147,7 @@ const NewDebtForm: React.FC<NewDebtFormProps> = ({ applicationId, nationalId, fa
               error={errors.totalCost}
             />
 
-            <FormField
+            <FormField<FormValues>
               name="amount"
               label="Eftirstöðvar skulda"
               control={control}
@@ -166,7 +166,7 @@ const NewDebtForm: React.FC<NewDebtFormProps> = ({ applicationId, nationalId, fa
 
         { loanType === 'property' && (
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-4">
-            <FormField
+            <FormField<FormValues>
               name="description_secondary"
               label="Kaupár"
               control={control}
@@ -174,7 +174,7 @@ const NewDebtForm: React.FC<NewDebtFormProps> = ({ applicationId, nationalId, fa
               error={errors.description_secondary}
             />
 
-            <FormField
+            <FormField<FormValues>
               name="description"
               label="Heimilisfang"
               control={control}
@@ -182,7 +182,7 @@ const NewDebtForm: React.FC<NewDebtFormProps> = ({ applicationId, nationalId, fa
               error={errors.description}
             />
 
-            <FormField
+            <FormField<FormValues>
               name="lenderId"
               label="Kennitala lánveitanda"
               control={control}
@@ -197,7 +197,7 @@ const NewDebtForm: React.FC<NewDebtFormProps> = ({ applicationId, nationalId, fa
               error={errors.lenderId}
             />
 
-            <FormField
+            <FormField<FormValues>
               name="loanNumber"
               label="Lánanúmer"
               control={control}
@@ -205,7 +205,7 @@ const NewDebtForm: React.FC<NewDebtFormProps> = ({ applicationId, nationalId, fa
               error={errors.loanNumber}
             />
 
-            <FormField
+            <FormField<FormValues>
               name="loanDate"
               label="Lántökudagur"
               control={control}
@@ -213,7 +213,7 @@ const NewDebtForm: React.FC<NewDebtFormProps> = ({ applicationId, nationalId, fa
               error={errors.loanDate}
             />
 
-            <FormField
+            <FormField<FormValues>
               name="loanLength"
               label="Lánstími í árum"
               control={control}
@@ -221,7 +221,7 @@ const NewDebtForm: React.FC<NewDebtFormProps> = ({ applicationId, nationalId, fa
               error={errors.loanLength}
             />
 
-            <FormField
+            <FormField<FormValues>
               name="totalPayment"
               label="Heildargreiðslur ársins"
               type="tel"
@@ -230,7 +230,7 @@ const NewDebtForm: React.FC<NewDebtFormProps> = ({ applicationId, nationalId, fa
               error={errors.totalPayment}
             />
 
-            <FormField
+            <FormField<FormValues>
               name="principalPayment"
               label="Afborgun á nafnvirði"
               type="tel"
@@ -239,7 +239,7 @@ const NewDebtForm: React.FC<NewDebtFormProps> = ({ applicationId, nationalId, fa
               error={errors.principalPayment}
             />
 
-            <FormField
+            <FormField<FormValues>
               name="totalCost"
               label="Vaxtagjöld"
               type="tel"
@@ -248,7 +248,7 @@ const NewDebtForm: React.FC<NewDebtFormProps> = ({ applicationId, nationalId, fa
               error={errors.totalCost}
             />
 
-            <FormField
+            <FormField<FormValues>
               name="amount"
               label="Eftirstöðvar skulda"
               control={control}

@@ -14,6 +14,21 @@ type FormFieldProps<T extends FieldValues> = {
   options?: { value: string; label: string }[];
 };
 
+
+export interface FormValues {
+  amount: number;
+  description: string;
+  totalCost: string;
+  loanType: string;
+  lenderId: string;
+  loanNumber: string;
+  descriptionSecondary: string;
+  loanDate: string;
+  loanLength: string;
+  totalPayment: number;
+  principalPayment: number;
+}
+
 const FormField = <T extends FieldValues>({
   name,
   label,

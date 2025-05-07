@@ -3,7 +3,7 @@ import { useForm, FieldError } from 'react-hook-form';
 import { useMutation } from '@apollo/client';
 import { UPDATE_DEBT, DELETE_DEBT } from '@/graphql/mutations/debtOperations';
 import { GET_APPLICATIONS_BY_FAMILY_NUMBER_ONLY_DEBT } from '@/graphql/queries/getUserInfo';
-import FormField from './FormField';
+import FormField, { FormValues } from './FormField';
 
 type Entity = {
   __typename?: string
@@ -33,19 +33,6 @@ type DebtFormProps = {
   familyNumber: string
 }
 
-interface FormValues {
-  amount: number;
-  description: string;
-  totalCost: string;
-  loanType: string;
-  lenderId: string;
-  loanNumber: string;
-  descriptionSecondary: string;
-  loanDate: string;
-  loanLength: string;
-  totalPayment: number;
-  principalPayment: number;
-}
 
 const DebtForm: React.FC<DebtFormProps> = ({ debt, familyNumber }) => {
   const [isEditing, setIsEditing] = useState(false);

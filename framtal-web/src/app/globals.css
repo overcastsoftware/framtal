@@ -16,13 +16,23 @@ body {
   font-weight: 300
 }
 h1{
-  font-size: 42px;
+  font-size: 36px;
+  @media screen and (min-width: 768px) {
+    font-size: 42px;
+  }
 }
 h2{
-  font-size: 34px;
+  font-size: 28px;
+
+  @media screen and (min-width: 768px) {
+    font-size: 34px;
+  }
 }
-h3{
-  font-size: 24px;
+h3 {
+  font-size: 18px;
+  @media screen and (min-width: 768px) {
+    font-size: 24px;
+  }
 }
 
 .bg-blue{
@@ -110,6 +120,7 @@ h3{
     padding: 10px 16px;
     box-shadow: var(--shadow-light);
     transition: 0.3s;
+    height: fit-content;
 
     &:hover {
       @media (hover: hover) {
@@ -129,6 +140,7 @@ h3{
     border-color: var(--color-primary-blue-400);
     padding: 10px 16px;
     transition: 0.3s;
+    height: fit-content;
 
     &:hover {
       @media (hover: hover) {
@@ -136,20 +148,5 @@ h3{
         color: var(--color-secondary-blueberry-400);
       }
     }
-
-
-      /* border-radius: var(--rounded-lg);
-    border-radius: calc(infinity * 1px);
-    background-color: var(--color-violet-500);
-    padding-inline: --spacing(5);
-    padding-block: --spacing(2);
-    font-weight: var(--font-weight-semibold);
-    color: var(--color-white);
-    box-shadow: var(--shadow-md);
-    &:hover {
-      @media (hover: hover) {
-        background-color: var(--color-violet-700);
-      }
-    } */
   }
 }

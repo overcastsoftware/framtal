@@ -26,6 +26,7 @@ type Debt = {
 }
 
 interface DebtsByTypeProps {
+  title: string
   debts: Debt[]
 }
 
@@ -61,7 +62,7 @@ const DEBT_TYPES: Record<string, DebtTypeInfo> = {
   },
 }
 
-export const DebtsByType: React.FC<DebtsByTypeProps> = ({ debts }) => {
+export const DebtsByType: React.FC<DebtsByTypeProps> = ({ debts, title }) => {
   // Group debts by type
   const debtsByType: Record<string, Debt[]> = {}
 
@@ -81,34 +82,40 @@ export const DebtsByType: React.FC<DebtsByTypeProps> = ({ debts }) => {
   console.log(debts)
 
   return (
-    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-      {Object.entries(debtsByType).map(([type, typeDebts]) => {
-        const typeInfo = DEBT_TYPES[type] || { label: type, icon: '❓' }
-        const typeTotal = typeDebts.reduce((sum, debt) => sum + (debt.amount || 0), 0)
-        const typeTotalCost = typeDebts.reduce((sum, debt) => sum + (debt.totalCost || 0), 0)
-        console.log(typeDebts)
-        return (
-          <DisplayCard
-            key={type}
-            type={type}
-            category="skuldir"
-            parentType="debt"
-            title={typeInfo.label}
-            amount={typeTotal}
-            items={typeDebts.map((debt) => ({
-              id: debt.id,
-              description: debt.description,
-              amount: debt.amount || 0,
-              totalCost: debt.totalCost || 0,
-              lender: debt.lender,
-            }))}
-            className="mb-4"
-            footer={
-              typeTotalCost > 0 ? `Vaxtagjöld samtals: ${formatCurrency(typeTotalCost)}` : undefined
-            }
-          />
-        )
-      })}
+    <div>
+      <h3 className="section-header">{title}</h3>
+
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {Object.entries(debtsByType).map(([type, typeDebts]) => {
+          const typeInfo = DEBT_TYPES[type] || { label: type, icon: '❓' }
+          const typeTotal = typeDebts.reduce((sum, debt) => sum + (debt.amount || 0), 0)
+          const typeTotalCost = typeDebts.reduce((sum, debt) => sum + (debt.totalCost || 0), 0)
+          console.log(typeDebts)
+          return (
+            <DisplayCard
+              key={type}
+              type={type}
+              category="skuldir"
+              parentType="debt"
+              title={typeInfo.label}
+              amount={typeTotal}
+              items={typeDebts.map((debt) => ({
+                id: debt.id,
+                description: debt.description,
+                amount: debt.amount || 0,
+                totalCost: debt.totalCost || 0,
+                lender: debt.lender,
+              }))}
+              className="mb-4"
+              footer={
+                typeTotalCost > 0
+                  ? `Vaxtagjöld samtals: ${formatCurrency(typeTotalCost)}`
+                  : undefined
+              }
+            />
+          )
+        })}
+      </div>
     </div>
   )
 }

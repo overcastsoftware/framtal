@@ -80,7 +80,7 @@ export default function Home() {
             </div>
           </div>
           <header className="space-y-2">
-            <h1 className="text-3xl font-bold">RSK 1.01 Skattframtal einstaklinga</h1>
+            <h1 className="text-3xl font-bold">Hér getur þú skilað skattframtali einstaklinga fyrir árið 2025</h1>
           </header>
 
           <section className="space-y-4">

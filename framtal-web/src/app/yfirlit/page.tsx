@@ -6,6 +6,8 @@ import { useQuery } from '@apollo/client'
 import { GET_APPLICATIONS_BY_FAMILY_NUMBER, GET_CURRENT_USER } from '@/graphql/queries/getUserInfo'
 import IncomesByType from '../components/IncomesByType'
 import Layout from '../components/Layout'
+import { AssetsByType } from '../components/AssetsByType'
+import { DebtsByType } from '../components/DebtsByType'
 
 // Dynamic import for the GraphQL component to avoid SSR issues
 // const Cards = dynamic(() => import('../components/Cards'), { ssr: true })
@@ -23,15 +25,9 @@ import Layout from '../components/Layout'
 //   }, {})
 // }
 // Dynamic import for the GraphQL components to avoid SSR issues
-const Cards = dynamic(
-  () => import('../components/Cards'),
-  { ssr: true }
-);
+// const Cards = dynamic(() => import('../components/Cards'), { ssr: true })
 
-const CurrentUserInfo = dynamic(
-  () => import('../components/CurrentUserInfo'),
-  { ssr: true }
-);
+// const CurrentUserInfo = dynamic(() => import('../components/CurrentUserInfo'), { ssr: true })
 
 export default function Home() {
   const { loading: userLoading, error: userError, data: userData } = useQuery(GET_CURRENT_USER);
@@ -148,17 +144,17 @@ export default function Home() {
             <h3 className="text-2xl text-primary-header font-bold mb-4">Tekjur</h3>
 
             {/* CARDS */}
-            <IncomesByType incomes={incomes} category={"tekjur"}/>
+            <IncomesByType incomes={incomes} />
 
             <h3 className="text-2xl text-primary-header font-bold mb-4">Eignir</h3>
 
             {/* CARDS */}
-            <IncomesByType incomes={incomes} category={"eignir"} />
+            <AssetsByType assets={assets} />
 
             <h3 className="text-2xl text-primary-header font-bold mb-4">Skuldir</h3>
 
             {/* CARDS */}
-            <IncomesByType incomes={incomes} category={"skuldir"}  />
+            <DebtsByType debts={debts} />
           </div>
 
           {/* <Cards /> */}

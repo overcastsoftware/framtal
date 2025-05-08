@@ -27,6 +27,7 @@ export type Income = {
   amount: number
   incomeType: string
   payor: Entity
+  payorId: string
 }
 
 // Asset types

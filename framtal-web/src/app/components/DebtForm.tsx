@@ -33,7 +33,6 @@ type DebtFormProps = {
   familyNumber: string
 }
 
-
 const DebtForm: React.FC<DebtFormProps> = ({ debt, familyNumber }) => {
   const [isEditing, setIsEditing] = useState(false);
   const [saveMessage, setSaveMessage] = useState('');

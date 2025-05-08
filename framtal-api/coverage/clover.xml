@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1746570614223" clover="3.2.0">
-  <project timestamp="1746570614223" name="All files">
-    <metrics statements="514" coveredstatements="300" conditionals="17" coveredconditionals="0" methods="219" coveredmethods="68" elements="750" coveredelements="368" complexity="0" loc="514" ncloc="514" packages="13" files="36" classes="36"/>
+<coverage generated="1746701814822" clover="3.2.0">
+  <project timestamp="1746701814822" name="All files">
+    <metrics statements="550" coveredstatements="300" conditionals="18" coveredconditionals="0" methods="227" coveredmethods="68" elements="795" coveredelements="368" complexity="0" loc="550" ncloc="550" packages="15" files="41" classes="41"/>
     <package name="src">
-      <metrics statements="21" coveredstatements="0" conditionals="2" coveredconditionals="0" methods="1" coveredmethods="0"/>
-      <file name="app.module.ts" path="/Users/som/Code/framtal/framtal-api/src/app.module.ts">
-        <metrics statements="13" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+      <metrics statements="23" coveredstatements="0" conditionals="2" coveredconditionals="0" methods="1" coveredmethods="0"/>
+      <file name="app.module.ts" path="/app/src/app.module.ts">
+        <metrics statements="15" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
         <line num="1" count="0" type="stmt"/>
         <line num="2" count="0" type="stmt"/>
         <line num="3" count="0" type="stmt"/>
@@ -18,9 +18,11 @@
         <line num="10" count="0" type="stmt"/>
         <line num="11" count="0" type="stmt"/>
         <line num="12" count="0" type="stmt"/>
-        <line num="31" count="0" type="stmt"/>
+        <line num="13" count="0" type="stmt"/>
+        <line num="14" count="0" type="stmt"/>
+        <line num="35" count="0" type="stmt"/>
       </file>
-      <file name="main.ts" path="/Users/som/Code/framtal/framtal-api/src/main.ts">
+      <file name="main.ts" path="/app/src/main.ts">
         <metrics statements="8" coveredstatements="0" conditionals="2" coveredconditionals="0" methods="1" coveredmethods="0"/>
         <line num="1" count="0" type="stmt"/>
         <line num="2" count="0" type="stmt"/>
@@ -34,7 +36,7 @@
     </package>
     <package name="src.application">
       <metrics statements="30" coveredstatements="21" conditionals="0" coveredconditionals="0" methods="13" coveredmethods="9"/>
-      <file name="application.module.ts" path="/Users/som/Code/framtal/framtal-api/src/application/application.module.ts">
+      <file name="application.module.ts" path="/app/src/application/application.module.ts">
         <metrics statements="6" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
         <line num="1" count="0" type="stmt"/>
         <line num="2" count="0" type="stmt"/>
@@ -43,7 +45,7 @@
         <line num="5" count="0" type="stmt"/>
         <line num="12" count="0" type="stmt"/>
       </file>
-      <file name="application.resolver.ts" path="/Users/som/Code/framtal/framtal-api/src/application/application.resolver.ts">
+      <file name="application.resolver.ts" path="/app/src/application/application.resolver.ts">
         <metrics statements="15" coveredstatements="12" conditionals="0" coveredconditionals="0" methods="9" coveredmethods="5"/>
         <line num="1" count="1" type="stmt"/>
         <line num="2" count="1" type="stmt"/>
@@ -61,7 +63,7 @@
         <line num="20" count="1" type="stmt"/>
         <line num="23" count="1" type="stmt"/>
       </file>
-      <file name="application.service.ts" path="/Users/som/Code/framtal/framtal-api/src/application/application.service.ts">
+      <file name="application.service.ts" path="/app/src/application/application.service.ts">
         <metrics statements="9" coveredstatements="9" conditionals="0" coveredconditionals="0" methods="4" coveredmethods="4"/>
         <line num="1" count="2" type="stmt"/>
         <line num="2" count="2" type="stmt"/>
@@ -76,7 +78,7 @@
     </package>
     <package name="src.asset">
       <metrics statements="54" coveredstatements="40" conditionals="0" coveredconditionals="0" methods="27" coveredmethods="17"/>
-      <file name="asset.module.ts" path="/Users/som/Code/framtal/framtal-api/src/asset/asset.module.ts">
+      <file name="asset.module.ts" path="/app/src/asset/asset.module.ts">
         <metrics statements="6" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
         <line num="1" count="0" type="stmt"/>
         <line num="2" count="0" type="stmt"/>
@@ -85,7 +87,7 @@
         <line num="5" count="0" type="stmt"/>
         <line num="12" count="0" type="stmt"/>
       </file>
-      <file name="asset.resolver.ts" path="/Users/som/Code/framtal/framtal-api/src/asset/asset.resolver.ts">
+      <file name="asset.resolver.ts" path="/app/src/asset/asset.resolver.ts">
         <metrics statements="30" coveredstatements="22" conditionals="0" coveredconditionals="0" methods="19" coveredmethods="9"/>
         <line num="1" count="1" type="stmt"/>
         <line num="2" count="1" type="stmt"/>
@@ -118,7 +120,7 @@
         <line num="50" count="1" type="stmt"/>
         <line num="51" count="2" type="stmt"/>
       </file>
-      <file name="asset.service.ts" path="/Users/som/Code/framtal/framtal-api/src/asset/asset.service.ts">
+      <file name="asset.service.ts" path="/app/src/asset/asset.service.ts">
         <metrics statements="18" coveredstatements="18" conditionals="0" coveredconditionals="0" methods="8" coveredmethods="8"/>
         <line num="1" count="2" type="stmt"/>
         <line num="2" count="2" type="stmt"/>
@@ -142,7 +144,7 @@
     </package>
     <package name="src.config">
       <metrics statements="2" coveredstatements="0" conditionals="10" coveredconditionals="0" methods="0" coveredmethods="0"/>
-      <file name="database.config.ts" path="/Users/som/Code/framtal/framtal-api/src/config/database.config.ts">
+      <file name="database.config.ts" path="/app/src/config/database.config.ts">
         <metrics statements="2" coveredstatements="0" conditionals="10" coveredconditionals="0" methods="0" coveredmethods="0"/>
         <line num="2" count="0" type="stmt"/>
         <line num="4" count="0" type="stmt"/>
@@ -150,7 +152,7 @@
     </package>
     <package name="src.debt">
       <metrics statements="54" coveredstatements="40" conditionals="0" coveredconditionals="0" methods="27" coveredmethods="17"/>
-      <file name="debt.module.ts" path="/Users/som/Code/framtal/framtal-api/src/debt/debt.module.ts">
+      <file name="debt.module.ts" path="/app/src/debt/debt.module.ts">
         <metrics statements="6" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
         <line num="1" count="0" type="stmt"/>
         <line num="2" count="0" type="stmt"/>
@@ -159,7 +161,7 @@
         <line num="5" count="0" type="stmt"/>
         <line num="12" count="0" type="stmt"/>
       </file>
-      <file name="debt.resolver.ts" path="/Users/som/Code/framtal/framtal-api/src/debt/debt.resolver.ts">
+      <file name="debt.resolver.ts" path="/app/src/debt/debt.resolver.ts">
         <metrics statements="30" coveredstatements="22" conditionals="0" coveredconditionals="0" methods="19" coveredmethods="9"/>
         <line num="1" count="1" type="stmt"/>
         <line num="2" count="1" type="stmt"/>
@@ -192,7 +194,7 @@
         <line num="50" count="1" type="stmt"/>
         <line num="51" count="2" type="stmt"/>
       </file>
-      <file name="debt.service.ts" path="/Users/som/Code/framtal/framtal-api/src/debt/debt.service.ts">
+      <file name="debt.service.ts" path="/app/src/debt/debt.service.ts">
         <metrics statements="18" coveredstatements="18" conditionals="0" coveredconditionals="0" methods="8" coveredmethods="8"/>
         <line num="1" count="2" type="stmt"/>
         <line num="2" count="2" type="stmt"/>
@@ -216,7 +218,7 @@
     </package>
     <package name="src.entity">
       <metrics statements="30" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="12" coveredmethods="0"/>
-      <file name="entity.module.ts" path="/Users/som/Code/framtal/framtal-api/src/entity/entity.module.ts">
+      <file name="entity.module.ts" path="/app/src/entity/entity.module.ts">
         <metrics statements="6" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
         <line num="1" count="0" type="stmt"/>
         <line num="2" count="0" type="stmt"/>
@@ -225,7 +227,7 @@
         <line num="5" count="0" type="stmt"/>
         <line num="12" count="0" type="stmt"/>
       </file>
-      <file name="entity.resolver.ts" path="/Users/som/Code/framtal/framtal-api/src/entity/entity.resolver.ts">
+      <file name="entity.resolver.ts" path="/app/src/entity/entity.resolver.ts">
         <metrics statements="15" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="8" coveredmethods="0"/>
         <line num="1" count="0" type="stmt"/>
         <line num="2" count="0" type="stmt"/>
@@ -243,7 +245,7 @@
         <line num="20" count="0" type="stmt"/>
         <line num="23" count="0" type="stmt"/>
       </file>
-      <file name="entity.service.ts" path="/Users/som/Code/framtal/framtal-api/src/entity/entity.service.ts">
+      <file name="entity.service.ts" path="/app/src/entity/entity.service.ts">
         <metrics statements="9" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="4" coveredmethods="0"/>
         <line num="1" count="0" type="stmt"/>
         <line num="2" count="0" type="stmt"/>
@@ -258,7 +260,7 @@
     </package>
     <package name="src.graphql.dto">
       <metrics statements="115" coveredstatements="69" conditionals="0" coveredconditionals="0" methods="46" coveredmethods="0"/>
-      <file name="create-asset.input.ts" path="/Users/som/Code/framtal/framtal-api/src/graphql/dto/create-asset.input.ts">
+      <file name="create-asset.input.ts" path="/app/src/graphql/dto/create-asset.input.ts">
         <metrics statements="13" coveredstatements="8" conditionals="0" coveredconditionals="0" methods="5" coveredmethods="0"/>
         <line num="1" count="2" type="stmt"/>
         <line num="4" count="2" type="stmt"/>
@@ -274,7 +276,7 @@
         <line num="20" count="0" type="stmt"/>
         <line num="21" count="2" type="stmt"/>
       </file>
-      <file name="create-debt.input.ts" path="/Users/som/Code/framtal/framtal-api/src/graphql/dto/create-debt.input.ts">
+      <file name="create-debt.input.ts" path="/app/src/graphql/dto/create-debt.input.ts">
         <metrics statements="29" coveredstatements="16" conditionals="0" coveredconditionals="0" methods="13" coveredmethods="0"/>
         <line num="1" count="2" type="stmt"/>
         <line num="4" count="2" type="stmt"/>
@@ -306,7 +308,7 @@
         <line num="44" count="0" type="stmt"/>
         <line num="45" count="2" type="stmt"/>
       </file>
-      <file name="create-income.input.ts" path="/Users/som/Code/framtal/framtal-api/src/graphql/dto/create-income.input.ts">
+      <file name="create-income.input.ts" path="/app/src/graphql/dto/create-income.input.ts">
         <metrics statements="10" coveredstatements="7" conditionals="0" coveredconditionals="0" methods="3" coveredmethods="0"/>
         <line num="1" count="1" type="stmt"/>
         <line num="4" count="1" type="stmt"/>
@@ -319,7 +321,7 @@
         <line num="17" count="0" type="stmt"/>
         <line num="18" count="1" type="stmt"/>
       </file>
-      <file name="index.ts" path="/Users/som/Code/framtal/framtal-api/src/graphql/dto/index.ts">
+      <file name="index.ts" path="/app/src/graphql/dto/index.ts">
         <metrics statements="7" coveredstatements="7" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
         <line num="2" count="1" type="stmt"/>
         <line num="3" count="1" type="stmt"/>
@@ -329,7 +331,7 @@
         <line num="7" count="1" type="stmt"/>
         <line num="9" count="1" type="stmt"/>
       </file>
-      <file name="update-asset.input.ts" path="/Users/som/Code/framtal/framtal-api/src/graphql/dto/update-asset.input.ts">
+      <file name="update-asset.input.ts" path="/app/src/graphql/dto/update-asset.input.ts">
         <metrics statements="14" coveredstatements="8" conditionals="0" coveredconditionals="0" methods="6" coveredmethods="0"/>
         <line num="1" count="2" type="stmt"/>
         <line num="4" count="2" type="stmt"/>
@@ -346,7 +348,7 @@
         <line num="20" count="0" type="stmt"/>
         <line num="21" count="2" type="stmt"/>
       </file>
-      <file name="update-debt.input.ts" path="/Users/som/Code/framtal/framtal-api/src/graphql/dto/update-debt.input.ts">
+      <file name="update-debt.input.ts" path="/app/src/graphql/dto/update-debt.input.ts">
         <metrics statements="30" coveredstatements="16" conditionals="0" coveredconditionals="0" methods="14" coveredmethods="0"/>
         <line num="1" count="2" type="stmt"/>
         <line num="4" count="2" type="stmt"/>
@@ -379,7 +381,7 @@
         <line num="44" count="0" type="stmt"/>
         <line num="45" count="2" type="stmt"/>
       </file>
-      <file name="update-income.input.ts" path="/Users/som/Code/framtal/framtal-api/src/graphql/dto/update-income.input.ts">
+      <file name="update-income.input.ts" path="/app/src/graphql/dto/update-income.input.ts">
         <metrics statements="12" coveredstatements="7" conditionals="0" coveredconditionals="0" methods="5" coveredmethods="0"/>
         <line num="1" count="1" type="stmt"/>
         <line num="4" count="1" type="stmt"/>
@@ -397,7 +399,7 @@
     </package>
     <package name="src.graphql.resolvers">
       <metrics statements="6" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
-      <file name="index.ts" path="/Users/som/Code/framtal/framtal-api/src/graphql/resolvers/index.ts">
+      <file name="index.ts" path="/app/src/graphql/resolvers/index.ts">
         <metrics statements="6" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
         <line num="1" count="0" type="stmt"/>
         <line num="2" count="0" type="stmt"/>
@@ -409,7 +411,7 @@
     </package>
     <package name="src.graphql.scalars">
       <metrics statements="13" coveredstatements="0" conditionals="5" coveredconditionals="0" methods="5" coveredmethods="0"/>
-      <file name="datetime.scalar.ts" path="/Users/som/Code/framtal/framtal-api/src/graphql/scalars/datetime.scalar.ts">
+      <file name="datetime.scalar.ts" path="/app/src/graphql/scalars/datetime.scalar.ts">
         <metrics statements="10" coveredstatements="0" conditionals="5" coveredconditionals="0" methods="5" coveredmethods="0"/>
         <line num="1" count="0" type="stmt"/>
         <line num="2" count="0" type="stmt"/>
@@ -422,7 +424,7 @@
         <line num="18" count="0" type="stmt"/>
         <line num="20" count="0" type="stmt"/>
       </file>
-      <file name="index.ts" path="/Users/som/Code/framtal/framtal-api/src/graphql/scalars/index.ts">
+      <file name="index.ts" path="/app/src/graphql/scalars/index.ts">
         <metrics statements="3" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
         <line num="1" count="0" type="stmt"/>
         <line num="3" count="0" type="stmt"/>
@@ -431,7 +433,7 @@
     </package>
     <package name="src.income">
       <metrics statements="57" coveredstatements="42" conditionals="0" coveredconditionals="0" methods="30" coveredmethods="19"/>
-      <file name="income.module.ts" path="/Users/som/Code/framtal/framtal-api/src/income/income.module.ts">
+      <file name="income.module.ts" path="/app/src/income/income.module.ts">
         <metrics statements="6" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
         <line num="1" count="0" type="stmt"/>
         <line num="2" count="0" type="stmt"/>
@@ -440,7 +442,7 @@
         <line num="5" count="0" type="stmt"/>
         <line num="12" count="0" type="stmt"/>
       </file>
-      <file name="income.resolver.ts" path="/Users/som/Code/framtal/framtal-api/src/income/income.resolver.ts">
+      <file name="income.resolver.ts" path="/app/src/income/income.resolver.ts">
         <metrics statements="33" coveredstatements="24" conditionals="0" coveredconditionals="0" methods="21" coveredmethods="10"/>
         <line num="1" count="1" type="stmt"/>
         <line num="2" count="1" type="stmt"/>
@@ -476,7 +478,7 @@
         <line num="57" count="1" type="stmt"/>
         <line num="58" count="2" type="stmt"/>
       </file>
-      <file name="income.service.ts" path="/Users/som/Code/framtal/framtal-api/src/income/income.service.ts">
+      <file name="income.service.ts" path="/app/src/income/income.service.ts">
         <metrics statements="18" coveredstatements="18" conditionals="0" coveredconditionals="0" methods="9" coveredmethods="9"/>
         <line num="1" count="2" type="stmt"/>
         <line num="2" count="2" type="stmt"/>
@@ -498,9 +500,29 @@
         <line num="62" count="2" type="stmt"/>
       </file>
     </package>
+    <package name="src.login">
+      <metrics statements="11" coveredstatements="0" conditionals="1" coveredconditionals="0" methods="2" coveredmethods="0"/>
+      <file name="login.module.ts" path="/app/src/login/login.module.ts">
+        <metrics statements="3" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+        <line num="1" count="0" type="stmt"/>
+        <line num="2" count="0" type="stmt"/>
+        <line num="7" count="0" type="stmt"/>
+      </file>
+      <file name="login.resolver.ts" path="/app/src/login/login.resolver.ts">
+        <metrics statements="8" coveredstatements="0" conditionals="1" coveredconditionals="0" methods="2" coveredmethods="0"/>
+        <line num="1" count="0" type="stmt"/>
+        <line num="4" count="0" type="stmt"/>
+        <line num="5" count="0" type="stmt"/>
+        <line num="6" count="0" type="stmt"/>
+        <line num="7" count="0" type="stmt"/>
+        <line num="8" count="0" type="cond" truecount="0" falsecount="1"/>
+        <line num="9" count="0" type="stmt"/>
+        <line num="11" count="0" type="stmt"/>
+      </file>
+    </package>
     <package name="src.models">
       <metrics statements="124" coveredstatements="82" conditionals="0" coveredconditionals="0" methods="52" coveredmethods="0"/>
-      <file name="application.model.ts" path="/Users/som/Code/framtal/framtal-api/src/models/application.model.ts">
+      <file name="application.model.ts" path="/app/src/models/application.model.ts">
         <metrics statements="23" coveredstatements="14" conditionals="0" coveredconditionals="0" methods="12" coveredmethods="0"/>
         <line num="1" count="13" type="stmt"/>
         <line num="2" count="13" type="stmt"/>
@@ -526,7 +548,7 @@
         <line num="36" count="0" type="stmt"/>
         <line num="38" count="13" type="stmt"/>
       </file>
-      <file name="asset.model.ts" path="/Users/som/Code/framtal/framtal-api/src/models/asset.model.ts">
+      <file name="asset.model.ts" path="/app/src/models/asset.model.ts">
         <metrics statements="19" coveredstatements="14" conditionals="0" coveredconditionals="0" methods="7" coveredmethods="0"/>
         <line num="1" count="13" type="stmt"/>
         <line num="2" count="13" type="stmt"/>
@@ -548,7 +570,7 @@
         <line num="41" count="0" type="stmt"/>
         <line num="43" count="13" type="stmt"/>
       </file>
-      <file name="debt.model.ts" path="/Users/som/Code/framtal/framtal-api/src/models/debt.model.ts">
+      <file name="debt.model.ts" path="/app/src/models/debt.model.ts">
         <metrics statements="34" coveredstatements="23" conditionals="0" coveredconditionals="0" methods="14" coveredmethods="0"/>
         <line num="1" count="13" type="stmt"/>
         <line num="2" count="13" type="stmt"/>
@@ -585,7 +607,7 @@
         <line num="78" count="0" type="stmt"/>
         <line num="80" count="13" type="stmt"/>
       </file>
-      <file name="entity.model.ts" path="/Users/som/Code/framtal/framtal-api/src/models/entity.model.ts">
+      <file name="entity.model.ts" path="/app/src/models/entity.model.ts">
         <metrics statements="22" coveredstatements="17" conditionals="0" coveredconditionals="0" methods="9" coveredmethods="0"/>
         <line num="1" count="13" type="stmt"/>
         <line num="2" count="13" type="stmt"/>
@@ -610,7 +632,7 @@
         <line num="47" count="0" type="stmt"/>
         <line num="48" count="13" type="stmt"/>
       </file>
-      <file name="income.model.ts" path="/Users/som/Code/framtal/framtal-api/src/models/income.model.ts">
+      <file name="income.model.ts" path="/app/src/models/income.model.ts">
         <metrics statements="21" coveredstatements="14" conditionals="0" coveredconditionals="0" methods="10" coveredmethods="0"/>
         <line num="1" count="13" type="stmt"/>
         <line num="2" count="13" type="stmt"/>
@@ -634,7 +656,7 @@
         <line num="42" count="0" type="stmt"/>
         <line num="44" count="13" type="stmt"/>
       </file>
-      <file name="index.ts" path="/Users/som/Code/framtal/framtal-api/src/models/index.ts">
+      <file name="index.ts" path="/app/src/models/index.ts">
         <metrics statements="5" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
         <line num="1" count="0" type="stmt"/>
         <line num="2" count="0" type="stmt"/>
@@ -645,7 +667,7 @@
     </package>
     <package name="src.services">
       <metrics statements="2" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
-      <file name="index.ts" path="/Users/som/Code/framtal/framtal-api/src/services/index.ts">
+      <file name="index.ts" path="/app/src/services/index.ts">
         <metrics statements="2" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
         <line num="1" count="0" type="stmt"/>
         <line num="4" count="0" type="stmt"/>
@@ -653,7 +675,7 @@
     </package>
     <package name="src.test">
       <metrics statements="6" coveredstatements="6" conditionals="0" coveredconditionals="0" methods="6" coveredmethods="6"/>
-      <file name="test-utils.ts" path="/Users/som/Code/framtal/framtal-api/src/test/test-utils.ts">
+      <file name="test-utils.ts" path="/app/src/test/test-utils.ts">
         <metrics statements="6" coveredstatements="6" conditionals="0" coveredconditionals="0" methods="6" coveredmethods="6"/>
         <line num="9" count="208" type="stmt"/>
         <line num="25" count="83" type="stmt"/>
@@ -661,6 +683,41 @@
         <line num="51" count="27" type="stmt"/>
         <line num="65" count="23" type="stmt"/>
         <line num="90" count="32" type="stmt"/>
+      </file>
+    </package>
+    <package name="src.user">
+      <metrics statements="23" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="6" coveredmethods="0"/>
+      <file name="user.module.ts" path="/app/src/user/user.module.ts">
+        <metrics statements="6" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+        <line num="1" count="0" type="stmt"/>
+        <line num="2" count="0" type="stmt"/>
+        <line num="3" count="0" type="stmt"/>
+        <line num="4" count="0" type="stmt"/>
+        <line num="5" count="0" type="stmt"/>
+        <line num="12" count="0" type="stmt"/>
+      </file>
+      <file name="user.resolver.ts" path="/app/src/user/user.resolver.ts">
+        <metrics statements="9" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="4" coveredmethods="0"/>
+        <line num="1" count="0" type="stmt"/>
+        <line num="2" count="0" type="stmt"/>
+        <line num="3" count="0" type="stmt"/>
+        <line num="5" count="0" type="stmt"/>
+        <line num="6" count="0" type="stmt"/>
+        <line num="7" count="0" type="stmt"/>
+        <line num="13" count="0" type="stmt"/>
+        <line num="14" count="0" type="stmt"/>
+        <line num="15" count="0" type="stmt"/>
+      </file>
+      <file name="user.service.ts" path="/app/src/user/user.service.ts">
+        <metrics statements="8" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="0"/>
+        <line num="1" count="0" type="stmt"/>
+        <line num="2" count="0" type="stmt"/>
+        <line num="3" count="0" type="stmt"/>
+        <line num="4" count="0" type="stmt"/>
+        <line num="7" count="0" type="stmt"/>
+        <line num="10" count="0" type="stmt"/>
+        <line num="19" count="0" type="stmt"/>
+        <line num="22" count="0" type="stmt"/>
       </file>
     </package>
   </project>

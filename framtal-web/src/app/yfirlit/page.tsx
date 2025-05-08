@@ -25,7 +25,8 @@ export default function Home() {
       </div>
     )
   }
-  if (error || userError) return <p className="text-center text-red-500">Villa: {error?.message}</p>
+  if (error || userError)
+    return <p className="text-center text-primary-red-600">Villa: {error?.message}</p>
 
   const firstName = userData?.currentUser.name.split(' ')[0]
 

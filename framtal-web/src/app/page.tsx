@@ -105,13 +105,13 @@ export default function Home() {
               className="h-8 inline-flex justify-start items-center gap-2 overflow-hidden text-sm"
             >
               <div data-state="Default" className="flex justify-start items-center gap-2.5">
-                <div className="justify-center text-blue-600  font-semibold  leading-none">
+                <div className="justify-center text-primary-blue-600  font-semibold  leading-none">
                   Ísland.is
                 </div>
               </div>
               <div className="w-1 h-1 bg-blue-600 rounded-full" />
               <div data-state="Default" className="flex justify-start items-center gap-2.5">
-                <div className="justify-center text-blue-600  font-semibold  leading-none">
+                <div className="justify-center text-primary-blue-600  font-semibold  leading-none">
                   Skatturinn
                 </div>
               </div>
@@ -122,7 +122,7 @@ export default function Home() {
                 data-state="Default"
                 className="p-2 bg-sky-50 rounded-lg flex justify-start items-center overflow-hidden"
               >
-                <div className="justify-end text-blue-600  font-semibold  leading-none">
+                <div className="justify-end text-primary-blue-600  font-semibold  leading-none">
                   Skila skattframtali
                 </div>
               </div>

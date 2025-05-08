@@ -126,7 +126,7 @@ const NewDebtForm: React.FC<NewDebtFormProps> = ({ applicationId, nationalId, fa
           <span
             className={
               message.startsWith('Error')
-                ? 'text-sm text-red-500 font-bold'
+                ? 'text-sm text-primary-red-600 font-bold'
                 : 'text-sm text-green-500 font-bold'
             }
             style={{ position: 'absolute', right: '80px', top: '0' }}
@@ -136,7 +136,7 @@ const NewDebtForm: React.FC<NewDebtFormProps> = ({ applicationId, nationalId, fa
         )}
         <button
           onClick={() => setShowForm(false)}
-          className="btn-link text-red-500 hover:text-red-700 font-bold text-sm"
+          className="btn-link text-primary-red-600 hover:text-secondary-rose-400 font-bold text-sm"
           title="Hætta við"
           style={{ position: 'absolute', right: '0', top: '0' }}
         >

@@ -51,12 +51,12 @@ const FormField = <T extends FieldValues>({
   options,
 }: FormFieldProps<T>) => {
   const baseInputClassName =
-    'cursor-pointer w-full px-3 py-2 border-2 border-blue-200 font-bold rounded-md bg-blue-50'
+    'w-full px-3 py-2 border-2 border-blue-200 font-bold rounded-md bg-blue-50'
   const inputClassName = className ? `${baseInputClassName} ${className}` : baseInputClassName
 
   return (
     <div>
-      <label className="block text-sm font-bold text-blue-600 mb-1">{label}</label>
+      <label className="block text-sm font-bold text-primary-blue-600 mb-1">{label}</label>
       <Controller
         name={name}
         control={control}
@@ -65,7 +65,7 @@ const FormField = <T extends FieldValues>({
           if (type === 'select' && options) {
             return (
               <select
-                className={inputClassName}
+                className={`${inputClassName} cursor-pointer`}
                 {...field}
                 onChange={(e) => {
                   field.onChange(e)
@@ -103,7 +103,7 @@ const FormField = <T extends FieldValues>({
           )
         }}
       />
-      {error && <p className="text-red-500 text-sm mt-1">{error.message}</p>}
+      {error && <p className="text-primary-red-600 text-sm mt-1">{error.message}</p>}
     </div>
   )
 }

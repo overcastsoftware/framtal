@@ -148,7 +148,7 @@ const DebtForm: React.FC<DebtFormProps> = ({ debt, familyNumber }) => {
           )}
           <button
             onClick={handleDelete}
-            className="btn-link text-red-500 hover:text-red-700 font-bold text-sm"
+            className="btn-link text-primary-red-600 hover:text-secondary-rose-400 font-bold text-sm"
             title="Eyða þessari línu"
             style={{ position: 'absolute', right: '0', top: '0' }}
           >

@@ -31,7 +31,7 @@ export default function AssetPage() {
   if (error)
     return (
       <Layout>
-        <p className="text-center text-red-500">Villa: {error.message}</p>
+        <p className="text-center text-primary-red-600">Villa: {error.message}</p>
       </Layout>
     )
 
@@ -95,7 +95,7 @@ export default function AssetPage() {
                   key={type}
                   className={`mb-8 ${i !== assetTypesToShow.length - 1 ? 'border-b' : ''} border-blue-600 pb-5`}
                 >
-                  <h2 className="text-xl font-semibold text-blue-600">
+                  <h2 className="text-xl font-semibold text-primary-blue-600">
                     {assetTypeLabels[type] || type}
                   </h2>
 

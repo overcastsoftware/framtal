@@ -1,32 +1,14 @@
 'use client'
-import Image from 'next/image'
-import dynamic from 'next/dynamic'
-// import Navigation from './components/Navigation';
 import { useQuery } from '@apollo/client'
 import { GET_APPLICATIONS_BY_FAMILY_NUMBER, GET_CURRENT_USER } from '@/graphql/queries/getUserInfo'
-import IncomesByType from '../components/IncomesByType'
 import Layout from '../components/Layout'
-import { AssetsByType } from '../components/AssetsByType'
-import { DebtsByType } from '../components/DebtsByType'
+import FinancialItemsByType from '../components/FinancialItemsByType'
+import { FinancialTypes } from '../types/financialTypes'
 
-// Dynamic import for the GraphQL component to avoid SSR issues
-// const Cards = dynamic(() => import('../components/Cards'), { ssr: true })
-
-// const groupIncomesByType = (incomes) => {
-//   return incomes.reduce((grouped, income) => {
-//     const type = income.incomeType
-
-//     if (!grouped[type]) {
-//       grouped[type] = []
-//     }
-
-//     grouped[type].push(income)
-//     return grouped
-//   }, {})
-// }
-// Dynamic import for the GraphQL components to avoid SSR issues
-// const Cards = dynamic(() => import('../components/Cards'), { ssr: true })
-// const CurrentUserInfo = dynamic(() => import('../components/CurrentUserInfo'), { ssr: true })
+export enum MainLabels {
+  ESTIMATED = 'Áætluð upphæð skatta og gjalda',
+  REFUND = 'Endurgreiðsla samkvæmt útreikningi',
+}
 
 export default function Home() {
   const { loading: userLoading, error: userError, data: userData } = useQuery(GET_CURRENT_USER)
@@ -34,13 +16,7 @@ export default function Home() {
     variables: { familyNumber: '1203894569' }, // Replace with actual ID or variable
   })
 
-  const { assets } = data?.applicationsByFamilyNumber[0] || {}
-  const { incomes } = data?.applicationsByFamilyNumber[0] || {}
-  const { debts } = data?.applicationsByFamilyNumber[0] || {}
-
-  // const incomesByType = groupIncomesByType(incomes)
-
-  // {data.applicationsByFamilyNumber[0].familyNumber}
+  const { assets, incomes, debts } = data?.applicationsByFamilyNumber[0] || {}
 
   if (loading || userLoading) {
     return (
@@ -115,11 +91,11 @@ export default function Home() {
               </h3>
               <div className="flex flex-col gap-4 xl:flex-row">
                 <div className="flex flex-row gap-2">
-                  <span>Áætluð upphæð skatta og gjalda:</span>
+                  <span>{MainLabels.ESTIMATED}:</span>
                   <span className="font-semibold">177.533 kr.</span>
                 </div>
                 <div className="flex flex-row gap-2">
-                  <span>Endurgreiðsla samkvæmt útreikningi:</span>
+                  <span>{MainLabels.REFUND}:</span>
                   <span className="font-semibold">6.398 kr.</span>
                 </div>
               </div>
@@ -130,12 +106,24 @@ export default function Home() {
             </div>
           </div>
 
-          {/* SECTIONS */}
-
           <div className="flex flex-col w-full space-y-12">
-            <IncomesByType title="Tekjur" incomes={incomes} />
-            <AssetsByType title="Eignir" assets={assets} />
-            <DebtsByType title="Skuldir" debts={debts} />
+            <FinancialItemsByType
+              title={FinancialTypes.INCOME.label}
+              category={FinancialTypes.INCOME.category}
+              items={incomes}
+            />
+
+            <FinancialItemsByType
+              title={FinancialTypes.ASSET.label}
+              category={FinancialTypes.ASSET.category}
+              items={assets}
+            />
+
+            <FinancialItemsByType
+              title={FinancialTypes.DEBT.label}
+              category={FinancialTypes.DEBT.category}
+              items={debts}
+            />
           </div>
         </main>
       </div>

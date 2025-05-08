@@ -1,23 +1,6 @@
+import { CardItem } from '@/app/types/financialTypes'
+import { formatCurrency } from '@/lib/utils'
 import React from 'react'
-
-type Lender = {
-  __typename: string
-  name: string
-  nationalId: string
-}
-
-type CardItem = {
-  id: string
-  amount: number
-  entity?: string
-  nationalId?: string
-  description?: string
-  assetType?: string
-  assetIdentifier?: string
-  identifier?: string
-  totalCost: number
-  lender: Lender
-}
 
 type DisplayCardProps = {
   type: string
@@ -29,14 +12,6 @@ type DisplayCardProps = {
   parentType?: string
 }
 
-const formatCurrency = (amount: number) => {
-  return new Intl.NumberFormat('is-IS', {
-    style: 'currency',
-    currency: 'ISK',
-    maximumFractionDigits: 0,
-  }).format(amount)
-}
-
 const DisplayCard: React.FC<DisplayCardProps> = ({
   title,
   totalAmount,
@@ -45,7 +20,6 @@ const DisplayCard: React.FC<DisplayCardProps> = ({
   category,
   parentType,
 }) => {
-  console.log(category)
   return (
     <div className="bg-white rounded-lg justify-between lg:min-h-80 flex flex-col p-6 border-2 border-primary-blue-200 duration-100 ease-in hover:border-primary-blue-400">
       <div>

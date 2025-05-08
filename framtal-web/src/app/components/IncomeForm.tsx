@@ -1,8 +1,9 @@
 import React, { useState } from 'react'
-import { useForm, Controller } from 'react-hook-form'
+import { useForm } from 'react-hook-form'
 import { useMutation } from '@apollo/client'
 import { UPDATE_INCOME, DELETE_INCOME } from '@/graphql/mutations/incomeOperations'
 import { GET_APPLICATIONS_BY_FAMILY_NUMBER_ONLY_INCOME } from '@/graphql/queries/getUserInfo'
+import FormField from './FormField'
 
 type Entity = {
   __typename?: string
@@ -116,75 +117,32 @@ const IncomeForm: React.FC<IncomeFormProps> = ({ income, familyNumber }) => {
 
       <form>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-4">
-          <div>
-            <label className="block text-sm font-bold text-blue-600 mb-1">
-              Kennitala greiðanda
-            </label>
-            <Controller
-              name="payorId"
-              control={control}
-              render={({ field }) => (
-                <input
-                  type="text"
-                  className="w-full px-3 py-2 border-2 border-blue-200 font-bold rounded-md bg-blue-50"
-                  {...field}
-                  onChange={(e) => {
-                    field.onChange(e)
-                    setTimeout(handleFieldChange, 100) // Submit after field updates
-                  }}
-                  onBlur={(e) => {
-                    field.onBlur()
-                    handleFieldChange()
-                  }}
-                />
-              )}
-            />
-          </div>
+          <FormField
+            name="payorId"
+            label="Kennitala greiðanda"
+            control={control}
+            error={errors.payorId}
+            onChange={() => setTimeout(handleFieldChange, 100)}
+          />
 
-          <div>
-            <label className="block text-sm font-bold text-blue-600 mb-1">Nafn greiðanda</label>
-            <Controller
-              name="payorName"
-              control={control}
-              render={({ field }) => (
-                <input
-                  type="text"
-                  disabled={income.payor === null}
-                  className="w-full px-3 py-2 border-2 border-blue-200 font-bold rounded-md bg-blue-50"
-                  {...field}
-                  onChange={(e) => {
-                    field.onChange(e)
-                    // We don't submit here since payorName isn't part of the API
-                  }}
-                />
-              )}
-            />
-          </div>
+          <FormField
+            name="payorName"
+            label="Nafn greiðanda"
+            control={control}
+            className={income.payor === null ? "opacity-50" : ""}
+            error={errors.payorName}
+            placeholder=""
+          />
 
-          <div>
-            <label className="block text-sm font-bold text-blue-600 mb-1">Fjárhæð</label>
-            <Controller
-              name="amount"
-              control={control}
-              rules={{ required: 'Upphæð er nauðsynleg' }}
-              render={({ field }) => (
-                <input
-                  type="tel"
-                  className="w-full px-3 py-2 border-2 border-blue-200 font-bold rounded-md bg-blue-50"
-                  {...field}
-                  onChange={(e) => {
-                    field.onChange(parseInt(e.target.value, 10))
-                    setTimeout(handleFieldChange, 100) // Submit after field updates
-                  }}
-                  onBlur={(e) => {
-                    field.onBlur()
-                    handleFieldChange()
-                  }}
-                />
-              )}
-            />
-            {errors.amount && <p className="text-red-500 text-sm mt-1">{errors.amount.message}</p>}
-          </div>
+          <FormField
+            name="amount"
+            label="Fjárhæð"
+            type="tel"
+            control={control}
+            rules={{ required: 'Upphæð er nauðsynleg' }}
+            error={errors.amount}
+            onChange={() => setTimeout(handleFieldChange, 100)}
+          />
         </div>
       </form>
     </div>

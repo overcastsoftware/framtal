@@ -1,6 +1,6 @@
 # `framtal`
 
-This is an application demonstrating how an individual would view, alter and finally submit their tax return for a given year in the Island.is ecosystem.
+This is an application demonstrating how an individual would view, alter and finally submit their tax return for the current year in the Island.is ecosystem.
 
 # Set up
 

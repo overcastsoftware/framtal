@@ -155,11 +155,7 @@ const NewIncomeForm: React.FC<NewIncomeFormProps> = ({
         </div>
 
         <div className="flex justify-end">
-          <button
-            type="submit"
-            disabled={loading}
-            className="px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 disabled:bg-blue-300"
-          >
+          <button type="submit" disabled={loading} className="btn-primary disabled:bg-blue-300">
             {loading ? 'Vista...' : 'Vista'}
           </button>
         </div>

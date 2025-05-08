@@ -7,7 +7,7 @@ import {
   FinancialItemsByTypeProps,
   FinancialTypes,
 } from '../types/financialTypes'
-import { formatCurrency, groupIncomesByTypeAndPayor } from '@/lib/utils'
+import { formatCurrency, groupIncomesByTypeAndPayor, sortByKeysArray } from '@/lib/utils'
 
 // Static mappings for different categories
 const INCOME_TYPE_LABELS: Record<string, string> = {
@@ -65,7 +65,10 @@ const FinancialItemsByType: React.FC<FinancialItemsByTypeProps> = ({ title, cate
     // Group incomes by type and payor
     const incomes = items as Income[]
     const groupedIncomes = groupIncomesByTypeAndPayor(incomes)
-    const incomeTypes = Object.keys(groupedIncomes)
+
+    // Sort the income types by the order of keys in the supplied keyOrder array
+    const keyOrder = Object.keys(INCOME_TYPE_LABELS)
+    const incomeTypes = sortByKeysArray(Object.keys(groupedIncomes), keyOrder)
 
     return (
       <div>

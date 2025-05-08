@@ -6,6 +6,17 @@ export const sortById = (a, b) => {
   return 0
 }
 
+export const sortByKeysArray = (data: any[], keyOrder: string[]) => {
+  const sortedData = keyOrder.map((key) => {
+    const index = data.indexOf(key)
+    if (index !== -1) {
+      return data[index]
+    }
+    return null
+  })
+  return sortedData.filter((item) => item !== null)
+}
+
 export const formatCurrency = (amount: number) => {
   return new Intl.NumberFormat('is-IS', {
     style: 'currency',
@@ -38,7 +49,7 @@ export const groupIncomesByTypeAndPayor = (incomes: Income[]) => {
     const typeIncomes = groupedByType[type]
 
     const groupedByPayor = typeIncomes.reduce<Record<string, Income[]>>((grouped, income) => {
-      const payorId = income.payorId
+      const payorId = income.payorId;
       if (!grouped[payorId]) {
         grouped[payorId] = []
       }

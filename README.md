@@ -10,6 +10,8 @@ This project is completely containerized using Docker. You need to have Docker i
 
 The project will build the frontend, backend and db containers and seed the database with mock data.
 
+Browse to [http://localhost:3000](http://localhost:3000) to test the application.
+
 # Documentation
 
 See more information at [https://github.com/overcastsoftware/framtal/blob/main/docs/index.md](https://github.com/overcastsoftware/framtal/blob/main/docs/index.md)

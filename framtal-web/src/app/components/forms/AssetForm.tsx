@@ -135,6 +135,7 @@ const AssetForm: React.FC<AssetFormProps> = ({ asset, familyNumber }) => {
                   : 'Annað'
             }
             control={control}
+            onChange={() => setTimeout(handleFieldChange, 100)}
             error={errors.assetIdentifier}
           />
 

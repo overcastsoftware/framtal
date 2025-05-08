@@ -1,75 +1,77 @@
 import React, { useState } from 'react'
-import { useForm } from 'react-hook-form'
+import { useForm, FieldError } from 'react-hook-form'
 import { useMutation } from '@apollo/client'
-import { CREATE_DEBT } from '@/graphql/mutations/debtOperations'
+import { UPDATE_DEBT, DELETE_DEBT } from '@/graphql/mutations/debtOperations'
 import { GET_APPLICATIONS_BY_FAMILY_NUMBER_ONLY_DEBT } from '@/graphql/queries/getUserInfo'
 import FormField, { FormValues } from './FormField'
 
-// Interface to match the GraphQL CreateDebtInput schema
-interface CreateDebtInput {
-  applicationId: number
-  nationalId: string
+// Interface to match the GraphQL UpdateDebtInput schema
+interface UpdateDebtInput {
+  id: number
   amount?: number
   description?: string
-  descriptionSecondary?: string
+  totalCost?: number
   loanType?: string
   lenderId?: string
   loanNumber?: string
-  loanDate?: string
+  descriptionSecondary?: string
   loanLength?: string
-  totalCost?: number
+  loanDate?: string
   totalPayment?: number
   principalPayment?: number
   deduction?: number
 }
 
-type NewDebtFormProps = {
-  applicationId: number
-  nationalId: string
+type Debt = {
+  id: string
+  amount: number
+  description: string
+  loanType: string
+  totalCost: number
+  nationalId?: string
+  applicationId?: number
+  lenderId?: string
+  loanNumber?: string
+  descriptionSecondary?: string
+  loanDate?: string
+  loanLength?: string
+  totalPayment?: number
+  principalPayment?: number
+}
+
+type DebtFormProps = {
+  debt: Debt
   familyNumber: string
 }
 
-const NewDebtForm: React.FC<NewDebtFormProps> = ({ applicationId, nationalId, familyNumber }) => {
-  const [showForm, setShowForm] = useState(false)
-  const [message, setMessage] = useState('')
+const DebtForm: React.FC<DebtFormProps> = ({ debt, familyNumber }) => {
+  const [saveMessage, setSaveMessage] = useState('')
 
   const {
     control,
     handleSubmit,
-    reset,
     watch,
     formState: { errors },
-  } = useForm({
+  } = useForm<FormValues>({
     defaultValues: {
-      amount: 0,
-      loanType: 'property',
-      description: '',
-      totalCost: 0,
-      lenderId: '',
-      loanNumber: '',
-      descriptionSecondary: '',
-      loanDate: '',
-      loanLength: '',
-      totalPayment: 0,
-      principalPayment: 0,
+      amount: debt.amount,
+      description: debt.description,
+      totalCost: debt.totalCost || 0,
+      loanType: debt.loanType || 'other',
+      lenderId: debt.lenderId || '',
+      loanNumber: debt.loanNumber || '',
+      descriptionSecondary: debt.descriptionSecondary || '',
+      loanDate: debt.loanDate?.split('T')[0] || '',
+      loanLength: debt.loanLength || '',
+      totalPayment: debt.totalPayment || 0,
+      principalPayment: debt.principalPayment || 0,
     },
   })
 
-  const loanType = watch('loanType')
-
-  const [createDebt, { loading }] = useMutation(CREATE_DEBT, {
+  const [updateDebt] = useMutation(UPDATE_DEBT, {
     onCompleted: () => {
-      setMessage('Skráning tókst!')
-      reset()
-
-      setTimeout(() => {
-        setMessage('')
-        setShowForm(false)
-      }, 2000)
-    },
-    onError: (error) => {
-      console.error('Villa við skráningu:', error)
-      setMessage(`Error: ${error.message}`)
+      setSaveMessage('Vistað!')
+      setTimeout(() => setSaveMessage(''), 2000)
     },
     refetchQueries: [
       {
@@ -79,18 +81,26 @@ const NewDebtForm: React.FC<NewDebtFormProps> = ({ applicationId, nationalId, fa
     ],
   })
 
-  const onSubmit = (data) => {
-    // Make a copy of the data to avoid modifying the form data directly
-    const debtData: CreateDebtInput = {
-      applicationId,
-      nationalId,
+  const [deleteDebt] = useMutation(DELETE_DEBT, {
+    refetchQueries: [
+      {
+        query: GET_APPLICATIONS_BY_FAMILY_NUMBER_ONLY_DEBT,
+        variables: { familyNumber },
+      },
+    ],
+  })
+
+  const onSubmit = (data: FormValues) => {
+    // Create the base update input
+    const updateInput: UpdateDebtInput = {
+      id: parseInt(debt.id),
       amount: data.amount,
       description: data.description,
-      loanType: data.loanType,
       totalCost: data.totalCost,
+      loanType: data.loanType,
       lenderId: data.lenderId,
       loanNumber: data.loanNumber,
-      descriptionSecondary: data.description_secondary,
+      descriptionSecondary: data.descriptionSecondary,
       loanLength: data.loanLength,
       totalPayment: data.totalPayment,
       principalPayment: data.principalPayment,
@@ -98,76 +108,65 @@ const NewDebtForm: React.FC<NewDebtFormProps> = ({ applicationId, nationalId, fa
 
     // Only include loanDate if it has a valid value
     if (data.loanDate && data.loanDate.trim() !== '') {
-      debtData.loanDate = data.loanDate;
+      updateInput.loanDate = data.loanDate
     }
 
-    // Don't include any ID field to ensure proper auto-increment on the server
-    createDebt({
+    // Update the debt record
+    updateDebt({
       variables: {
-        input: debtData,
+        input: updateInput,
       },
     })
   }
 
-  if (!showForm) {
-    return (
-      <div className="mt-6 flex justify-end">
-        <button className="btn-ghost" onClick={() => setShowForm(true)}>
-          Bæta við gögnum +
-        </button>
-      </div>
-    )
+  // Auto-save when a field changes
+  const handleFieldChange = () => {
+    handleSubmit(onSubmit)()
+  }
+
+  const handleDelete = () => {
+    if (confirm('Ertu viss um að þú viljir eyða þessari línu?')) {
+      deleteDebt({
+        variables: {
+          id: parseInt(debt.id),
+        },
+      })
+    }
   }
 
   return (
-    <div className="mt-4 rounded-lg bg-white">
-      <div className="flex justify-end mb-2 relative">
-        {message && (
-          <span
-            className={
-              message.startsWith('Error')
-                ? 'text-sm text-red-500 font-bold'
-                : 'text-sm text-green-500 font-bold'
-            }
-            style={{ position: 'absolute', right: '80px', top: '0' }}
+    <div className="mb-4">
+      <div className="flex justify-end mb-2">
+        <div className="flex items-center space-x-2 relative">
+          {saveMessage && (
+            <span
+              className="text-green-500 text-sm font-bold"
+              style={{ position: 'absolute', right: '40px', top: '0' }}
+            >
+              {saveMessage}
+            </span>
+          )}
+          <button
+            onClick={handleDelete}
+            className="btn-link text-red-500 hover:text-red-700 font-bold text-sm"
+            title="Eyða þessari línu"
+            style={{ position: 'absolute', right: '0', top: '0' }}
           >
-            {message}
-          </span>
-        )}
-        <button
-          onClick={() => setShowForm(false)}
-          className="btn-link text-red-500 hover:text-red-700 font-bold text-sm"
-          title="Hætta við"
-          style={{ position: 'absolute', right: '0', top: '0' }}
-        >
-          Hætta við
-        </button>
+            Eyða
+          </button>
+        </div>
       </div>
 
-      <form onSubmit={handleSubmit(onSubmit)}>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-4">
-          <FormField<FormValues>
-            name="loanType"
-            label="Tegund"
-            control={control}
-            type="select"
-            rules={{ required: 'Tegund er nauðsynleg' }}
-            error={errors.loanType}
-            options={[
-              { value: 'property', label: 'Vaxtagjöld vegna íbúðarhúsnæðis til eigin nota' },
-              { value: 'other', label: 'Aðrar skuldir og vaxtagjöld' },
-            ]}
-          />
-        </div>
-
-        {loanType === 'other' && (
+      <form>
+        {debt.loanType === 'other' && (
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-4">
             <FormField<FormValues>
               name="description"
               label="Lýsing"
               control={control}
               rules={{ required: 'Nauðsynlegt að fylla út' }}
-              error={errors.description}
+              error={errors.description as FieldError | undefined}
+              onChange={handleFieldChange}
             />
 
             <FormField<FormValues>
@@ -176,7 +175,8 @@ const NewDebtForm: React.FC<NewDebtFormProps> = ({ applicationId, nationalId, fa
               type="tel"
               control={control}
               rules={{ required: 'Verður að fylla út' }}
-              error={errors.totalCost}
+              error={errors.totalCost as FieldError | undefined}
+              onChange={handleFieldChange}
             />
 
             <FormField<FormValues>
@@ -191,19 +191,21 @@ const NewDebtForm: React.FC<NewDebtFormProps> = ({ applicationId, nationalId, fa
                   message: 'Upphæð verður að vera hærri en 0',
                 },
               }}
-              error={errors.amount}
+              error={errors.amount as FieldError | undefined}
+              onChange={handleFieldChange}
             />
           </div>
         )}
 
-        {loanType === 'property' && (
+        {debt.loanType === 'property' && (
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-4">
             <FormField<FormValues>
-              name="description_secondary"
+              name="descriptionSecondary"
               label="Kaupár"
               control={control}
               rules={{ required: 'Nauðsynlegt að fylla út' }}
-              error={errors.description_secondary}
+              error={errors.descriptionSecondary as FieldError | undefined}
+              onChange={handleFieldChange}
             />
 
             <FormField<FormValues>
@@ -211,7 +213,8 @@ const NewDebtForm: React.FC<NewDebtFormProps> = ({ applicationId, nationalId, fa
               label="Heimilisfang"
               control={control}
               rules={{ required: 'Nauðsynlegt að fylla út' }}
-              error={errors.description}
+              error={errors.description as FieldError | undefined}
+              onChange={handleFieldChange}
             />
 
             <FormField<FormValues>
@@ -226,7 +229,8 @@ const NewDebtForm: React.FC<NewDebtFormProps> = ({ applicationId, nationalId, fa
                   message: 'Má eingöngu innihalda tölustafi',
                 },
               }}
-              error={errors.lenderId}
+              error={errors.lenderId as FieldError | undefined}
+              onChange={handleFieldChange}
             />
 
             <FormField<FormValues>
@@ -234,21 +238,23 @@ const NewDebtForm: React.FC<NewDebtFormProps> = ({ applicationId, nationalId, fa
               label="Lánanúmer"
               control={control}
               rules={{ required: 'Verður að fylla út' }}
-              error={errors.loanNumber}
+              error={errors.loanNumber as FieldError | undefined}
+              onChange={handleFieldChange}
             />
 
             <FormField<FormValues>
               name="loanDate"
               label="Lántökudagur"
               control={control}
-              rules={{ 
+              rules={{
                 required: 'Verður að fylla út',
                 pattern: {
                   value: /^\d{4}-\d{2}-\d{2}$/,
                   message: 'Dagsetning verður að vera á forminu YYYY-MM-DD',
                 },
               }}
-              error={errors.loanDate}
+              error={errors.loanDate as FieldError | undefined}
+              onChange={handleFieldChange}
             />
 
             <FormField<FormValues>
@@ -256,7 +262,8 @@ const NewDebtForm: React.FC<NewDebtFormProps> = ({ applicationId, nationalId, fa
               label="Lánstími í árum"
               control={control}
               rules={{ required: 'Verður að fylla út' }}
-              error={errors.loanLength}
+              error={errors.loanLength as FieldError | undefined}
+              onChange={handleFieldChange}
             />
 
             <FormField<FormValues>
@@ -265,7 +272,8 @@ const NewDebtForm: React.FC<NewDebtFormProps> = ({ applicationId, nationalId, fa
               type="tel"
               control={control}
               rules={{ required: 'Verður að fylla út' }}
-              error={errors.totalPayment}
+              error={errors.totalPayment as FieldError | undefined}
+              onChange={handleFieldChange}
             />
 
             <FormField<FormValues>
@@ -274,7 +282,8 @@ const NewDebtForm: React.FC<NewDebtFormProps> = ({ applicationId, nationalId, fa
               type="tel"
               control={control}
               rules={{ required: 'Verður að fylla út' }}
-              error={errors.principalPayment}
+              error={errors.principalPayment as FieldError | undefined}
+              onChange={handleFieldChange}
             />
 
             <FormField<FormValues>
@@ -283,7 +292,8 @@ const NewDebtForm: React.FC<NewDebtFormProps> = ({ applicationId, nationalId, fa
               type="tel"
               control={control}
               rules={{ required: 'Verður að fylla út' }}
-              error={errors.totalCost}
+              error={errors.totalCost as FieldError | undefined}
+              onChange={handleFieldChange}
             />
 
             <FormField<FormValues>
@@ -298,23 +308,14 @@ const NewDebtForm: React.FC<NewDebtFormProps> = ({ applicationId, nationalId, fa
                   message: 'Upphæð verður að vera hærri en 0',
                 },
               }}
-              error={errors.amount}
+              error={errors.amount as FieldError | undefined}
+              onChange={handleFieldChange}
             />
           </div>
         )}
-
-        <div className="flex justify-end">
-          <button
-            type="submit"
-            disabled={loading}
-            className="px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 disabled:bg-blue-300"
-          >
-            {loading ? 'Vista...' : 'Vista'}
-          </button>
-        </div>
       </form>
     </div>
   )
 }
 
-export default NewDebtForm
+export default DebtForm

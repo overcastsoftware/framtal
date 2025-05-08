@@ -5,8 +5,8 @@ import Link from 'next/link'
 import Layout from '../../components/Layout'
 import { GET_APPLICATIONS_BY_FAMILY_NUMBER_ONLY_DEBT } from '@/graphql/queries/getUserInfo'
 import { useQuery } from '@apollo/client'
-import DebtForm from '../../components/DebtForm'
-import NewDebtForm from '../../components/NewDebtForm'
+import DebtForm from '../../components/forms/DebtForm'
+import NewDebtForm from '../../components/forms/NewDebtForm'
 import { sortById } from '../../../lib/utils'
 
 export default function DebtPage() {

@@ -5,8 +5,8 @@ import Link from 'next/link'
 import Layout from '../../components/Layout'
 import { GET_APPLICATIONS_BY_FAMILY_NUMBER_ONLY_INCOME } from '@/graphql/queries/getUserInfo'
 import { useQuery } from '@apollo/client'
-import IncomeForm from '../../components/IncomeForm'
-import NewIncomeForm from '../../components/NewIncomeForm'
+import IncomeForm from '../../components/forms/IncomeForm'
+import NewIncomeForm from '../../components/forms/NewIncomeForm'
 import { sortById } from '../../../lib/utils'
 
 export default function IncomePage() {

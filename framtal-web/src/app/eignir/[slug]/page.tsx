@@ -5,8 +5,8 @@ import Link from 'next/link'
 import Layout from '../../components/Layout'
 import { GET_APPLICATIONS_BY_FAMILY_NUMBER_ONLY_ASSETS } from '@/graphql/queries/getUserInfo'
 import { useQuery } from '@apollo/client'
-import AssetForm from '../../components/AssetForm'
-import NewAssetForm from '../../components/NewAssetForm'
+import AssetForm from '../../components/forms/AssetForm'
+import NewAssetForm from '../../components/forms/NewAssetForm'
 import { sortById } from '../../../lib/utils'
 
 export default function AssetPage() {

@@ -1,15 +1,9 @@
-import React, { useState } from 'react';
-import { useForm, FieldError } from 'react-hook-form';
-import { useMutation } from '@apollo/client';
-import { UPDATE_DEBT, DELETE_DEBT } from '@/graphql/mutations/debtOperations';
-import { GET_APPLICATIONS_BY_FAMILY_NUMBER_ONLY_DEBT } from '@/graphql/queries/getUserInfo';
-import FormField, { FormValues } from './FormField';
-
-type Entity = {
-  __typename?: string
-  name: string
-  nationalId: string
-}
+import React, { useState } from 'react'
+import { useForm, FieldError } from 'react-hook-form'
+import { useMutation } from '@apollo/client'
+import { UPDATE_DEBT, DELETE_DEBT } from '@/graphql/mutations/debtOperations'
+import { GET_APPLICATIONS_BY_FAMILY_NUMBER_ONLY_DEBT } from '@/graphql/queries/getUserInfo'
+import FormField, { FormValues } from './FormField'
 
 type Debt = {
   id: string
@@ -33,12 +27,15 @@ type DebtFormProps = {
   familyNumber: string
 }
 
-
 const DebtForm: React.FC<DebtFormProps> = ({ debt, familyNumber }) => {
-  const [isEditing, setIsEditing] = useState(false);
-  const [saveMessage, setSaveMessage] = useState('');
-  
-  const { control, handleSubmit, watch, formState: { errors } } = useForm<FormValues>({
+  const [saveMessage, setSaveMessage] = useState('')
+
+  const {
+    control,
+    handleSubmit,
+    watch,
+    formState: { errors },
+  } = useForm<FormValues>({
     defaultValues: {
       amount: debt.amount,
       description: debt.description,
@@ -51,30 +48,30 @@ const DebtForm: React.FC<DebtFormProps> = ({ debt, familyNumber }) => {
       loanLength: debt.loanLength || '',
       totalPayment: debt.totalPayment || 0,
       principalPayment: debt.principalPayment || 0,
-    }
-  });
-  
+    },
+  })
+
   const [updateDebt] = useMutation(UPDATE_DEBT, {
     onCompleted: () => {
-      setSaveMessage('Vistað!');
-      setTimeout(() => setSaveMessage(''), 2000);
+      setSaveMessage('Vistað!')
+      setTimeout(() => setSaveMessage(''), 2000)
     },
     refetchQueries: [
       {
         query: GET_APPLICATIONS_BY_FAMILY_NUMBER_ONLY_DEBT,
-        variables: { familyNumber }
-      }
-    ]
-  });
+        variables: { familyNumber },
+      },
+    ],
+  })
 
   const [deleteDebt] = useMutation(DELETE_DEBT, {
     refetchQueries: [
       {
         query: GET_APPLICATIONS_BY_FAMILY_NUMBER_ONLY_DEBT,
-        variables: { familyNumber }
-      }
-    ]
-  });
+        variables: { familyNumber },
+      },
+    ],
+  })
 
   const onSubmit = (data: FormValues) => {
     // Include all fields for UpdateDebtInput
@@ -93,31 +90,38 @@ const DebtForm: React.FC<DebtFormProps> = ({ debt, familyNumber }) => {
           loanLength: data.loanLength,
           totalPayment: data.totalPayment,
           principalPayment: data.principalPayment,
-        }
-      }
-    });
-  };
+        },
+      },
+    })
+  }
 
   // Auto-save when a field changes
   const handleFieldChange = () => {
-    handleSubmit(onSubmit)();
-  };
+    handleSubmit(onSubmit)()
+  }
 
   const handleDelete = () => {
     if (confirm('Ertu viss um að þú viljir eyða þessari línu?')) {
       deleteDebt({
         variables: {
-          id: parseInt(debt.id)
-        }
-      });
+          id: parseInt(debt.id),
+        },
+      })
     }
-  };
+  }
 
   return (
     <div className="mb-4">
       <div className="flex justify-end mb-2">
         <div className="flex items-center space-x-2 relative">
-          {saveMessage && <span className="text-green-500 text-sm font-bold" style={{ position: 'absolute', right: '40px', top: '0' }}>{saveMessage}</span>}
+          {saveMessage && (
+            <span
+              className="text-green-500 text-sm font-bold"
+              style={{ position: 'absolute', right: '40px', top: '0' }}
+            >
+              {saveMessage}
+            </span>
+          )}
           <button
             onClick={handleDelete}
             className="text-red-500 hover:text-red-700 font-bold text-sm"
@@ -130,8 +134,7 @@ const DebtForm: React.FC<DebtFormProps> = ({ debt, familyNumber }) => {
       </div>
 
       <form>
-
-        { debt.loanType === 'other' && (
+        {debt.loanType === 'other' && (
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-4">
             <FormField<FormValues>
               name="description"
@@ -157,12 +160,12 @@ const DebtForm: React.FC<DebtFormProps> = ({ debt, familyNumber }) => {
               label="Eftirstöðvar skulda"
               control={control}
               type="tel"
-              rules={{ 
+              rules={{
                 required: 'Upphæð er nauðsynleg',
                 min: {
                   value: 1,
-                  message: 'Upphæð verður að vera hærri en 0'
-                }
+                  message: 'Upphæð verður að vera hærri en 0',
+                },
               }}
               error={errors.amount as FieldError | undefined}
               onChange={handleFieldChange}
@@ -170,7 +173,7 @@ const DebtForm: React.FC<DebtFormProps> = ({ debt, familyNumber }) => {
           </div>
         )}
 
-        { debt.loanType === 'property' && (
+        {debt.loanType === 'property' && (
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-4">
             <FormField<FormValues>
               name="descriptionSecondary"
@@ -195,12 +198,12 @@ const DebtForm: React.FC<DebtFormProps> = ({ debt, familyNumber }) => {
               label="Kennitala lánveitanda"
               control={control}
               placeholder="t.d., 5501119999"
-              rules={{ 
+              rules={{
                 required: 'Kennitala er nauðsynleg',
                 pattern: {
                   value: /^\d+$/,
-                  message: 'Má eingöngu innihalda tölustafi'
-                }
+                  message: 'Má eingöngu innihalda tölustafi',
+                },
               }}
               error={errors.lenderId as FieldError | undefined}
               onChange={handleFieldChange}
@@ -268,12 +271,12 @@ const DebtForm: React.FC<DebtFormProps> = ({ debt, familyNumber }) => {
               label="Eftirstöðvar skulda"
               control={control}
               type="tel"
-              rules={{ 
+              rules={{
                 required: 'Upphæð er nauðsynleg',
                 min: {
                   value: 1,
-                  message: 'Upphæð verður að vera hærri en 0'
-                }
+                  message: 'Upphæð verður að vera hærri en 0',
+                },
               }}
               error={errors.amount as FieldError | undefined}
               onChange={handleFieldChange}
@@ -282,7 +285,7 @@ const DebtForm: React.FC<DebtFormProps> = ({ debt, familyNumber }) => {
         )}
       </form>
     </div>
-  );
-};
+  )
+}
 
-export default DebtForm;
+export default DebtForm

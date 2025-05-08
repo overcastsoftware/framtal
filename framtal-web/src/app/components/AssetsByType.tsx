@@ -91,7 +91,10 @@ export const AssetsByType: React.FC<AssetsByTypeProps> = ({ assets, title }) => 
                 entity: asset.description,
                 description: asset.description,
                 amount: asset.amount || 0,
-                identifier: asset.assetType === 'other' ? `${asset.description} ${asset.assetIdentifier}` : asset.assetIdentifier,
+                identifier:
+                  asset.assetType === 'other'
+                    ? `${asset.description} ${asset.assetIdentifier}`
+                    : asset.assetIdentifier,
               }))}
               className="mb-4"
             />

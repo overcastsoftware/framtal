@@ -9,19 +9,18 @@ import IncomeForm from '../../components/IncomeForm'
 import NewIncomeForm from '../../components/NewIncomeForm'
 import { sortById } from '../../../lib/utils'
 
-
 export default function IncomePage() {
   const { slug } = useParams()
   const familyNumber = '1203894569' // In a real app, this should come from user context/auth
+
+  const { loading, error, data } = useQuery(GET_APPLICATIONS_BY_FAMILY_NUMBER_ONLY_INCOME, {
+    variables: { familyNumber },
+  })
 
   // Validate the income type from URL parameter
   if (!['salary', 'perdiem', 'education_and_sports'].includes(slug)) {
     return <Layout>Síða fannst ekki</Layout>
   }
-
-  const { loading, error, data } = useQuery(GET_APPLICATIONS_BY_FAMILY_NUMBER_ONLY_INCOME, {
-    variables: { familyNumber },
-  })
 
   if (loading)
     return (
@@ -68,7 +67,7 @@ export default function IncomePage() {
   if (slug === 'education_and_sports') {
     incomeTypesToShow = ['sports', 'job_education_grant']
   }
-  
+
   return (
     <Layout>
       <div className="max-w-4xl mx-auto">
@@ -93,7 +92,10 @@ export default function IncomePage() {
               if (incomes.length === 0) return null
 
               return (
-                <div key={type} className={`mb-8 ${ i !== incomeTypesToShow.length-1 ? 'border-b' : ''} border-blue-600 pb-5`}>
+                <div
+                  key={type}
+                  className={`mb-8 ${i !== incomeTypesToShow.length - 1 ? 'border-b' : ''} border-blue-600 pb-5`}
+                >
                   <h2 className="text-xl font-semibold text-blue-600">
                     {incomeTypeLabels[type] || type}
                   </h2>
@@ -123,18 +125,6 @@ export default function IncomePage() {
           </>
         )}
       </div>
-
-      {/* <button
-        data-icon="True"
-        data-size="Small"
-        data-state="Default"
-        data-type="Back button"
-        className="py-1 max-w-fit bg-white cursor-pointer duration-100 hover:shadow-[inset_0px_-2px_0px_0px_rgba(0,97,255,1.00)]  shadow-[inset_0px_-1px_0px_0px_rgba(0,97,255,1.00)] inline-flex justify-start items-center gap-1 overflow-hidden"
-      >
-        <div className="justify-end text-blue-600 text-sm font-semibold  leading-none ">
-          Eldri framtöl
-        </div>
-      </button> */}
     </Layout>
   )
 }

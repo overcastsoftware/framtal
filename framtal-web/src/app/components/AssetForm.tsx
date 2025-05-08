@@ -1,14 +1,8 @@
-import React, { useState } from 'react';
-import { useForm, Controller } from 'react-hook-form';
-import { useMutation } from '@apollo/client';
-import { UPDATE_ASSET, DELETE_ASSET } from '@/graphql/mutations/assetOperations';
-import { GET_APPLICATIONS_BY_FAMILY_NUMBER_ONLY_ASSETS } from '@/graphql/queries/getUserInfo';
-
-type Entity = {
-  __typename?: string
-  name: string
-  nationalId: string
-}
+import React, { useState } from 'react'
+import { useForm, Controller } from 'react-hook-form'
+import { useMutation } from '@apollo/client'
+import { UPDATE_ASSET, DELETE_ASSET } from '@/graphql/mutations/assetOperations'
+import { GET_APPLICATIONS_BY_FAMILY_NUMBER_ONLY_ASSETS } from '@/graphql/queries/getUserInfo'
 
 type Asset = {
   id: string
@@ -26,38 +20,41 @@ type AssetFormProps = {
 }
 
 const AssetForm: React.FC<AssetFormProps> = ({ asset, familyNumber }) => {
-  const [isEditing, setIsEditing] = useState(false);
-  const [saveMessage, setSaveMessage] = useState('');
-  
-  const { control, handleSubmit, formState: { errors } } = useForm({
+  const [saveMessage, setSaveMessage] = useState('')
+
+  const {
+    control,
+    handleSubmit,
+    formState: { errors },
+  } = useForm({
     defaultValues: {
       amount: asset.amount,
       description: asset.description,
       assetIdentifier: asset.assetIdentifier,
-    }
-  });
+    },
+  })
 
   const [updateAsset] = useMutation(UPDATE_ASSET, {
     onCompleted: () => {
-      setSaveMessage('Vistað!');
-      setTimeout(() => setSaveMessage(''), 2000);
+      setSaveMessage('Vistað!')
+      setTimeout(() => setSaveMessage(''), 2000)
     },
     refetchQueries: [
       {
         query: GET_APPLICATIONS_BY_FAMILY_NUMBER_ONLY_ASSETS,
-        variables: { familyNumber }
-      }
-    ]
-  });
+        variables: { familyNumber },
+      },
+    ],
+  })
 
   const [deleteAsset] = useMutation(DELETE_ASSET, {
     refetchQueries: [
       {
         query: GET_APPLICATIONS_BY_FAMILY_NUMBER_ONLY_ASSETS,
-        variables: { familyNumber }
-      }
-    ]
-  });
+        variables: { familyNumber },
+      },
+    ],
+  })
 
   const onSubmit = (data) => {
     // Only include fields that are valid for UpdateAssetInput
@@ -68,31 +65,38 @@ const AssetForm: React.FC<AssetFormProps> = ({ asset, familyNumber }) => {
           amount: data.amount,
           description: data.description,
           assetIdentifier: data.assetIdentifier,
-        }
-      }
-    });
-  };
+        },
+      },
+    })
+  }
 
   // Auto-save when a field changes
   const handleFieldChange = () => {
-    handleSubmit(onSubmit)();
-  };
+    handleSubmit(onSubmit)()
+  }
 
   const handleDelete = () => {
     if (confirm('Ertu viss um að þú viljir eyða þessari línu?')) {
       deleteAsset({
         variables: {
-          id: parseInt(asset.id)
-        }
-      });
+          id: parseInt(asset.id),
+        },
+      })
     }
-  };
+  }
 
   return (
     <div className="mb-4">
       <div className="flex justify-end mb-2">
         <div className="flex items-center space-x-2 relative">
-          {saveMessage && <span className="text-green-500 text-sm font-bold"  style={{ position: 'absolute', right: '40px', top: '0' }}>{saveMessage}</span>}
+          {saveMessage && (
+            <span
+              className="text-green-500 text-sm font-bold"
+              style={{ position: 'absolute', right: '40px', top: '0' }}
+            >
+              {saveMessage}
+            </span>
+          )}
           <button
             onClick={handleDelete}
             className="text-red-500 hover:text-red-700 font-bold text-sm"
@@ -108,7 +112,11 @@ const AssetForm: React.FC<AssetFormProps> = ({ asset, familyNumber }) => {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-4">
           <div>
             <label className="block text-sm font-bold text-blue-600 mb-1">
-              {asset.assetType === 'domestic_property' ? 'Heimilisfang' : asset.assetType === 'vehicle' ? 'Kaupár' : 'Lýsing'}
+              {asset.assetType === 'domestic_property'
+                ? 'Heimilisfang'
+                : asset.assetType === 'vehicle'
+                  ? 'Kaupár'
+                  : 'Lýsing'}
             </label>
             <Controller
               name="description"
@@ -119,21 +127,25 @@ const AssetForm: React.FC<AssetFormProps> = ({ asset, familyNumber }) => {
                   className="w-full px-3 py-2 border-2 border-blue-200 font-bold rounded-md bg-blue-50"
                   {...field}
                   onChange={(e) => {
-                    field.onChange(e);
-                    setTimeout(handleFieldChange, 100); // Submit after field updates
+                    field.onChange(e)
+                    setTimeout(handleFieldChange, 100) // Submit after field updates
                   }}
                   onBlur={(e) => {
-                    field.onBlur();
-                    handleFieldChange();
+                    field.onBlur()
+                    handleFieldChange()
                   }}
                 />
               )}
             />
           </div>
-          
+
           <div>
             <label className="block text-sm font-bold text-blue-600 mb-1">
-              {asset.assetType === 'domestic_property' ? 'Fastanúmer eignar' : asset.assetType === 'vehicle' ? 'Númer' : 'Annað'}
+              {asset.assetType === 'domestic_property'
+                ? 'Fastanúmer eignar'
+                : asset.assetType === 'vehicle'
+                  ? 'Númer'
+                  : 'Annað'}
             </label>
             <Controller
               name="assetIdentifier"
@@ -144,18 +156,16 @@ const AssetForm: React.FC<AssetFormProps> = ({ asset, familyNumber }) => {
                   className="w-full px-3 py-2 border-2 border-blue-200 font-bold rounded-md bg-blue-50"
                   {...field}
                   onChange={(e) => {
-                    field.onChange(e);
+                    field.onChange(e)
                     // We don't submit here since assetIdentifier isn't part of the API
                   }}
                 />
               )}
             />
           </div>
-          
+
           <div>
-            <label className="block text-sm font-bold text-blue-600 mb-1">
-              Fjárhæð
-            </label>
+            <label className="block text-sm font-bold text-blue-600 mb-1">Fjárhæð</label>
             <Controller
               name="amount"
               control={control}
@@ -166,24 +176,22 @@ const AssetForm: React.FC<AssetFormProps> = ({ asset, familyNumber }) => {
                   className="w-full px-3 py-2 border-2 border-blue-200 font-bold rounded-md bg-blue-50"
                   {...field}
                   onChange={(e) => {
-                    field.onChange(parseInt(e.target.value, 10));
-                    setTimeout(handleFieldChange, 100); // Submit after field updates
+                    field.onChange(parseInt(e.target.value, 10))
+                    setTimeout(handleFieldChange, 100) // Submit after field updates
                   }}
                   onBlur={(e) => {
-                    field.onBlur();
-                    handleFieldChange();
+                    field.onBlur()
+                    handleFieldChange()
                   }}
                 />
               )}
             />
-            {errors.amount && (
-              <p className="text-red-500 text-sm mt-1">{errors.amount.message}</p>
-            )}
+            {errors.amount && <p className="text-red-500 text-sm mt-1">{errors.amount.message}</p>}
           </div>
         </div>
       </form>
     </div>
-  );
-};
+  )
+}
 
-export default AssetForm;
+export default AssetForm

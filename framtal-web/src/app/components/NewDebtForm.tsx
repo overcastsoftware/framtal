@@ -1,9 +1,9 @@
-import React, { useState } from 'react';
-import { useForm } from 'react-hook-form';
-import { useMutation } from '@apollo/client';
-import { CREATE_DEBT } from '@/graphql/mutations/debtOperations';
-import { GET_APPLICATIONS_BY_FAMILY_NUMBER_ONLY_DEBT } from '@/graphql/queries/getUserInfo';
-import FormField, { FormValues } from './FormField';
+import React, { useState } from 'react'
+import { useForm } from 'react-hook-form'
+import { useMutation } from '@apollo/client'
+import { CREATE_DEBT } from '@/graphql/mutations/debtOperations'
+import { GET_APPLICATIONS_BY_FAMILY_NUMBER_ONLY_DEBT } from '@/graphql/queries/getUserInfo'
+import FormField, { FormValues } from './FormField'
 
 type NewDebtFormProps = {
   applicationId: number
@@ -12,10 +12,16 @@ type NewDebtFormProps = {
 }
 
 const NewDebtForm: React.FC<NewDebtFormProps> = ({ applicationId, nationalId, familyNumber }) => {
-  const [showForm, setShowForm] = useState(false);
-  const [message, setMessage] = useState('');
+  const [showForm, setShowForm] = useState(false)
+  const [message, setMessage] = useState('')
 
-  const { control, handleSubmit, reset, watch, formState: { errors } } = useForm({
+  const {
+    control,
+    handleSubmit,
+    reset,
+    watch,
+    formState: { errors },
+  } = useForm({
     defaultValues: {
       amount: 0,
       loanType: 'property',
@@ -28,32 +34,32 @@ const NewDebtForm: React.FC<NewDebtFormProps> = ({ applicationId, nationalId, fa
       loanLength: '',
       totalPayment: 0,
       principalPayment: 0,
-    }
-  });
+    },
+  })
 
-  const loanType = watch('loanType');
+  const loanType = watch('loanType')
 
   const [createDebt, { loading }] = useMutation(CREATE_DEBT, {
     onCompleted: () => {
-      setMessage('Skráning tókst!');
-      reset();
-      
+      setMessage('Skráning tókst!')
+      reset()
+
       setTimeout(() => {
-        setMessage('');
-        setShowForm(false);
-      }, 2000);
+        setMessage('')
+        setShowForm(false)
+      }, 2000)
     },
     onError: (error) => {
-      console.error('Villa við skráningu:', error);
-      setMessage(`Error: ${error.message}`);
+      console.error('Villa við skráningu:', error)
+      setMessage(`Error: ${error.message}`)
     },
     refetchQueries: [
       {
         query: GET_APPLICATIONS_BY_FAMILY_NUMBER_ONLY_DEBT,
-        variables: { familyNumber }
-      }
-    ]
-  });
+        variables: { familyNumber },
+      },
+    ],
+  })
 
   const onSubmit = (data) => {
     // Make a copy of the data to avoid modifying the form data directly
@@ -71,34 +77,41 @@ const NewDebtForm: React.FC<NewDebtFormProps> = ({ applicationId, nationalId, fa
       loanLength: data.loanLength,
       totalPayment: data.totalPayment,
       principalPayment: data.principalPayment,
-    };
+    }
 
     // Don't include any ID field to ensure proper auto-increment on the server
     createDebt({
       variables: {
-        input: debtData
-      }
-    });
-  };
+        input: debtData,
+      },
+    })
+  }
 
   if (!showForm) {
     return (
       <div className="mt-6 flex justify-end">
-        <button 
+        <button
           className="px-6 py-3 bg-white font-bold border border-blue-300 rounded-lg hover:bg-blue-200"
           onClick={() => setShowForm(true)}
         >
           Bæta við gögnum +
         </button>
       </div>
-    );
+    )
   }
 
   return (
     <div className="mt-4 rounded-lg bg-white">
       <div className="flex justify-end mb-2 relative">
         {message && (
-          <span className={message.startsWith('Error') ? 'text-sm text-red-500 font-bold' : 'text-sm text-green-500 font-bold'} style={{ position: 'absolute', right: '80px', top: '0' }}>
+          <span
+            className={
+              message.startsWith('Error')
+                ? 'text-sm text-red-500 font-bold'
+                : 'text-sm text-green-500 font-bold'
+            }
+            style={{ position: 'absolute', right: '80px', top: '0' }}
+          >
             {message}
           </span>
         )}
@@ -123,12 +136,12 @@ const NewDebtForm: React.FC<NewDebtFormProps> = ({ applicationId, nationalId, fa
             error={errors.loanType}
             options={[
               { value: 'property', label: 'Vaxtagjöld vegna íbúðarhúsnæðis til eigin nota' },
-              { value: 'other', label: 'Aðrar skuldir og vaxtagjöld' }
+              { value: 'other', label: 'Aðrar skuldir og vaxtagjöld' },
             ]}
           />
         </div>
 
-        { loanType === 'other' && (
+        {loanType === 'other' && (
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-4">
             <FormField<FormValues>
               name="description"
@@ -152,19 +165,19 @@ const NewDebtForm: React.FC<NewDebtFormProps> = ({ applicationId, nationalId, fa
               label="Eftirstöðvar skulda"
               control={control}
               type="tel"
-              rules={{ 
+              rules={{
                 required: 'Upphæð er nauðsynleg',
                 min: {
                   value: 1,
-                  message: 'Upphæð verður að vera hærri en 0'
-                }
+                  message: 'Upphæð verður að vera hærri en 0',
+                },
               }}
               error={errors.amount}
             />
           </div>
         )}
 
-        { loanType === 'property' && (
+        {loanType === 'property' && (
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-4">
             <FormField<FormValues>
               name="description_secondary"
@@ -187,12 +200,12 @@ const NewDebtForm: React.FC<NewDebtFormProps> = ({ applicationId, nationalId, fa
               label="Kennitala lánveitanda"
               control={control}
               placeholder="t.d., 5501119999"
-              rules={{ 
+              rules={{
                 required: 'Kennitala er nauðsynleg',
                 pattern: {
                   value: /^\d+$/,
-                  message: 'Má eingöngu innihalda tölustafi'
-                }
+                  message: 'Má eingöngu innihalda tölustafi',
+                },
               }}
               error={errors.lenderId}
             />
@@ -253,18 +266,18 @@ const NewDebtForm: React.FC<NewDebtFormProps> = ({ applicationId, nationalId, fa
               label="Eftirstöðvar skulda"
               control={control}
               type="tel"
-              rules={{ 
+              rules={{
                 required: 'Upphæð er nauðsynleg',
                 min: {
                   value: 1,
-                  message: 'Upphæð verður að vera hærri en 0'
-                }
+                  message: 'Upphæð verður að vera hærri en 0',
+                },
               }}
               error={errors.amount}
             />
           </div>
         )}
-        
+
         <div className="flex justify-end">
           <button
             type="submit"
@@ -276,7 +289,7 @@ const NewDebtForm: React.FC<NewDebtFormProps> = ({ applicationId, nationalId, fa
         </div>
       </form>
     </div>
-  );
-};
+  )
+}
 
-export default NewDebtForm;
+export default NewDebtForm

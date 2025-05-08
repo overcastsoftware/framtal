@@ -105,8 +105,8 @@ describe('FinancialItemsByType', () => {
     expect(screen.getByText('Tekjur')).toBeInTheDocument()
     
     // Check if display cards are rendered
-    expect(screen.getByTestId('display-card-tekjur-salary')).toBeInTheDocument()
-    expect(screen.getByTestId('display-card-tekjur-perdiem')).toBeInTheDocument()
+    expect(screen.getByTestId('display-card-income-salary')).toBeInTheDocument()
+    expect(screen.getByTestId('display-card-income-perdiem')).toBeInTheDocument()
   })
 
   // Test for Asset type
@@ -150,9 +150,9 @@ describe('FinancialItemsByType', () => {
     expect(screen.getByText('Eignir')).toBeInTheDocument()
     
     // Check if display cards are rendered for each asset type
-    expect(screen.getByTestId('display-card-eignir-domestic_property')).toBeInTheDocument()
-    expect(screen.getByTestId('display-card-eignir-vehicle')).toBeInTheDocument()
-    expect(screen.getByTestId('display-card-eignir-cash')).toBeInTheDocument()
+    expect(screen.getByTestId('display-card-asset-domestic_property')).toBeInTheDocument()
+    expect(screen.getByTestId('display-card-asset-vehicle')).toBeInTheDocument()
+    expect(screen.getByTestId('display-card-asset-cash')).toBeInTheDocument()
   })
 
   // Test for Debt type
@@ -198,8 +198,8 @@ describe('FinancialItemsByType', () => {
     expect(screen.getByText('Skuldir')).toBeInTheDocument()
     
     // Check if display cards are rendered for each debt type
-    expect(screen.getByTestId('display-card-skuldir-property')).toBeInTheDocument()
-    expect(screen.getByTestId('display-card-skuldir-vehicle')).toBeInTheDocument()
+    expect(screen.getByTestId('display-card-debt-property')).toBeInTheDocument()
+    expect(screen.getByTestId('display-card-debt-vehicle')).toBeInTheDocument()
   })
 
   // Test for invalid category

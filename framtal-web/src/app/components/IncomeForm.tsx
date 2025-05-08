@@ -32,8 +32,8 @@ const IncomeForm: React.FC<IncomeFormProps> = ({ income, familyNumber }) => {
   const { control, handleSubmit, formState: { errors } } = useForm({
     defaultValues: {
       amount: income.amount,
-      payorId: income.payor.nationalId,
-      payorName: income.payor.name,
+      payorId: income.payorId,
+      payorName: income.payor?.name || 'Fannst ekki í Þjóðskrá',
     }
   });
 
@@ -141,6 +141,7 @@ const IncomeForm: React.FC<IncomeFormProps> = ({ income, familyNumber }) => {
               render={({ field }) => (
                 <input
                   type="text"
+                  disabled={income.payor === null}
                   className="w-full px-3 py-2 border-2 border-blue-200 font-bold rounded-md bg-blue-50"
                   {...field}
                   onChange={(e) => {

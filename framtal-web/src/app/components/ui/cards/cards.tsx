@@ -103,9 +103,9 @@ const DisplayCard: React.FC<DisplayCardProps> = ({
                     </span>
                   </div>
                   <div className="flex justify-between gap-2 lg:mt-2">
-                    <span className="text-primary-dark-400 flex-1">Lánsveitandi:</span>
+                    <span className="text-primary-dark-400 flex-1">Lánveitandi:</span>
                     <span className="text-md text-right text-primary-header flex-1">
-                      {item.lender.name}
+                      {item.lender?.name || item.lenderId}
                     </span>
                   </div>
                 </div>

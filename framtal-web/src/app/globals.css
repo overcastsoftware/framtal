@@ -166,3 +166,9 @@ h3 {
     }
   }
 }
+
+input[disabled] {
+  background-color: var(--color-white);
+  color: #ccc;
+  cursor: not-allowed;
+}

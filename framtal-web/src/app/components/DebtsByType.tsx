@@ -23,6 +23,7 @@ type Debt = {
   amount: number
   totalCost: number
   lender?: Lender
+  lenderId?: string
 }
 
 interface DebtsByTypeProps {
@@ -105,6 +106,7 @@ export const DebtsByType: React.FC<DebtsByTypeProps> = ({ debts, title }) => {
                 amount: debt.amount || 0,
                 totalCost: debt.totalCost || 0,
                 lender: debt.lender,
+                lenderId: debt.lenderId,
               }))}
               className="mb-4"
               footer={

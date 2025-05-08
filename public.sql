@@ -121,6 +121,7 @@ INSERT INTO "public"."entity" ("nationalId", "familyNumber", "name", "address", 
 INSERT INTO "public"."entity" ("nationalId", "familyNumber", "name", "address", "email", "phone", "postal_code") VALUES ('4401129999', '4401129999', 'Mús & Merki ehf.', NULL, NULL, NULL, NULL);
 INSERT INTO "public"."entity" ("nationalId", "familyNumber", "name", "address", "email", "phone", "postal_code") VALUES ('6902692019', '6902692019', 'VR', NULL, NULL, NULL, NULL);
 INSERT INTO "public"."entity" ("nationalId", "familyNumber", "name", "address", "email", "phone", "postal_code") VALUES ('4910080160', '4910080160', 'Íslandsbanki hf.', NULL, NULL, NULL, NULL);
+INSERT INTO "public"."entity" ("nationalId", "familyNumber", "name", "address", "email", "phone", "postal_code") VALUES ('5104130670', '5104130670', 'Overcast ehf.', NULL, NULL, NULL, NULL);
 COMMIT;
 
 -- ----------------------------

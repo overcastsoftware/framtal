@@ -6,7 +6,7 @@ export class LoginResolver {
   login(@Args('phoneNumber') phoneNumber: string): boolean {
     console.log(`Login attempt with phone number: ${phoneNumber}`);
     if (phoneNumber !== '7728391') {
-      throw new Error('Notandi finnst ekki.');
+      throw new Error('Notandi finnst ekki. Notaðu númerið 7728391 til að skrá inn notanda.');
     }
     return true; // Always return success for demonstration purposes
   }

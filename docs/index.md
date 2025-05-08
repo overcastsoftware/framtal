@@ -273,3 +273,30 @@ mutation {
 }
 ```
 
+## Login operation
+
+The login operation is a mock service that returns success when the phone number `7728391` is supplied. Otherwise an error is returned.
+
+```graphql
+mutation {
+  login(phoneNumber: "7728391")
+}
+```
+
+## Currently logged in user query
+
+The currently logged in user is a mock service that always returns the demo user with national ID `1203894569`.
+
+```graphql
+query GetCurrentUser {
+  currentUser {
+    nationalId
+    familyNumber
+    name
+    phone
+    email
+    address
+    postalCode
+  }
+}
+```

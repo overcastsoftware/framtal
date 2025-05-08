@@ -29,6 +29,7 @@ export const GET_APPLICATIONS_BY_FAMILY_NUMBER = gql`
       principalPayment
       totalCost
       totalPayment
+      lenderId
       lender {
         name
         nationalId
@@ -38,6 +39,7 @@ export const GET_APPLICATIONS_BY_FAMILY_NUMBER = gql`
       id
       amount
       incomeType
+      payorId
       payor {
         name,
         nationalId
@@ -83,6 +85,7 @@ export const GET_APPLICATIONS_BY_FAMILY_NUMBER_ONLY_INCOME = gql`
       id
       amount
       incomeType
+      payorId
       payor {
         name,
         nationalId

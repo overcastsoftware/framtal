@@ -59,7 +59,7 @@ const groupIncomesByTypeAndPayor = (incomes: Income[]) => {
 
     // Group by payor national ID
     const groupedByPayor = typeIncomes.reduce<Record<string, Income[]>>((grouped, income) => {
-      const payorId = income.payor.nationalId
+      const payorId = income.payorId;
 
       if (!grouped[payorId]) {
         grouped[payorId] = []
@@ -75,7 +75,7 @@ const groupIncomesByTypeAndPayor = (incomes: Income[]) => {
       const totalAmount = payorIncomes.reduce((sum, income) => sum + income.amount, 0)
 
       return {
-        entity: payorIncomes[0].payor.name,
+        entity: payorIncomes[0].payor?.name || payorId,
         nationalId: payorId,
         totalAmount,
         items: payorIncomes,

@@ -222,7 +222,13 @@ const DebtForm: React.FC<DebtFormProps> = ({ debt, familyNumber }) => {
               name="loanDate"
               label="Lántökudagur"
               control={control}
-              rules={{ required: 'Verður að fylla út' }}
+              rules={{ 
+                required: 'Verður að fylla út',
+                pattern: {
+                  value: /^\d{4}-\d{2}-\d{2}$/,
+                  message: 'Dagsetning verður að vera á forminu YYYY-MM-DD',
+                },
+              }}
               error={errors.loanDate as FieldError | undefined}
               onChange={handleFieldChange}
             />

@@ -117,7 +117,7 @@ const FinancialItemsByType: React.FC<FinancialItemsByTypeProps> = ({ title, cate
           {Object.entries(debtsByType).map(([type, typeDebts]) => {
             const typeInfo = DEBT_TYPES[type] || { label: type, icon: '❓' }
             const typeTotal = typeDebts.reduce((sum, debt) => sum + (debt.amount || 0), 0)
-
+console.log(typeDebts, type, category)
             return (
               <DisplayCard
                 key={type}

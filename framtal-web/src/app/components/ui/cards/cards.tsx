@@ -30,7 +30,6 @@ const DisplayCard: React.FC<DisplayCardProps> = ({
   category,
   uri,
 }) => {
-  console.log(type)
 
   const renderCardHeader = () => {
     if (category === FinancialTypes.DEBT.category && type === 'other') {
@@ -69,7 +68,7 @@ const DisplayCard: React.FC<DisplayCardProps> = ({
       return <VehicleItem item={item} />
     }
 
-    if (type === 'other') {
+    if (category !== FinancialTypes.DEBT.category && type === 'other') {
       return <VehicleItem item={item} />
     }
 

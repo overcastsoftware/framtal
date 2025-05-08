@@ -24,7 +24,7 @@ type FormFieldProps<T extends FieldValues> = {
 export interface FormValues {
   amount: number
   description: string
-  totalCost: string
+  totalCost: number
   loanType: string
   lenderId: string
   loanNumber: string

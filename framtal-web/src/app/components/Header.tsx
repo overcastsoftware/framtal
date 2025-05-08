@@ -13,7 +13,7 @@ const Header = ({ showCurrentUser = true }) => {
         <div className="flex h-full justify-between items-center">
           {/* Logo and site title */}
           <div className="flex h-full items-center space-x-1 gap-4">
-            <Link href="/" className="flex items-center">
+            <Link href="/yfirlit" className="flex items-center">
               <Image src="/islandis.svg" alt="Logo" width={160} height={32} className="mr-2" />
             </Link>
             {showCurrentUser && (

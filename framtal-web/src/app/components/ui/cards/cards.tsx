@@ -69,6 +69,10 @@ const DisplayCard: React.FC<DisplayCardProps> = ({
       return <VehicleItem item={item} />
     }
 
+    if (type === 'other') {
+      return <VehicleItem item={item} />
+    }
+
     if (category === FinancialTypes.DEBT.category && type === 'property') {
       return <PropertyDebtItem item={item} />
     }

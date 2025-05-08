@@ -47,7 +47,7 @@ const DebtForm: React.FC<DebtFormProps> = ({ debt, familyNumber }) => {
       lenderId: debt.lenderId || '',
       loanNumber: debt.loanNumber || '',
       descriptionSecondary: debt.descriptionSecondary || '',
-      loanDate: debt.loanDate.split('T')[0] || '',
+      loanDate: debt.loanDate?.split('T')[0] || '',
       loanLength: debt.loanLength || '',
       totalPayment: debt.totalPayment || 0,
       principalPayment: debt.principalPayment || 0,

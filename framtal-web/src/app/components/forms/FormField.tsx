@@ -94,9 +94,14 @@ const FormField = <T extends FieldValues>({
                 if (type === 'tel' || type === 'number') {
                   field.onChange(parseInt(e.target.value) || 0)
                 } else {
-                  if (onChange) {
-                    onChange(field.value)
-                  }
+                  field.onChange(e.target.value)
+                }
+                
+                // Call the onChange callback with the current field value
+                if (onChange) {
+                  setTimeout(() => {
+                    onChange(e.target.value)
+                  }, 100)
                 }
               }}
             />

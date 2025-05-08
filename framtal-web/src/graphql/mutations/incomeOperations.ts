@@ -22,6 +22,7 @@ export const UPDATE_INCOME = gql`
       id
       amount
       incomeType
+      payorId
       payor {
         name
         nationalId

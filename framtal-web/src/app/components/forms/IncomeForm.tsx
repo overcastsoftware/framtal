@@ -33,6 +33,7 @@ const IncomeForm: React.FC<IncomeFormProps> = ({ income, familyNumber }) => {
     control,
     handleSubmit,
     formState: { errors },
+    getValues,
   } = useForm({
     defaultValues: {
       amount: income.amount,
@@ -77,9 +78,21 @@ const IncomeForm: React.FC<IncomeFormProps> = ({ income, familyNumber }) => {
     })
   }
 
-  // Auto-save when a field changes
+  // Auto-save when a field changes - Modified to ensure data is saved properly
   const handleFieldChange = () => {
-    handleSubmit(onSubmit)()
+    // Use a small delay to ensure the field value is updated before submitting
+    setTimeout(() => {
+      const currentValues = getValues();
+      updateIncome({
+        variables: {
+          input: {
+            id: parseInt(income.id),
+            amount: currentValues.amount,
+            payorId: currentValues.payorId,
+          },
+        },
+      });
+    }, 300);
   }
 
   const handleDelete = () => {
@@ -122,7 +135,7 @@ const IncomeForm: React.FC<IncomeFormProps> = ({ income, familyNumber }) => {
             label="Kennitala greiðanda"
             control={control}
             error={errors.payorId}
-            onChange={() => setTimeout(handleFieldChange, 100)}
+            onChange={handleFieldChange}
           />
 
           <FormField
@@ -141,7 +154,7 @@ const IncomeForm: React.FC<IncomeFormProps> = ({ income, familyNumber }) => {
             control={control}
             rules={{ required: 'Upphæð er nauðsynleg' }}
             error={errors.amount}
-            onChange={() => setTimeout(handleFieldChange, 100)}
+            onChange={handleFieldChange}
           />
         </div>
       </form>

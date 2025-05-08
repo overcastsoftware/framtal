@@ -1,7 +1,6 @@
 'use client'
 
 import Link from 'next/link'
-// import Navigation from './Navigation';
 import Image from 'next/image'
 import dynamic from 'next/dynamic'
 
@@ -27,9 +26,6 @@ const Header = ({ showCurrentUser = true }) => {
               </>
             )}
           </div>
-
-          {/* Navigation */}
-          {/* <Navigation /> */}
 
           {/* Right side - account, search, etc */}
           <div className="flex items-center space-x-4 flex-row px-6">

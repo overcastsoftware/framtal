@@ -13,14 +13,14 @@ export default function DebtPage() {
   const { slug } = useParams()
   const familyNumber = '1203894569' // In a real app, this should come from user context/auth
 
+  const { loading, error, data } = useQuery(GET_APPLICATIONS_BY_FAMILY_NUMBER_ONLY_DEBT, {
+    variables: { familyNumber },
+  })
+
   // Validate the debt type from URL parameter
   if (!['property', 'other'].includes(slug)) {
     return <Layout>Síða fannst ekki</Layout>
   }
-
-  const { loading, error, data } = useQuery(GET_APPLICATIONS_BY_FAMILY_NUMBER_ONLY_DEBT, {
-    variables: { familyNumber },
-  })
 
   if (loading)
     return (
@@ -62,7 +62,7 @@ export default function DebtPage() {
 
   // Filter to only include the requested type if slug is provided
   let loanTypesToShow = slug ? [slug] : Object.keys(groupedDebts)
-  
+
   return (
     <Layout>
       <div className="max-w-4xl mx-auto">
@@ -87,7 +87,10 @@ export default function DebtPage() {
               if (debts.length === 0) return null
 
               return (
-                <div key={type} className={`mb-8 ${ i !== loanTypesToShow.length-1 ? 'border-b' : ''} border-blue-600 pb-5`}>
+                <div
+                  key={type}
+                  className={`mb-8 ${i !== loanTypesToShow.length - 1 ? 'border-b' : ''} border-blue-600 pb-5`}
+                >
                   <h2 className="text-xl font-semibold text-blue-600">
                     {loanTypeLabels[type] || type}
                   </h2>

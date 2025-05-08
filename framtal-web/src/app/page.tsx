@@ -1,13 +1,5 @@
 'use client'
-import Image from 'next/image'
-import dynamic from 'next/dynamic'
-// import Navigation from './components/Navigation';
-import { useQuery } from '@apollo/client'
-import { GET_APPLICATIONS_BY_FAMILY_NUMBER } from '@/graphql/queries/getUserInfo'
 import Layout from './components/Layout'
-
-// Dynamic import for the GraphQL component to avoid SSR issues
-const Cards = dynamic(() => import('./components/Cards'), { ssr: true })
 
 export default function Home() {
   return (

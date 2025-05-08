@@ -9,19 +9,18 @@ import AssetForm from '../../components/AssetForm'
 import NewAssetForm from '../../components/NewAssetForm'
 import { sortById } from '../../../lib/utils'
 
-
 export default function AssetPage() {
   const { slug } = useParams()
   const familyNumber = '1203894569' // In a real app, this should come from user context/auth
+
+  const { loading, error, data } = useQuery(GET_APPLICATIONS_BY_FAMILY_NUMBER_ONLY_ASSETS, {
+    variables: { familyNumber },
+  })
 
   // Validate the asset type from URL parameter
   if (!['domestic_property', 'vehicle', 'other'].includes(slug)) {
     return <Layout>Síða fannst ekki</Layout>
   }
-
-  const { loading, error, data } = useQuery(GET_APPLICATIONS_BY_FAMILY_NUMBER_ONLY_ASSETS, {
-    variables: { familyNumber },
-  })
 
   if (loading)
     return (
@@ -67,7 +66,7 @@ export default function AssetPage() {
   console.log('Grouped Assets:', groupedAssets)
   // Filter to only include the requested type if slug is provided
   let assetTypesToShow = slug ? [slug] : Object.keys(groupedAssets)
-  
+
   return (
     <Layout>
       <div className="max-w-4xl mx-auto">
@@ -92,7 +91,10 @@ export default function AssetPage() {
               if (assets.length === 0) return null
 
               return (
-                <div key={type} className={`mb-8 ${ i !== assetTypesToShow.length-1 ? 'border-b' : ''} border-blue-600 pb-5`}>
+                <div
+                  key={type}
+                  className={`mb-8 ${i !== assetTypesToShow.length - 1 ? 'border-b' : ''} border-blue-600 pb-5`}
+                >
                   <h2 className="text-xl font-semibold text-blue-600">
                     {assetTypeLabels[type] || type}
                   </h2>
@@ -122,7 +124,6 @@ export default function AssetPage() {
           </>
         )}
       </div>
-
     </Layout>
   )
 }

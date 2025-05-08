@@ -1,20 +1,18 @@
-import Header from "./Header";
+import Header from './Header'
 
 const Layout = ({
-    children,
-    showCurrentUser = true
+  children,
+  showCurrentUser = true,
 }: Readonly<{
-    children: React.ReactNode;
-    showCurrentUser?: boolean;
+  children: React.ReactNode
+  showCurrentUser?: boolean
 }>) => {
-    return (
-        <>
-          <Header showCurrentUser={showCurrentUser} />
-          <main className="container mx-auto px-4 py-6">
-            {children}
-          </main>
-        </>
-    );
+  return (
+    <>
+      <Header showCurrentUser={showCurrentUser} />
+      <main className="container mx-auto px-4 py-6">{children}</main>
+    </>
+  )
 }
 
-export default Layout;
+export default Layout

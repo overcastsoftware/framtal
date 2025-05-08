@@ -1,8 +1,8 @@
-import React, { useState } from 'react';
-import { useForm, Controller } from 'react-hook-form';
-import { useMutation } from '@apollo/client';
-import { CREATE_INCOME } from '@/graphql/mutations/incomeOperations';
-import { GET_APPLICATIONS_BY_FAMILY_NUMBER_ONLY_INCOME } from '@/graphql/queries/getUserInfo';
+import React, { useState } from 'react'
+import { useForm, Controller } from 'react-hook-form'
+import { useMutation } from '@apollo/client'
+import { CREATE_INCOME } from '@/graphql/mutations/incomeOperations'
+import { GET_APPLICATIONS_BY_FAMILY_NUMBER_ONLY_INCOME } from '@/graphql/queries/getUserInfo'
 
 type NewIncomeFormProps = {
   applicationId: number
@@ -10,38 +10,47 @@ type NewIncomeFormProps = {
   familyNumber: string
 }
 
-const NewIncomeForm: React.FC<NewIncomeFormProps> = ({ applicationId, nationalId, familyNumber }) => {
-  const [showForm, setShowForm] = useState(false);
-  const [message, setMessage] = useState('');
+const NewIncomeForm: React.FC<NewIncomeFormProps> = ({
+  applicationId,
+  nationalId,
+  familyNumber,
+}) => {
+  const [showForm, setShowForm] = useState(false)
+  const [message, setMessage] = useState('')
 
-  const { control, handleSubmit, reset, formState: { errors } } = useForm({
+  const {
+    control,
+    handleSubmit,
+    reset,
+    formState: { errors },
+  } = useForm({
     defaultValues: {
       amount: 0,
       incomeType: 'salary',
-      payorId: ''
-    }
-  });
+      payorId: '',
+    },
+  })
 
   const [createIncome, { loading }] = useMutation(CREATE_INCOME, {
     onCompleted: () => {
-      setMessage('Tekjur skráðar!');
-      reset();
+      setMessage('Tekjur skráðar!')
+      reset()
       setTimeout(() => {
-        setMessage('');
-        setShowForm(false);
-      }, 2000);
+        setMessage('')
+        setShowForm(false)
+      }, 2000)
     },
     onError: (error) => {
-      console.error('Villa við skráningu:', error);
-      setMessage(`Error: ${error.message}`);
+      console.error('Villa við skráningu:', error)
+      setMessage(`Error: ${error.message}`)
     },
     refetchQueries: [
       {
         query: GET_APPLICATIONS_BY_FAMILY_NUMBER_ONLY_INCOME,
-        variables: { familyNumber }
-      }
-    ]
-  });
+        variables: { familyNumber },
+      },
+    ],
+  })
 
   const onSubmit = (data) => {
     // Make a copy of the data to avoid modifying the form data directly
@@ -50,35 +59,42 @@ const NewIncomeForm: React.FC<NewIncomeFormProps> = ({ applicationId, nationalId
       nationalId,
       amount: data.amount,
       incomeType: data.incomeType,
-      payorId: data.payorId
-    };
+      payorId: data.payorId,
+    }
 
     // Don't include any ID field to ensure proper auto-increment on the server
     createIncome({
       variables: {
-        input: incomeData
-      }
-    });
-  };
+        input: incomeData,
+      },
+    })
+  }
 
   if (!showForm) {
     return (
       <div className="mt-6 flex justify-end">
-        <button 
+        <button
           className="px-6 py-3 bg-white font-bold border border-blue-300 rounded-lg hover:bg-blue-200"
           onClick={() => setShowForm(true)}
         >
           Bæta við gögnum +
         </button>
       </div>
-    );
+    )
   }
 
   return (
     <div className="mt-4 rounded-lg bg-white">
       <div className="flex justify-end mb-2 relative">
         {message && (
-          <span className={message.startsWith('Error') ? 'text-sm text-red-500 font-bold' : 'text-sm text-green-500 font-bold'} style={{ position: 'absolute', right: '80px', top: '0' }}>
+          <span
+            className={
+              message.startsWith('Error')
+                ? 'text-sm text-red-500 font-bold'
+                : 'text-sm text-green-500 font-bold'
+            }
+            style={{ position: 'absolute', right: '80px', top: '0' }}
+          >
             {message}
           </span>
         )}
@@ -101,12 +117,12 @@ const NewIncomeForm: React.FC<NewIncomeFormProps> = ({ applicationId, nationalId
             <Controller
               name="payorId"
               control={control}
-              rules={{ 
+              rules={{
                 required: 'Kennitala er nauðsynleg',
                 pattern: {
                   value: /^\d+$/,
-                  message: 'Má eingöngu innihalda tölustafi'
-                }
+                  message: 'Má eingöngu innihalda tölustafi',
+                },
               }}
               render={({ field }) => (
                 <input
@@ -123,9 +139,7 @@ const NewIncomeForm: React.FC<NewIncomeFormProps> = ({ applicationId, nationalId
           </div>
 
           <div>
-            <label className="block text-sm font-bold text-blue-600 mb-1">
-              Tegund
-            </label>
+            <label className="block text-sm font-bold text-blue-600 mb-1">Tegund</label>
             <Controller
               name="incomeType"
               control={control}
@@ -148,18 +162,16 @@ const NewIncomeForm: React.FC<NewIncomeFormProps> = ({ applicationId, nationalId
           </div>
 
           <div>
-            <label className="block text-sm font-bold text-blue-600 mb-1">
-              Upphæð
-            </label>
+            <label className="block text-sm font-bold text-blue-600 mb-1">Upphæð</label>
             <Controller
               name="amount"
               control={control}
-              rules={{ 
+              rules={{
                 required: 'Upphæð er nauðsynleg',
                 min: {
                   value: 1,
-                  message: 'Upphæð verður að vera hærri en 0'
-                }
+                  message: 'Upphæð verður að vera hærri en 0',
+                },
               }}
               render={({ field }) => (
                 <input
@@ -170,12 +182,10 @@ const NewIncomeForm: React.FC<NewIncomeFormProps> = ({ applicationId, nationalId
                 />
               )}
             />
-            {errors.amount && (
-              <p className="text-red-500 text-sm mt-1">{errors.amount.message}</p>
-            )}
+            {errors.amount && <p className="text-red-500 text-sm mt-1">{errors.amount.message}</p>}
           </div>
         </div>
-        
+
         <div className="flex justify-end">
           <button
             type="submit"
@@ -187,7 +197,7 @@ const NewIncomeForm: React.FC<NewIncomeFormProps> = ({ applicationId, nationalId
         </div>
       </form>
     </div>
-  );
-};
+  )
+}
 
-export default NewIncomeForm;
+export default NewIncomeForm

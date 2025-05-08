@@ -1,26 +1,32 @@
 import React, { useState } from 'react'
-import { useForm, Controller } from 'react-hook-form'
+import { useForm } from 'react-hook-form'
 import { useMutation } from '@apollo/client'
-import { UPDATE_ASSET, DELETE_ASSET } from '@/graphql/mutations/assetOperations'
-import { GET_APPLICATIONS_BY_FAMILY_NUMBER_ONLY_ASSETS } from '@/graphql/queries/getUserInfo'
+import { UPDATE_INCOME, DELETE_INCOME } from '@/graphql/mutations/incomeOperations'
+import { GET_APPLICATIONS_BY_FAMILY_NUMBER_ONLY_INCOME } from '@/graphql/queries/getUserInfo'
 import FormField from './FormField'
 
-type Asset = {
+type Entity = {
+  __typename?: string
+  name: string
+  nationalId: string
+}
+
+type Income = {
   id: string
   amount: number
-  description: string
-  assetType: string
-  assetIdentifier: string
+  incomeType: string
+  payor: Entity
+  payorId?: string
   nationalId?: string
   applicationId?: number
 }
 
-type AssetFormProps = {
-  asset: Asset
+type IncomeFormProps = {
+  income: Income
   familyNumber: string
 }
 
-const AssetForm: React.FC<AssetFormProps> = ({ asset, familyNumber }) => {
+const IncomeForm: React.FC<IncomeFormProps> = ({ income, familyNumber }) => {
   const [saveMessage, setSaveMessage] = useState('')
 
   const {
@@ -29,43 +35,43 @@ const AssetForm: React.FC<AssetFormProps> = ({ asset, familyNumber }) => {
     formState: { errors },
   } = useForm({
     defaultValues: {
-      amount: asset.amount,
-      description: asset.description,
-      assetIdentifier: asset.assetIdentifier,
+      amount: income.amount,
+      payorId: income.payorId,
+      payorName: income.payor?.name || 'Fannst ekki í Þjóðskrá',
     },
   })
 
-  const [updateAsset] = useMutation(UPDATE_ASSET, {
+  const [updateIncome] = useMutation(UPDATE_INCOME, {
     onCompleted: () => {
       setSaveMessage('Vistað!')
       setTimeout(() => setSaveMessage(''), 2000)
     },
     refetchQueries: [
       {
-        query: GET_APPLICATIONS_BY_FAMILY_NUMBER_ONLY_ASSETS,
+        query: GET_APPLICATIONS_BY_FAMILY_NUMBER_ONLY_INCOME,
         variables: { familyNumber },
       },
     ],
   })
 
-  const [deleteAsset] = useMutation(DELETE_ASSET, {
+  const [deleteIncome] = useMutation(DELETE_INCOME, {
     refetchQueries: [
       {
-        query: GET_APPLICATIONS_BY_FAMILY_NUMBER_ONLY_ASSETS,
+        query: GET_APPLICATIONS_BY_FAMILY_NUMBER_ONLY_INCOME,
         variables: { familyNumber },
       },
     ],
   })
 
-  const onSubmit = (data) => {
-    // Only include fields that are valid for UpdateAssetInput
-    updateAsset({
+  const onSubmit = (data: { amount: number; payorId: string | undefined; payorName: string }) => {
+    // Only include fields that are valid for UpdateIncomeInput
+    updateIncome({
       variables: {
         input: {
-          id: parseInt(asset.id),
+          id: parseInt(income.id),
           amount: data.amount,
-          description: data.description,
-          assetIdentifier: data.assetIdentifier,
+          payorId: data.payorId,
+          // payorName is excluded as it's not part of UpdateIncomeInput
         },
       },
     })
@@ -78,9 +84,9 @@ const AssetForm: React.FC<AssetFormProps> = ({ asset, familyNumber }) => {
 
   const handleDelete = () => {
     if (confirm('Ertu viss um að þú viljir eyða þessari línu?')) {
-      deleteAsset({
+      deleteIncome({
         variables: {
-          id: parseInt(asset.id),
+          id: parseInt(income.id),
         },
       })
     }
@@ -100,7 +106,7 @@ const AssetForm: React.FC<AssetFormProps> = ({ asset, familyNumber }) => {
           )}
           <button
             onClick={handleDelete}
-            className="text-red-500 hover:text-red-700 font-bold text-sm"
+            className="btn-link text-primary-red-600 hover:text-secondary-rose-400 font-bold text-sm"
             title="Eyða þessari línu"
             style={{ position: 'absolute', right: '0', top: '0' }}
           >
@@ -112,26 +118,20 @@ const AssetForm: React.FC<AssetFormProps> = ({ asset, familyNumber }) => {
       <form>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-4">
           <FormField
-            name="description"
-            label={asset.assetType === 'domestic_property'
-              ? 'Heimilisfang'
-              : asset.assetType === 'vehicle'
-                ? 'Kaupár'
-                : 'Lýsing'}
+            name="payorId"
+            label="Kennitala greiðanda"
             control={control}
-            error={errors.description}
+            error={errors.payorId}
             onChange={() => setTimeout(handleFieldChange, 100)}
           />
 
           <FormField
-            name="assetIdentifier"
-            label={asset.assetType === 'domestic_property'
-              ? 'Fastanúmer eignar'
-              : asset.assetType === 'vehicle'
-                ? 'Númer'
-                : 'Annað'}
+            name="payorName"
+            label="Nafn greiðanda"
             control={control}
-            error={errors.assetIdentifier}
+            className={income.payor === null ? 'opacity-50' : ''}
+            error={errors.payorName}
+            placeholder=""
           />
 
           <FormField
@@ -149,4 +149,4 @@ const AssetForm: React.FC<AssetFormProps> = ({ asset, familyNumber }) => {
   )
 }
 
-export default AssetForm
+export default IncomeForm

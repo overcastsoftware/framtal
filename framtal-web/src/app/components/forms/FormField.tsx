@@ -12,12 +12,15 @@ type FormFieldProps<T extends FieldValues> = {
   name: Path<T>
   label: string
   control: Control<T>
-  rules?: RegisterOptions
+  rules?: Omit<
+    RegisterOptions<T, Path<T>>,
+    'setValueAs' | 'disabled' | 'valueAsNumber' | 'valueAsDate'
+  >
   error?: FieldError
   type?: string
   placeholder?: string
   className?: string
-  onChange?: (value: any) => void
+  onChange?: (value: unknown) => void
   options?: { value: string; label: string }[]
 }
 
@@ -53,7 +56,7 @@ const FormField = <T extends FieldValues>({
 
   return (
     <div>
-      <label className="block text-sm font-bold text-blue-600 mb-1">{label}</label>
+      <label className="block text-sm font-bold text-primary-blue-600 mb-1">{label}</label>
       <Controller
         name={name}
         control={control}
@@ -62,11 +65,13 @@ const FormField = <T extends FieldValues>({
           if (type === 'select' && options) {
             return (
               <select
-                className={inputClassName}
+                className={`${inputClassName} cursor-pointer`}
                 {...field}
                 onChange={(e) => {
                   field.onChange(e)
-                  onChange && onChange(e.target.value)
+                  if (onChange) {
+                    onChange(e.target.value)
+                  }
                 }}
               >
                 {options.map((option) => (
@@ -89,15 +94,16 @@ const FormField = <T extends FieldValues>({
                 if (type === 'tel' || type === 'number') {
                   field.onChange(parseInt(e.target.value) || 0)
                 } else {
-                  field.onChange(e.target.value)
+                  if (onChange) {
+                    onChange(field.value)
+                  }
                 }
-                onChange && onChange(field.value)
               }}
             />
           )
         }}
       />
-      {error && <p className="text-red-500 text-sm mt-1">{error.message}</p>}
+      {error && <p className="text-primary-red-600 text-sm mt-1">{error.message}</p>}
     </div>
   )
 }

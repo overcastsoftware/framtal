@@ -1,19 +1,34 @@
 @import "tailwindcss";
+/* Import IBM Plex Sans font */
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600;700&display=swap');
 
 :root {
   --background: #ffffff;
   --foreground: #171717;
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--ibm-plex-sans);
-  --font-mono: var(--ibm-plex-sans);
+  --color-white: #ffffff;
+  
+  /* Font family definitions */
+  --ibm-plex-sans: 'IBM Plex Sans', sans-serif;
+  --font-sans: 'IBM Plex Sans', sans-serif;
+  --font-mono: 'IBM Plex Sans', monospace;
+  
+  /* Font sizes */
+  --text-sm: 0.875rem;
+  --text-base: 1rem;
+  --text-2xl: 1.5rem;
+  
+  /* Font weights */
+  --font-weight-bold: 700;
+  --font-weight-semibold: 600;
 }
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: var(--ibm-plex-sans), Helvetica, sans-serif;
+  font-family: 'IBM Plex Sans', sans-serif;
   font-size: 18px;
-  font-weight: 300
+  font-weight: 300;
 }
 h1{
   font-size: 36px;
@@ -72,6 +87,12 @@ h3 {
   --color-secondary-blueberry-300: #B5B6EC;
   --color-secondary-blueberry-200: #DADBF6;
   --color-secondary-blueberry-100: #F6F6FD;
+
+  --color-secondary-rose-600: #4D003A;
+  --color-secondary-rose-400: #9A0074;
+  --color-secondary-rose-300: #D799C7;
+  --color-secondary-rose-200: #EBCCE3;
+  --color-secondary-rose-100: #FAF2F8;
   
   --color-secondary-purple-100: #F8F5FA;
   

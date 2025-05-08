@@ -5,8 +5,8 @@ import Link from 'next/link'
 import Layout from '../../components/Layout'
 import { GET_APPLICATIONS_BY_FAMILY_NUMBER_ONLY_INCOME } from '@/graphql/queries/getUserInfo'
 import { useQuery } from '@apollo/client'
-import IncomeForm from '../../components/IncomeForm'
-import NewIncomeForm from '../../components/NewIncomeForm'
+import IncomeForm from '../../components/forms/IncomeForm'
+import NewIncomeForm from '../../components/forms/NewIncomeForm'
 import { sortById } from '../../../lib/utils'
 
 export default function IncomePage() {
@@ -31,7 +31,7 @@ export default function IncomePage() {
   if (error)
     return (
       <Layout>
-        <p className="text-center text-red-500">Villa: {error.message}</p>
+        <p className="text-center text-primary-red-600">Villa: {error.message}</p>
       </Layout>
     )
 
@@ -96,7 +96,7 @@ export default function IncomePage() {
                   key={type}
                   className={`mb-8 ${i !== incomeTypesToShow.length - 1 ? 'border-b' : ''} border-blue-600 pb-5`}
                 >
-                  <h2 className="text-xl font-semibold text-blue-600">
+                  <h2 className="text-xl font-semibold text-primary-blue-600">
                     {incomeTypeLabels[type] || type}
                   </h2>
 

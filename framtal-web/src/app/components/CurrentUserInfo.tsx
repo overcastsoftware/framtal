@@ -7,7 +7,7 @@ export default function CurrentUserInfo() {
   const { loading, error, data } = useQuery(GET_CURRENT_USER)
 
   if (loading) return <p className="text-center">Loading user information...</p>
-  if (error) return <p className="text-center text-red-500">Error: {error.message}</p>
+  if (error) return <p className="text-center text-primary-red-600">Error: {error.message}</p>
   if (!data || !data.currentUser)
     return <p className="text-center">No user information available.</p>
 

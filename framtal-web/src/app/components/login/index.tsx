@@ -32,7 +32,7 @@ export default function LoginForm() {
   })
 
   // Handle form submission
-  const handleSubmit = (e) => {
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
 
     // Simple validation
@@ -95,7 +95,7 @@ export default function LoginForm() {
         </div>
 
         {/* Header */}
-        <div className="text-center text-sm text-blue-600 font-semibold mb-1">
+        <div className="text-center text-sm text-primary-blue-600 font-semibold mb-1">
           Rafræn skilríki í síma
         </div>
         <h1 className="text-center text-2xl font-bold text-gray-900 mb-1">Skráðu þig inn</h1>
@@ -110,7 +110,10 @@ export default function LoginForm() {
         )}
         <form onSubmit={handleSubmit}>
           <div className="mb-6">
-            <label htmlFor="phoneNumber" className="block text-sm font-medium text-blue-600 mb-1">
+            <label
+              htmlFor="phoneNumber"
+              className="block text-sm font-medium text-primary-blue-600 mb-1"
+            >
               Símanúmer
             </label>
             <input
@@ -127,7 +130,7 @@ export default function LoginForm() {
             <input
               id="remember"
               type="checkbox"
-              className="h-4 w-4 text-blue-600 border-gray-300 rounded"
+              className="h-4 w-4 text-primary-blue-600 border-gray-300 rounded"
             />
             <label htmlFor="remember" className="ml-2 block text-sm text-gray-700">
               Muna símanúmer
@@ -153,15 +156,15 @@ export default function LoginForm() {
         </div>
 
         {/* Secondary Buttons */}
-        <button className="w-full border border-blue-600 text-blue-600 font-semibold py-3 rounded-md mb-3 hover:bg-blue-50">
+        <button className="w-full border border-blue-600 text-primary-blue-600 font-semibold py-3 rounded-md mb-3 hover:bg-blue-50">
           Auðkennisappinu
         </button>
-        <button className="w-full border border-blue-600 text-blue-600 font-semibold py-3 rounded-md hover:bg-blue-50">
+        <button className="w-full border border-blue-600 text-primary-blue-600 font-semibold py-3 rounded-md hover:bg-blue-50">
           Skilríki á korti
         </button>
       </div>
       {/* Footer Links */}
-      <div className="flex justify-between items-center text-blue-600 mt-3">
+      <div className="flex justify-between items-center text-primary-blue-600 mt-3">
         <a href="#" className="hover:underline font-bold">
           Skilmálar
         </a>

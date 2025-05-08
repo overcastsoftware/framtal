@@ -5,8 +5,8 @@ import Link from 'next/link'
 import Layout from '../../components/Layout'
 import { GET_APPLICATIONS_BY_FAMILY_NUMBER_ONLY_ASSETS } from '@/graphql/queries/getUserInfo'
 import { useQuery } from '@apollo/client'
-import AssetForm from '../../components/AssetForm'
-import NewAssetForm from '../../components/NewAssetForm'
+import AssetForm from '../../components/forms/AssetForm'
+import NewAssetForm from '../../components/forms/NewAssetForm'
 import { sortById } from '../../../lib/utils'
 
 export default function AssetPage() {
@@ -31,7 +31,7 @@ export default function AssetPage() {
   if (error)
     return (
       <Layout>
-        <p className="text-center text-red-500">Villa: {error.message}</p>
+        <p className="text-center text-primary-red-600">Villa: {error.message}</p>
       </Layout>
     )
 
@@ -95,7 +95,7 @@ export default function AssetPage() {
                   key={type}
                   className={`mb-8 ${i !== assetTypesToShow.length - 1 ? 'border-b' : ''} border-blue-600 pb-5`}
                 >
-                  <h2 className="text-xl font-semibold text-blue-600">
+                  <h2 className="text-xl font-semibold text-primary-blue-600">
                     {assetTypeLabels[type] || type}
                   </h2>
 

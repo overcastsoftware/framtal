@@ -1,6 +1,16 @@
-import { CardItem } from '@/app/types/financialTypes'
+import { CardItem, FinancialTypes } from '@/app/types/financialTypes'
 import { formatCurrency } from '@/lib/utils'
 import React from 'react'
+import CardWrapper from './card-components/CardWrapper'
+import CardContent from './card-components/CardContent'
+import CardFooter from './card-components/CardFooter'
+import {
+  DomesticPropertyItem,
+  VehicleItem,
+  PropertyDebtItem,
+  OtherDebtItem,
+  IncomeItem,
+} from './card-components/CardItems'
 
 type DisplayCardProps = {
   type: string
@@ -9,7 +19,7 @@ type DisplayCardProps = {
   totalAmount: number
   items: CardItem[]
   showTotal?: boolean
-  parentType?: string
+  uri: string
 }
 
 const DisplayCard: React.FC<DisplayCardProps> = ({
@@ -18,115 +28,75 @@ const DisplayCard: React.FC<DisplayCardProps> = ({
   items,
   type,
   category,
-  parentType,
+  uri,
 }) => {
-  return (
-    <div className="bg-white rounded-lg justify-between lg:min-h-80 flex flex-col p-6 border-2 border-primary-blue-200 duration-100 ease-in hover:border-primary-blue-400">
-      <div>
-        <h3 className="text-sm xl:text-2xl font-semibold text-primary-blue-400 mb-2">{title}</h3>
-        <div className="space-y-2">
-          {parentType === 'debt' && type === 'other' && (
-            <div className="flex justify-between gap-2 lg:mt-2 ">
-              <span className="text-primary-dark-400 font-semibold  flex-1">Tegund</span>
-              <span className="text-md text-right font-semibold text-primary-header  flex-1">
-                Eftirstöðvar
-              </span>
-            </div>
-          )}
-          {items.map((item) => (
-            <div key={item.id} className="">
-              {parentType === 'domestic_property' && (
-                <div className="flex flex-col">
-                  <div className="flex justify-between gap-2">
-                    <span className="text-primary-dark-400 flex-1">{item.description}</span>
-                    <span className="text-primary-dark-400 flex-1  text-right">
-                      {formatCurrency(item.amount)}
-                    </span>
-                  </div>
-                  <span className="text-primary-dark-400">{item.identifier}</span>
-                </div>
-              )}
-              {parentType === 'vehicle' && (
-                <div className="flex flex-col">
-                  <div className="flex justify-between gap-2">
-                    <span className="text-primary-dark-400 flex-1">{item.identifier}</span>
-                    <span className="text-primary-dark-400 flex-1  text-right">
-                      {formatCurrency(item.amount)}
-                    </span>
-                  </div>
-                </div>
-              )}
-              {parentType === 'other' && (
-                <div className="flex flex-col">
-                  <div className="flex justify-between">
-                    <span className="text-gray-600">{item.identifier}</span>
-                    <span className="text-gray-600">{formatCurrency(item.amount)}</span>
-                  </div>
-                </div>
-              )}
-              {parentType === 'debt' && type === 'property' && (
-                <div className="flex flex-col">
-                  <div className="flex justify-between gap-2 lg:mt-2">
-                    <span className="text-primary-dark-400 flex-1">{item.description}</span>
-                    <span className="text-md text-right text-primary-header flex-1"></span>
-                  </div>
-                  <div className="flex justify-between gap-2 lg:mt-2">
-                    <span className="text-primary-header flex-1">Eftirstöðvar:</span>
-                    <span className="text-md text-right text-primary-header flex-1">
-                      {formatCurrency(item.amount)}
-                    </span>
-                  </div>
-                  <div className="flex justify-between gap-2 lg:mt-2">
-                    <span className="text-primary-dark-400 flex-1">Lánveitandi:</span>
-                    <span className="text-md text-right text-primary-header flex-1">
-                      {item.lender?.name || item.lenderId}
-                    </span>
-                  </div>
-                </div>
-              )}
-              {parentType === 'debt' && type === 'other' && (
-                <div className="flex flex-col">
-                  <div className="flex justify-between gap-2 lg:mt-2">
-                    <span className="text-primary-dark-400 flex-1">{item.description}</span>
-                    <span className="text-md text-right text-primary-header flex-1">
-                      {formatCurrency(item.totalCost)}
-                    </span>
-                  </div>
-                </div>
-              )}
-              {category === 'tekjur' && (
-                <div>
-                  <div className="flex justify-between gap-2">
-                    <span className="text-primary-dark-400 flex-1">{item.entity}</span>
-                    <span className="text-primary-dark-400 flex-1 text-right">
-                      {formatCurrency(item.amount)}
-                    </span>
-                  </div>
-                </div>
-              )}
-              {/* <div className="text-xs text-gray-500">Kennitala: {item.nationalId}</div> */}
-            </div>
-          ))}
-          {category === 'tekjur' && type === 'salary' && (
-            <div className="flex justify-between gap-2 lg:mt-2">
-              <span className="text-primary-dark-400 flex-1">Samtals:</span>
-              <span className="text-md text-right font-bold text-primary-header flex-1">
-                {formatCurrency(totalAmount)}
-              </span>
-            </div>
-          )}
+  console.log(type)
+
+  const renderCardHeader = () => {
+    if (category === FinancialTypes.DEBT.category && type === 'other') {
+      return (
+        <div className="flex justify-between gap-2 lg:mt-2">
+          <span className="text-primary-dark-400 font-semibold flex-1">Tegund</span>
+          <span className="text-md text-right font-semibold text-primary-header flex-1">
+            Eftirstöðvar
+          </span>
         </div>
-      </div>
-      <div className="w-full mt-2 flex justify-end">
-        <a
-          href={`/${category}/${type}`}
-          // className="btn-link hover:shadow-[inset_0px_-2px_0px_0px_rgba(0,97,255,1.00)]  shadow-[inset_0px_-1px_0px_0px_rgba(0,97,255,1.00)]"
-          className="btn-utility"
-        >
-          Breyta
-        </a>
-      </div>
-    </div>
+      )
+    }
+    return null
+  }
+
+  const renderCardFooter = () => {
+    if (category === FinancialTypes.INCOME.category && type === 'salary') {
+      return (
+        <div className="flex justify-between gap-2 lg:mt-2">
+          <span className="text-primary-dark-400 flex-1">Samtals:</span>
+          <span className="text-md text-right font-bold text-primary-header flex-1">
+            {formatCurrency(totalAmount)}
+          </span>
+        </div>
+      )
+    }
+    return null
+  }
+
+  const renderItem = (item: CardItem) => {
+    if (type === 'domestic_property') {
+      return <DomesticPropertyItem item={item} />
+    }
+
+    if (type === 'vehicle') {
+      return <VehicleItem item={item} />
+    }
+
+    if (category === FinancialTypes.DEBT.category && type === 'property') {
+      return <PropertyDebtItem item={item} />
+    }
+
+    if (category === FinancialTypes.DEBT.category && type === 'other') {
+      return <OtherDebtItem item={item} />
+    }
+
+    if (category === FinancialTypes.INCOME.category) {
+      return <IncomeItem item={item} />
+    }
+
+    return null
+  }
+
+  return (
+    <CardWrapper>
+      <CardContent title={title}>
+        <div className="space-y-2">
+          {renderCardHeader()}
+          {items.map((item) => (
+            <div key={item.id}>{renderItem(item)}</div>
+          ))}
+          {renderCardFooter()}
+        </div>
+      </CardContent>
+      <CardFooter category={uri} type={type} />
+    </CardWrapper>
   )
 }
 

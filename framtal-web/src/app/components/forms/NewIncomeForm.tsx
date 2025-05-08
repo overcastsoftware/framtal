@@ -53,7 +53,7 @@ const NewIncomeForm: React.FC<NewIncomeFormProps> = ({
     ],
   })
 
-  const onSubmit = (data) => {
+  const onSubmit = (data: { amount: number; incomeType: string; payorId: string }) => {
     // Make a copy of the data to avoid modifying the form data directly
     const incomeData = {
       applicationId,
@@ -74,10 +74,7 @@ const NewIncomeForm: React.FC<NewIncomeFormProps> = ({
   if (!showForm) {
     return (
       <div className="mt-6 flex justify-end">
-        <button
-          className="px-6 py-3 bg-white font-bold border border-blue-300 rounded-lg hover:bg-blue-200"
-          onClick={() => setShowForm(true)}
-        >
+        <button className="btn-ghost" onClick={() => setShowForm(true)}>
           Bæta við gögnum +
         </button>
       </div>
@@ -91,7 +88,7 @@ const NewIncomeForm: React.FC<NewIncomeFormProps> = ({
           <span
             className={
               message.startsWith('Error')
-                ? 'text-sm text-red-500 font-bold'
+                ? 'text-sm text-primary-red-600 font-bold'
                 : 'text-sm text-green-500 font-bold'
             }
             style={{ position: 'absolute', right: '80px', top: '0' }}
@@ -101,7 +98,7 @@ const NewIncomeForm: React.FC<NewIncomeFormProps> = ({
         )}
         <button
           onClick={() => setShowForm(false)}
-          className="text-red-500 hover:text-red-700 font-bold text-sm"
+          className="btn-link text-primary-red-600 hover:text-secondary-rose-400 font-bold text-sm"
           title="Hætta við"
           style={{ position: 'absolute', right: '0', top: '0' }}
         >
@@ -158,11 +155,7 @@ const NewIncomeForm: React.FC<NewIncomeFormProps> = ({
         </div>
 
         <div className="flex justify-end">
-          <button
-            type="submit"
-            disabled={loading}
-            className="px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 disabled:bg-blue-300"
-          >
+          <button type="submit" disabled={loading} className="btn-primary disabled:bg-blue-300">
             {loading ? 'Vista...' : 'Vista'}
           </button>
         </div>

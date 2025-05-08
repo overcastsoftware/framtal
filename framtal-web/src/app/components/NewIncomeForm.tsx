@@ -1,8 +1,9 @@
 import React, { useState } from 'react'
-import { useForm, Controller } from 'react-hook-form'
+import { useForm } from 'react-hook-form'
 import { useMutation } from '@apollo/client'
 import { CREATE_INCOME } from '@/graphql/mutations/incomeOperations'
 import { GET_APPLICATIONS_BY_FAMILY_NUMBER_ONLY_INCOME } from '@/graphql/queries/getUserInfo'
+import FormField from './FormField'
 
 type NewIncomeFormProps = {
   applicationId: number
@@ -107,80 +108,50 @@ const NewIncomeForm: React.FC<NewIncomeFormProps> = ({
 
       <form onSubmit={handleSubmit(onSubmit)}>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-4">
-          <div>
-            <label className="block text-sm font-bold text-blue-600 mb-1">
-              Kennitala greiðanda
-            </label>
-            <Controller
-              name="payorId"
-              control={control}
-              rules={{
-                required: 'Kennitala er nauðsynleg',
-                pattern: {
-                  value: /^\d+$/,
-                  message: 'Má eingöngu innihalda tölustafi',
-                },
-              }}
-              render={({ field }) => (
-                <input
-                  type="text"
-                  placeholder="t.d., 5501119999"
-                  className="cursor-pointer w-full px-3 py-2 border-2 border-blue-200 font-bold rounded-md bg-blue-50"
-                  {...field}
-                />
-              )}
-            />
-            {errors.payorId && (
-              <p className="text-red-500 text-sm mt-1">{errors.payorId.message}</p>
-            )}
-          </div>
+          <FormField
+            name="payorId"
+            label="Kennitala greiðanda"
+            control={control}
+            rules={{
+              required: 'Kennitala er nauðsynleg',
+              pattern: {
+                value: /^\d+$/,
+                message: 'Má eingöngu innihalda tölustafi',
+              },
+            }}
+            error={errors.payorId}
+            placeholder="t.d., 5501119999"
+          />
 
-          <div>
-            <label className="block text-sm font-bold text-blue-600 mb-1">Tegund</label>
-            <Controller
-              name="incomeType"
-              control={control}
-              rules={{ required: 'Tegund er nauðsynleg' }}
-              render={({ field }) => (
-                <select
-                  className="cursor-pointer w-full px-3 py-2 border-2 border-blue-200 font-bold rounded-md bg-blue-50"
-                  {...field}
-                >
-                  <option value="salary">Laun</option>
-                  <option value="sports">Líkamsræktarstyrkur</option>
-                  <option value="perdiem">Dagpeningar</option>
-                  <option value="job_education_grant">Starfsmenntunarstyrkur</option>
-                </select>
-              )}
-            />
-            {errors.incomeType && (
-              <p className="text-red-500 text-sm mt-1">{errors.incomeType.message}</p>
-            )}
-          </div>
+          <FormField
+            name="incomeType"
+            label="Tegund"
+            control={control}
+            rules={{ required: 'Tegund er nauðsynleg' }}
+            error={errors.incomeType}
+            type="select"
+            options={[
+              { value: 'salary', label: 'Laun' },
+              { value: 'sports', label: 'Líkamsræktarstyrkur' },
+              { value: 'perdiem', label: 'Dagpeningar' },
+              { value: 'job_education_grant', label: 'Starfsmenntunarstyrkur' },
+            ]}
+          />
 
-          <div>
-            <label className="block text-sm font-bold text-blue-600 mb-1">Upphæð</label>
-            <Controller
-              name="amount"
-              control={control}
-              rules={{
-                required: 'Upphæð er nauðsynleg',
-                min: {
-                  value: 1,
-                  message: 'Upphæð verður að vera hærri en 0',
-                },
-              }}
-              render={({ field }) => (
-                <input
-                  type="tel"
-                  className="cursor-pointer w-full px-3 py-2 border-2 border-blue-200 font-bold rounded-md bg-blue-50"
-                  {...field}
-                  onChange={(e) => field.onChange(parseInt(e.target.value) || 0)}
-                />
-              )}
-            />
-            {errors.amount && <p className="text-red-500 text-sm mt-1">{errors.amount.message}</p>}
-          </div>
+          <FormField
+            name="amount"
+            label="Upphæð"
+            type="tel"
+            control={control}
+            rules={{
+              required: 'Upphæð er nauðsynleg',
+              min: {
+                value: 1,
+                message: 'Upphæð verður að vera hærri en 0',
+              },
+            }}
+            error={errors.amount}
+          />
         </div>
 
         <div className="flex justify-end">

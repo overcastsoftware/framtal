@@ -1,8 +1,9 @@
 import React, { useState } from 'react'
-import { useForm, Controller } from 'react-hook-form'
+import { useForm } from 'react-hook-form'
 import { useMutation } from '@apollo/client'
 import { CREATE_ASSET } from '@/graphql/mutations/assetOperations'
 import { GET_APPLICATIONS_BY_FAMILY_NUMBER_ONLY_ASSETS } from '@/graphql/queries/getUserInfo'
+import FormField from './FormField'
 
 type NewAssetFormProps = {
   applicationId: number
@@ -109,107 +110,64 @@ const NewAssetForm: React.FC<NewAssetFormProps> = ({ applicationId, nationalId, 
 
       <form onSubmit={handleSubmit(onSubmit)}>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-4">
-          <div>
-            <label className="block text-sm font-bold text-blue-600 mb-1">Tegund</label>
-            <Controller
-              name="assetType"
-              control={control}
-              rules={{ required: 'Tegund er nauðsynleg' }}
-              render={({ field }) => (
-                <select
-                  className="cursor-pointer w-full px-3 py-2 border-2 border-blue-200 font-bold rounded-md bg-blue-50"
-                  {...field}
-                >
-                  <option value="domestic_property">Innlendar fasteignir</option>
-                  <option value="vehicle">Bifreiðir</option>
-                  <option value="other">Aðrar eignir áður ótaldar</option>
-                </select>
-              )}
-            />
-            {errors.assetType && (
-              <p className="text-red-500 text-sm mt-1">{errors.assetType.message}</p>
-            )}
-          </div>
+          <FormField
+            name="assetType"
+            label="Tegund"
+            control={control}
+            rules={{ required: 'Tegund er nauðsynleg' }}
+            error={errors.assetType}
+            type="select"
+            options={[
+              { value: 'domestic_property', label: 'Innlendar fasteignir' },
+              { value: 'vehicle', label: 'Bifreiðir' },
+              { value: 'other', label: 'Aðrar eignir áður ótaldar' },
+            ]}
+          />
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            <div>
-              <label className="block text-sm font-bold text-blue-600 mb-1">
-                {assetType === 'domestic_property'
+            <FormField
+              name="description"
+              label={
+                assetType === 'domestic_property'
                   ? 'Heimilisfang'
                   : assetType === 'vehicle'
                     ? 'Kaupár'
-                    : 'Lýsing'}
-              </label>
-              <Controller
-                name="description"
-                control={control}
-                rules={{
-                  required: 'Nauðsynlegt að fylla út',
-                }}
-                render={({ field }) => (
-                  <input
-                    type="text"
-                    className="cursor-pointer w-full px-3 py-2 border-2 border-blue-200 font-bold rounded-md bg-blue-50"
-                    {...field}
-                  />
-                )}
-              />
-              {errors.description && (
-                <p className="text-red-500 text-sm mt-1">{errors.description.message}</p>
-              )}
-            </div>
+                    : 'Lýsing'
+              }
+              control={control}
+              rules={{ required: 'Nauðsynlegt að fylla út' }}
+              error={errors.description}
+            />
 
-            <div>
-              <label className="block text-sm font-bold text-blue-600 mb-1">
-                {assetType === 'domestic_property'
+            <FormField
+              name="assetIdentifier"
+              label={
+                assetType === 'domestic_property'
                   ? 'Fastanúmer'
                   : assetType === 'vehicle'
                     ? 'Númer'
-                    : 'Annað'}
-              </label>
-              <Controller
-                name="assetIdentifier"
-                control={control}
-                rules={{
-                  required: 'Verður að fylla út',
-                }}
-                render={({ field }) => (
-                  <input
-                    type="text"
-                    className="cursor-pointer w-full px-3 py-2 border-2 border-blue-200 font-bold rounded-md bg-blue-50"
-                    {...field}
-                  />
-                )}
-              />
-              {errors.assetIdentifier && (
-                <p className="text-red-500 text-sm mt-1">{errors.assetIdentifier.message}</p>
-              )}
-            </div>
+                    : 'Annað'
+              }
+              control={control}
+              rules={{ required: 'Verður að fylla út' }}
+              error={errors.assetIdentifier}
+            />
           </div>
 
-          <div>
-            <label className="block text-sm font-bold text-blue-600 mb-1">Fjárhæð</label>
-            <Controller
-              name="amount"
-              control={control}
-              rules={{
-                required: 'Upphæð er nauðsynleg',
-                min: {
-                  value: 1,
-                  message: 'Upphæð verður að vera hærri en 0',
-                },
-              }}
-              render={({ field }) => (
-                <input
-                  type="tel"
-                  className="cursor-pointer w-full px-3 py-2 border-2 border-blue-200 font-bold rounded-md bg-blue-50"
-                  {...field}
-                  onChange={(e) => field.onChange(parseInt(e.target.value) || 0)}
-                />
-              )}
-            />
-            {errors.amount && <p className="text-red-500 text-sm mt-1">{errors.amount.message}</p>}
-          </div>
+          <FormField
+            name="amount"
+            label="Fjárhæð"
+            type="tel"
+            control={control}
+            rules={{
+              required: 'Upphæð er nauðsynleg',
+              min: {
+                value: 1,
+                message: 'Upphæð verður að vera hærri en 0',
+              },
+            }}
+            error={errors.amount}
+          />
         </div>
 
         <div className="flex justify-end">

@@ -1,8 +1,9 @@
 import React, { useState } from 'react'
-import { useForm, Controller } from 'react-hook-form'
+import { useForm } from 'react-hook-form'
 import { useMutation } from '@apollo/client'
 import { UPDATE_ASSET, DELETE_ASSET } from '@/graphql/mutations/assetOperations'
 import { GET_APPLICATIONS_BY_FAMILY_NUMBER_ONLY_ASSETS } from '@/graphql/queries/getUserInfo'
+import FormField from './FormField'
 
 type Asset = {
   id: string
@@ -110,84 +111,42 @@ const AssetForm: React.FC<AssetFormProps> = ({ asset, familyNumber }) => {
 
       <form>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-4">
-          <div>
-            <label className="block text-sm font-bold text-blue-600 mb-1">
-              {asset.assetType === 'domestic_property'
+          <FormField
+            name="description"
+            label={
+              asset.assetType === 'domestic_property'
                 ? 'Heimilisfang'
                 : asset.assetType === 'vehicle'
                   ? 'Kaupár'
-                  : 'Lýsing'}
-            </label>
-            <Controller
-              name="description"
-              control={control}
-              render={({ field }) => (
-                <input
-                  type="text"
-                  className="cursor-pointer w-full px-3 py-2 border-2 border-blue-200 font-bold rounded-md bg-blue-50"
-                  {...field}
-                  onChange={(e) => {
-                    field.onChange(e)
-                    setTimeout(handleFieldChange, 100) // Submit after field updates
-                  }}
-                  onBlur={(e) => {
-                    field.onBlur()
-                    handleFieldChange()
-                  }}
-                />
-              )}
-            />
-          </div>
+                  : 'Lýsing'
+            }
+            control={control}
+            error={errors.description}
+            onChange={() => setTimeout(handleFieldChange, 100)}
+          />
 
-          <div>
-            <label className="block text-sm font-bold text-blue-600 mb-1">
-              {asset.assetType === 'domestic_property'
+          <FormField
+            name="assetIdentifier"
+            label={
+              asset.assetType === 'domestic_property'
                 ? 'Fastanúmer eignar'
                 : asset.assetType === 'vehicle'
                   ? 'Númer'
-                  : 'Annað'}
-            </label>
-            <Controller
-              name="assetIdentifier"
-              control={control}
-              render={({ field }) => (
-                <input
-                  type="text"
-                  className="cursor-pointer w-full px-3 py-2 border-2 border-blue-200 font-bold rounded-md bg-blue-50"
-                  {...field}
-                  onChange={(e) => {
-                    field.onChange(e)
-                    // We don't submit here since assetIdentifier isn't part of the API
-                  }}
-                />
-              )}
-            />
-          </div>
+                  : 'Annað'
+            }
+            control={control}
+            error={errors.assetIdentifier}
+          />
 
-          <div>
-            <label className="block text-sm font-bold text-blue-600 mb-1">Fjárhæð</label>
-            <Controller
-              name="amount"
-              control={control}
-              rules={{ required: 'Upphæð er nauðsynleg' }}
-              render={({ field }) => (
-                <input
-                  type="tel"
-                  className="cursor-pointer w-full px-3 py-2 border-2 border-blue-200 font-bold rounded-md bg-blue-50"
-                  {...field}
-                  onChange={(e) => {
-                    field.onChange(parseInt(e.target.value, 10))
-                    setTimeout(handleFieldChange, 100) // Submit after field updates
-                  }}
-                  onBlur={(e) => {
-                    field.onBlur()
-                    handleFieldChange()
-                  }}
-                />
-              )}
-            />
-            {errors.amount && <p className="text-red-500 text-sm mt-1">{errors.amount.message}</p>}
-          </div>
+          <FormField
+            name="amount"
+            label="Fjárhæð"
+            type="tel"
+            control={control}
+            rules={{ required: 'Upphæð er nauðsynleg' }}
+            error={errors.amount}
+            onChange={() => setTimeout(handleFieldChange, 100)}
+          />
         </div>
       </form>
     </div>

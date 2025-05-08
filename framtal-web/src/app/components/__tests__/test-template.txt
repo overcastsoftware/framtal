@@ -1,0 +1,70 @@
+// Test template for React components in framtal-web
+import React from 'react'
+import { render, screen, fireEvent } from '@testing-library/react'
+import '@testing-library/jest-dom'
+import YourComponent from '../YourComponent'
+
+// Mock any dependencies as needed
+jest.mock('../path/to/dependency', () => {
+  return {
+    __esModule: true,
+    default: jest.fn(() => <div data-testid="mocked-component">Mocked Component</div>),
+    namedExport: jest.fn(() => 'mocked value')
+  }
+})
+
+describe('YourComponent', () => {
+  // Basic rendering test
+  test('renders correctly', () => {
+    render(<YourComponent prop1="value1" prop2="value2" />)
+    
+    // Check if specific elements are rendered
+    expect(screen.getByText('Expected Text')).toBeInTheDocument()
+    expect(screen.getByTestId('some-element')).toBeInTheDocument()
+  })
+  
+  // Test user interactions
+  test('handles user interactions', () => {
+    // Mock callback function
+    const mockOnClick = jest.fn()
+    
+    render(<YourComponent onClick={mockOnClick} />)
+    
+    // Simulate user interaction
+    fireEvent.click(screen.getByText('Click Me'))
+    
+    // Assert the callback was called
+    expect(mockOnClick).toHaveBeenCalledTimes(1)
+    expect(mockOnClick).toHaveBeenCalledWith('expected argument')
+  })
+  
+  // Test conditional rendering
+  test('conditionally renders components', () => {
+    const { rerender } = render(<YourComponent showExtra={false} />)
+    
+    // Check element is not present
+    expect(screen.queryByTestId('extra-content')).not.toBeInTheDocument()
+    
+    // Re-render with different props
+    rerender(<YourComponent showExtra={true} />)
+    
+    // Check element is now present
+    expect(screen.getByTestId('extra-content')).toBeInTheDocument()
+  })
+  
+  // Test error states
+  test('handles error states', () => {
+    render(<YourComponent hasError={true} errorMessage="Something went wrong" />)
+    
+    expect(screen.getByText('Something went wrong')).toBeInTheDocument()
+    expect(screen.getByTestId('error-icon')).toHaveClass('red')
+  })
+})
+
+// Tips:
+// 1. Use screen.debug() to print the current rendered DOM for debugging
+// 2. For async testing, use `await screen.findByText()` instead of `getByText()`
+// 3. Remember to test both success and failure paths
+// 4. Test the component behavior, not the implementation details
+// 5. For form testing, use userEvent instead of fireEvent for more realistic user interactions
+//    Example: userEvent.type(screen.getByLabelText('Email'), 'test@example.com')

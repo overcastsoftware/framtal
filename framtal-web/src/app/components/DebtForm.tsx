@@ -5,12 +5,29 @@ import { UPDATE_DEBT, DELETE_DEBT } from '@/graphql/mutations/debtOperations'
 import { GET_APPLICATIONS_BY_FAMILY_NUMBER_ONLY_DEBT } from '@/graphql/queries/getUserInfo'
 import FormField, { FormValues } from './FormField'
 
+// Interface to match the GraphQL UpdateDebtInput schema
+interface UpdateDebtInput {
+  id: number
+  amount?: number
+  description?: string
+  totalCost?: number
+  loanType?: string
+  lenderId?: string
+  loanNumber?: string
+  descriptionSecondary?: string
+  loanLength?: string
+  loanDate?: string
+  totalPayment?: number
+  principalPayment?: number
+  deduction?: number
+}
+
 type Debt = {
   id: string
   amount: number
   description: string
   loanType: string
-  totalCost: string
+  totalCost: number
   nationalId?: string
   applicationId?: number
   lenderId?: string
@@ -39,7 +56,7 @@ const DebtForm: React.FC<DebtFormProps> = ({ debt, familyNumber }) => {
     defaultValues: {
       amount: debt.amount,
       description: debt.description,
-      totalCost: debt.totalCost,
+      totalCost: debt.totalCost || 0,
       loanType: debt.loanType || 'other',
       lenderId: debt.lenderId || '',
       loanNumber: debt.loanNumber || '',
@@ -74,23 +91,30 @@ const DebtForm: React.FC<DebtFormProps> = ({ debt, familyNumber }) => {
   })
 
   const onSubmit = (data: FormValues) => {
-    // Include all fields for UpdateDebtInput
+    // Create the base update input
+    const updateInput: UpdateDebtInput = {
+      id: parseInt(debt.id),
+      amount: data.amount,
+      description: data.description,
+      totalCost: data.totalCost,
+      loanType: data.loanType,
+      lenderId: data.lenderId,
+      loanNumber: data.loanNumber,
+      descriptionSecondary: data.descriptionSecondary,
+      loanLength: data.loanLength,
+      totalPayment: data.totalPayment,
+      principalPayment: data.principalPayment,
+    }
+
+    // Only include loanDate if it has a valid value
+    if (data.loanDate && data.loanDate.trim() !== '') {
+      updateInput.loanDate = data.loanDate;
+    }
+
+    // Update the debt record
     updateDebt({
       variables: {
-        input: {
-          id: parseInt(debt.id),
-          amount: data.amount,
-          description: data.description,
-          totalCost: data.totalCost,
-          loanType: data.loanType,
-          lenderId: data.lenderId,
-          loanNumber: data.loanNumber,
-          descriptionSecondary: data.descriptionSecondary,
-          loanDate: data.loanDate,
-          loanLength: data.loanLength,
-          totalPayment: data.totalPayment,
-          principalPayment: data.principalPayment,
-        },
+        input: updateInput,
       },
     })
   }
@@ -222,7 +246,13 @@ const DebtForm: React.FC<DebtFormProps> = ({ debt, familyNumber }) => {
               name="loanDate"
               label="Lántökudagur"
               control={control}
-              rules={{ required: 'Verður að fylla út' }}
+              rules={{ 
+                required: 'Verður að fylla út',
+                pattern: {
+                  value: /^\d{4}-\d{2}-\d{2}$/,
+                  message: 'Dagsetning verður að vera á forminu YYYY-MM-DD',
+                },
+              }}
               error={errors.loanDate as FieldError | undefined}
               onChange={handleFieldChange}
             />

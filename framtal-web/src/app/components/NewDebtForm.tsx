@@ -5,6 +5,24 @@ import { CREATE_DEBT } from '@/graphql/mutations/debtOperations'
 import { GET_APPLICATIONS_BY_FAMILY_NUMBER_ONLY_DEBT } from '@/graphql/queries/getUserInfo'
 import FormField, { FormValues } from './FormField'
 
+// Interface to match the GraphQL CreateDebtInput schema
+interface CreateDebtInput {
+  applicationId: number
+  nationalId: string
+  amount?: number
+  description?: string
+  descriptionSecondary?: string
+  loanType?: string
+  lenderId?: string
+  loanNumber?: string
+  loanDate?: string
+  loanLength?: string
+  totalCost?: number
+  totalPayment?: number
+  principalPayment?: number
+  deduction?: number
+}
+
 type NewDebtFormProps = {
   applicationId: number
   nationalId: string
@@ -63,7 +81,7 @@ const NewDebtForm: React.FC<NewDebtFormProps> = ({ applicationId, nationalId, fa
 
   const onSubmit = (data) => {
     // Make a copy of the data to avoid modifying the form data directly
-    const debtData = {
+    const debtData: CreateDebtInput = {
       applicationId,
       nationalId,
       amount: data.amount,
@@ -73,10 +91,14 @@ const NewDebtForm: React.FC<NewDebtFormProps> = ({ applicationId, nationalId, fa
       lenderId: data.lenderId,
       loanNumber: data.loanNumber,
       descriptionSecondary: data.description_secondary,
-      loanDate: data.loanDate,
       loanLength: data.loanLength,
       totalPayment: data.totalPayment,
       principalPayment: data.principalPayment,
+    }
+
+    // Only include loanDate if it has a valid value
+    if (data.loanDate && data.loanDate.trim() !== '') {
+      debtData.loanDate = data.loanDate;
     }
 
     // Don't include any ID field to ensure proper auto-increment on the server
@@ -219,7 +241,13 @@ const NewDebtForm: React.FC<NewDebtFormProps> = ({ applicationId, nationalId, fa
               name="loanDate"
               label="Lántökudagur"
               control={control}
-              rules={{ required: 'Verður að fylla út' }}
+              rules={{ 
+                required: 'Verður að fylla út',
+                pattern: {
+                  value: /^\d{4}-\d{2}-\d{2}$/,
+                  message: 'Dagsetning verður að vera á forminu YYYY-MM-DD',
+                },
+              }}
               error={errors.loanDate}
             />
 

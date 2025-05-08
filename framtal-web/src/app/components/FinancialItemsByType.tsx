@@ -10,14 +10,17 @@ import {
   DEBT_TYPES,
   ASSET_TYPES,
 } from '../types/financialTypes'
-import { groupIncomesByTypeAndPayor } from '@/lib/utils'
+import { groupIncomesByTypeAndPayor, sortByKeysArray } from '@/lib/utils'
 
 const FinancialItemsByType: React.FC<FinancialItemsByTypeProps> = ({ title, category, items }) => {
   if (category === FinancialTypes.INCOME.category) {
     // Group incomes by type and payor
     const incomes = items as Income[]
     const groupedIncomes = groupIncomesByTypeAndPayor(incomes)
-    const incomeTypes = Object.keys(groupedIncomes)
+
+    // Sort the income types by the order of keys in the supplied keyOrder array
+    const keyOrder = Object.keys(INCOME_TYPE_LABELS)
+    const incomeTypes = sortByKeysArray(Object.keys(groupedIncomes), keyOrder)
 
     return (
       <div>

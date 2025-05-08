@@ -15,13 +15,13 @@
   --font-mono: 'IBM Plex Sans', monospace;
   
   /* Font sizes */
-  --text-sm: 0.875rem;
+  /* --text-sm: 0.875rem;
   --text-base: 1rem;
   --text-2xl: 1.5rem;
   
   /* Font weights */
-  --font-weight-bold: 700;
-  --font-weight-semibold: 600;
+  /* --font-weight-bold: 600;
+  --font-weight-semibold: 500;  */
 }
 body {
   background: var(--background);

@@ -64,9 +64,9 @@ export default function Home() {
                   </div>
                 </div>
               </div>
-              <h1 className="text-color-primary-dark-400 font-bold">
+              <h2 className="text-color-primary-dark-400 font-semibold">
                 Velkominn {firstName}! Hér að neðan er yfirlit yfir framtalið þitt.
-              </h1>
+              </h2>
               <p className="text-lg">
                 Þú getur farið yfir, bætt við, breytt og skilað þegar þú ert tilbúinn.
               </p>
@@ -87,17 +87,17 @@ export default function Home() {
           </div>
           <div className="flex flex-col gap-4 md:gap-3 md:flex-row w-full justify-between rounded-lg bg-secondary-blueberry-100 p-6">
             <div>
-              <h3 className="text-2xl text-primary-blue-400 font-bold mb-4">
+              <h3 className="text-2xl text-primary-blue-400 font-semibold mb-4">
                 Bráðabirgðaútreikningur
               </h3>
               <div className="flex flex-col gap-4 xl:flex-row">
                 <div className="flex flex-row gap-2">
                   <span>{MainLabels.ESTIMATED}:</span>
-                  <span className="font-semibold">177.533 kr.</span>
+                  <span className="font-medium">177.533 kr.</span>
                 </div>
                 <div className="flex flex-row gap-2">
                   <span>{MainLabels.REFUND}:</span>
-                  <span className="font-semibold">6.398 kr.</span>
+                  <span className="font-medium">6.398 kr.</span>
                 </div>
               </div>
             </div>

@@ -36,8 +36,8 @@ const DisplayCard: React.FC<DisplayCardProps> = ({
     if (category === FinancialTypes.DEBT.category && type === 'other') {
       return (
         <div className="flex justify-between gap-2 lg:mt-2">
-          <span className="text-primary-dark-400 font-semibold flex-1">Tegund</span>
-          <span className="text-md text-right font-semibold text-primary-header flex-1">
+          <span className="text-primary-dark-400 font-medium flex-1">Tegund</span>
+          <span className="text-md text-right font-medium text-primary-header flex-1">
             Eftirstöðvar
           </span>
         </div>
@@ -49,9 +49,9 @@ const DisplayCard: React.FC<DisplayCardProps> = ({
   const renderCardFooter = () => {
     if (category === FinancialTypes.INCOME.category && type === 'salary') {
       return (
-        <div className="flex justify-between gap-2 lg:mt-2">
-          <span className="text-primary-dark-400 flex-1">Samtals:</span>
-          <span className="text-md text-right font-bold text-primary-header flex-1">
+        <div className="flex justify-between gap-2 lg:mt-4">
+          <span className="text-md font-medium text-primary-header flex-1">Samtals:</span>
+          <span className="text-md text-right font-medium text-primary-header flex-1">
             {formatCurrency(totalAmount)}
           </span>
         </div>

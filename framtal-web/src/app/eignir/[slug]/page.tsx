@@ -95,9 +95,7 @@ export default function AssetPage() {
                   key={type}
                   className={`mb-8 ${i !== assetTypesToShow.length - 1 ? 'border-b' : ''} border-blue-600 pb-5`}
                 >
-                  <h2 className="text-xl font-semibold text-primary-blue-600">
-                    {assetTypeLabels[type] || type}
-                  </h2>
+                  <h3 className="font-semibold">{assetTypeLabels[type] || type}</h3>
 
                   <div className="mb-6">
                     {assets.sort(sortById).map((asset) => (

@@ -96,9 +96,7 @@ export default function IncomePage() {
                   key={type}
                   className={`mb-8 ${i !== incomeTypesToShow.length - 1 ? 'border-b' : ''} border-blue-600 pb-5`}
                 >
-                  <h2 className="text-xl font-semibold text-primary-blue-600">
-                    {incomeTypeLabels[type] || type}
-                  </h2>
+                  <h3 className="font-semibold">{incomeTypeLabels[type] || type}</h3>
 
                   <div className="mb-6">
                     {incomes.sort(sortById).map((income) => (

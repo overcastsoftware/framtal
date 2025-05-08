@@ -51,7 +51,7 @@ const FormField = <T extends FieldValues>({
   options,
 }: FormFieldProps<T>) => {
   const baseInputClassName =
-    'w-full px-3 py-2 border-2 border-blue-200 font-bold rounded-md bg-blue-50'
+    'w-full px-3 py-2 border-2 border-blue-200 font-medium rounded-md bg-blue-50'
   const inputClassName = className ? `${baseInputClassName} ${className}` : baseInputClassName
 
   return (

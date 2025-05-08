@@ -56,7 +56,7 @@ const AssetForm: React.FC<AssetFormProps> = ({ asset, familyNumber }) => {
     ],
   })
 
-  const onSubmit = (data) => {
+  const onSubmit = (data: { amount: number; description: string; assetIdentifier: string }) => {
     // Only include fields that are valid for UpdateAssetInput
     updateAsset({
       variables: {
@@ -99,7 +99,7 @@ const AssetForm: React.FC<AssetFormProps> = ({ asset, familyNumber }) => {
           )}
           <button
             onClick={handleDelete}
-            className="text-red-500 hover:text-red-700 font-bold text-sm"
+            className="btn-link text-red-500 hover:text-red-700 font-bold text-sm"
             title="Eyða þessari línu"
             style={{ position: 'absolute', right: '0', top: '0' }}
           >
@@ -124,7 +124,7 @@ const AssetForm: React.FC<AssetFormProps> = ({ asset, familyNumber }) => {
               render={({ field }) => (
                 <input
                   type="text"
-                  className="w-full px-3 py-2 border-2 border-blue-200 font-bold rounded-md bg-blue-50"
+                  className="cursor-pointer w-full px-3 py-2 border-2 border-blue-200 font-bold rounded-md bg-blue-50"
                   {...field}
                   onChange={(e) => {
                     field.onChange(e)
@@ -153,7 +153,7 @@ const AssetForm: React.FC<AssetFormProps> = ({ asset, familyNumber }) => {
               render={({ field }) => (
                 <input
                   type="text"
-                  className="w-full px-3 py-2 border-2 border-blue-200 font-bold rounded-md bg-blue-50"
+                  className="cursor-pointer w-full px-3 py-2 border-2 border-blue-200 font-bold rounded-md bg-blue-50"
                   {...field}
                   onChange={(e) => {
                     field.onChange(e)
@@ -173,7 +173,7 @@ const AssetForm: React.FC<AssetFormProps> = ({ asset, familyNumber }) => {
               render={({ field }) => (
                 <input
                   type="tel"
-                  className="w-full px-3 py-2 border-2 border-blue-200 font-bold rounded-md bg-blue-50"
+                  className="cursor-pointer w-full px-3 py-2 border-2 border-blue-200 font-bold rounded-md bg-blue-50"
                   {...field}
                   onChange={(e) => {
                     field.onChange(parseInt(e.target.value, 10))

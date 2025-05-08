@@ -6,60 +6,12 @@ import {
   Debt,
   FinancialItemsByTypeProps,
   FinancialTypes,
+  INCOME_TYPE_LABELS,
+  DEBT_TYPES,
+  ASSET_TYPES,
 } from '../types/financialTypes'
-import { formatCurrency, groupIncomesByTypeAndPayor } from '@/lib/utils'
+import { groupIncomesByTypeAndPayor } from '@/lib/utils'
 
-// Static mappings for different categories
-const INCOME_TYPE_LABELS: Record<string, string> = {
-  salary: 'Launatekjur og starfstengdar greiðslur',
-  perdiem: 'Ökutækjastyrkur, dagpeningar, hlunnindi',
-  education_and_sports:
-    'Lífeyrisgreiðslur. Greiðslur frá Tryggingastofnun. Aðrar bótagreiðslur, styrkir o.fl.',
-}
-
-const ASSET_TYPES: Record<string, { label: string }> = {
-  domestic_property: {
-    label: 'Fasteignir á Íslandi',
-  },
-  foreign_property: {
-    label: 'Fasteignir erlendis',
-  },
-  vehicle: {
-    label: 'Bifreiðir',
-  },
-  cash: {
-    label: 'Handbært fé',
-  },
-  stocks: {
-    label: 'Hlutabréf',
-  },
-  other: {
-    label: 'Aðrar eignir',
-  },
-}
-
-const DEBT_TYPES: Record<string, { label: string }> = {
-  property: {
-    label: 'Húsnæðislán',
-  },
-  vehicle: {
-    label: 'Bílalán',
-  },
-  student: {
-    label: 'Námslán',
-  },
-  credit_card: {
-    label: 'Kreditkort',
-  },
-  tax: {
-    label: 'Skattskuldir',
-  },
-  other: {
-    label: 'Aðrar skuldir',
-  },
-}
-
-// Main component
 const FinancialItemsByType: React.FC<FinancialItemsByTypeProps> = ({ title, category, items }) => {
   if (category === FinancialTypes.INCOME.category) {
     // Group incomes by type and payor
@@ -79,7 +31,8 @@ const FinancialItemsByType: React.FC<FinancialItemsByTypeProps> = ({ title, cate
               <DisplayCard
                 key={type}
                 type={type}
-                category="tekjur"
+                category={category}
+                uri={FinancialTypes.INCOME.uri}
                 title={INCOME_TYPE_LABELS[type] || type}
                 totalAmount={totalAmount}
                 showTotal={true}
@@ -89,6 +42,7 @@ const FinancialItemsByType: React.FC<FinancialItemsByTypeProps> = ({ title, cate
                   entity: group.entity,
                   nationalId: group.nationalId,
                   originalTypes: [...new Set(group.items.map((item) => item.incomeType))],
+                  totalCost: 0,
                 }))}
               />
             )
@@ -120,21 +74,21 @@ const FinancialItemsByType: React.FC<FinancialItemsByTypeProps> = ({ title, cate
               <DisplayCard
                 key={type}
                 title={typeInfo.label}
-                parentType={type}
-                category="eignir"
+                totalAmount={typeTotal}
+                category={category}
+                uri={FinancialTypes.ASSET.uri}
                 type={type}
-                amount={typeTotal || 0}
                 items={typeAssets.map((asset) => ({
                   id: asset.id,
                   entity: asset.description,
                   description: asset.description,
                   amount: asset.amount || 0,
+                  totalCost: 0,
                   identifier:
                     asset.assetType === 'other'
                       ? `${asset.description} ${asset.assetIdentifier}`
                       : asset.assetIdentifier,
                 }))}
-                className="mb-4"
               />
             )
           })}
@@ -160,16 +114,15 @@ const FinancialItemsByType: React.FC<FinancialItemsByTypeProps> = ({ title, cate
           {Object.entries(debtsByType).map(([type, typeDebts]) => {
             const typeInfo = DEBT_TYPES[type] || { label: type, icon: '❓' }
             const typeTotal = typeDebts.reduce((sum, debt) => sum + (debt.amount || 0), 0)
-            const typeTotalCost = typeDebts.reduce((sum, debt) => sum + (debt.totalCost || 0), 0)
 
             return (
               <DisplayCard
                 key={type}
                 type={type}
-                category="skuldir"
-                parentType="debt"
+                category={category}
                 title={typeInfo.label}
-                amount={typeTotal}
+                uri={FinancialTypes.DEBT.uri}
+                totalAmount={typeTotal}
                 items={typeDebts.map((debt) => ({
                   id: debt.id,
                   description: debt.description,
@@ -177,12 +130,6 @@ const FinancialItemsByType: React.FC<FinancialItemsByTypeProps> = ({ title, cate
                   totalCost: debt.totalCost || 0,
                   lender: debt.lender,
                 }))}
-                className="mb-4"
-                footer={
-                  typeTotalCost > 0
-                    ? `Vaxtagjöld samtals: ${formatCurrency(typeTotalCost)}`
-                    : undefined
-                }
               />
             )
           })}

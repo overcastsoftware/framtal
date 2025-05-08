@@ -1,7 +1,6 @@
 import type { Metadata } from 'next'
-import { ibmPlexSans } from '@/lib/fonts'
-import './globals.css'
 import { ApolloProvider } from '@/lib/ApolloProvider'
+import './globals.css'
 
 export const metadata: Metadata = {
   title: 'Framtalsskil',
@@ -15,7 +14,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${ibmPlexSans.className} antialiased`}>
+      <body>
         <ApolloProvider>{children}</ApolloProvider>
       </body>
     </html>

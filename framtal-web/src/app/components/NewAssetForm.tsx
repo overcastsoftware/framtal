@@ -75,10 +75,7 @@ const NewAssetForm: React.FC<NewAssetFormProps> = ({ applicationId, nationalId, 
   if (!showForm) {
     return (
       <div className="mt-6 flex justify-end">
-        <button
-          className="px-6 py-3 bg-white font-bold border border-blue-300 rounded-lg hover:bg-blue-200"
-          onClick={() => setShowForm(true)}
-        >
+        <button className="btn-ghost" onClick={() => setShowForm(true)}>
           Bæta við gögnum +
         </button>
       </div>
@@ -102,7 +99,7 @@ const NewAssetForm: React.FC<NewAssetFormProps> = ({ applicationId, nationalId, 
         )}
         <button
           onClick={() => setShowForm(false)}
-          className="text-red-500 hover:text-red-700 font-bold text-sm"
+          className="btn-link text-red-500 hover:text-red-700 font-bold text-sm"
           title="Hætta við"
           style={{ position: 'absolute', right: '0', top: '0' }}
         >
@@ -120,7 +117,7 @@ const NewAssetForm: React.FC<NewAssetFormProps> = ({ applicationId, nationalId, 
               rules={{ required: 'Tegund er nauðsynleg' }}
               render={({ field }) => (
                 <select
-                  className="w-full px-3 py-2 border-2 border-blue-200 font-bold rounded-md bg-blue-50"
+                  className="cursor-pointer w-full px-3 py-2 border-2 border-blue-200 font-bold rounded-md bg-blue-50"
                   {...field}
                 >
                   <option value="domestic_property">Innlendar fasteignir</option>
@@ -152,7 +149,7 @@ const NewAssetForm: React.FC<NewAssetFormProps> = ({ applicationId, nationalId, 
                 render={({ field }) => (
                   <input
                     type="text"
-                    className="w-full px-3 py-2 border-2 border-blue-200 font-bold rounded-md bg-blue-50"
+                    className="cursor-pointer w-full px-3 py-2 border-2 border-blue-200 font-bold rounded-md bg-blue-50"
                     {...field}
                   />
                 )}
@@ -179,7 +176,7 @@ const NewAssetForm: React.FC<NewAssetFormProps> = ({ applicationId, nationalId, 
                 render={({ field }) => (
                   <input
                     type="text"
-                    className="w-full px-3 py-2 border-2 border-blue-200 font-bold rounded-md bg-blue-50"
+                    className="cursor-pointer w-full px-3 py-2 border-2 border-blue-200 font-bold rounded-md bg-blue-50"
                     {...field}
                   />
                 )}
@@ -205,7 +202,7 @@ const NewAssetForm: React.FC<NewAssetFormProps> = ({ applicationId, nationalId, 
               render={({ field }) => (
                 <input
                   type="tel"
-                  className="w-full px-3 py-2 border-2 border-blue-200 font-bold rounded-md bg-blue-50"
+                  className="cursor-pointer w-full px-3 py-2 border-2 border-blue-200 font-bold rounded-md bg-blue-50"
                   {...field}
                   onChange={(e) => field.onChange(parseInt(e.target.value) || 0)}
                 />

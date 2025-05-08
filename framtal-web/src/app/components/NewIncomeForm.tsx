@@ -52,7 +52,7 @@ const NewIncomeForm: React.FC<NewIncomeFormProps> = ({
     ],
   })
 
-  const onSubmit = (data) => {
+  const onSubmit = (data: { amount: number; incomeType: string; payorId: string }) => {
     // Make a copy of the data to avoid modifying the form data directly
     const incomeData = {
       applicationId,
@@ -73,10 +73,7 @@ const NewIncomeForm: React.FC<NewIncomeFormProps> = ({
   if (!showForm) {
     return (
       <div className="mt-6 flex justify-end">
-        <button
-          className="px-6 py-3 bg-white font-bold border border-blue-300 rounded-lg hover:bg-blue-200"
-          onClick={() => setShowForm(true)}
-        >
+        <button className="btn-ghost" onClick={() => setShowForm(true)}>
           Bæta við gögnum +
         </button>
       </div>
@@ -100,7 +97,7 @@ const NewIncomeForm: React.FC<NewIncomeFormProps> = ({
         )}
         <button
           onClick={() => setShowForm(false)}
-          className="text-red-500 hover:text-red-700 font-bold text-sm"
+          className="btn-link text-red-500 hover:text-red-700 font-bold text-sm"
           title="Hætta við"
           style={{ position: 'absolute', right: '0', top: '0' }}
         >
@@ -128,7 +125,7 @@ const NewIncomeForm: React.FC<NewIncomeFormProps> = ({
                 <input
                   type="text"
                   placeholder="t.d., 5501119999"
-                  className="w-full px-3 py-2 border-2 border-blue-200 font-bold rounded-md bg-blue-50"
+                  className="cursor-pointer w-full px-3 py-2 border-2 border-blue-200 font-bold rounded-md bg-blue-50"
                   {...field}
                 />
               )}
@@ -146,7 +143,7 @@ const NewIncomeForm: React.FC<NewIncomeFormProps> = ({
               rules={{ required: 'Tegund er nauðsynleg' }}
               render={({ field }) => (
                 <select
-                  className="w-full px-3 py-2 border-2 border-blue-200 font-bold rounded-md bg-blue-50"
+                  className="cursor-pointer w-full px-3 py-2 border-2 border-blue-200 font-bold rounded-md bg-blue-50"
                   {...field}
                 >
                   <option value="salary">Laun</option>
@@ -176,7 +173,7 @@ const NewIncomeForm: React.FC<NewIncomeFormProps> = ({
               render={({ field }) => (
                 <input
                   type="tel"
-                  className="w-full px-3 py-2 border-2 border-blue-200 font-bold rounded-md bg-blue-50"
+                  className="cursor-pointer w-full px-3 py-2 border-2 border-blue-200 font-bold rounded-md bg-blue-50"
                   {...field}
                   onChange={(e) => field.onChange(parseInt(e.target.value) || 0)}
                 />

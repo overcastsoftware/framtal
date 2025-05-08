@@ -62,7 +62,7 @@ const IncomeForm: React.FC<IncomeFormProps> = ({ income, familyNumber }) => {
     ],
   })
 
-  const onSubmit = (data) => {
+  const onSubmit = (data: { amount: number; payorId: string | undefined; payorName: string }) => {
     // Only include fields that are valid for UpdateIncomeInput
     updateIncome({
       variables: {
@@ -105,7 +105,7 @@ const IncomeForm: React.FC<IncomeFormProps> = ({ income, familyNumber }) => {
           )}
           <button
             onClick={handleDelete}
-            className="text-red-500 hover:text-red-700 font-bold text-sm"
+            className="btn-link text-red-500 hover:text-red-700 font-bold text-sm"
             title="Eyða þessari línu"
             style={{ position: 'absolute', right: '0', top: '0' }}
           >
@@ -126,13 +126,13 @@ const IncomeForm: React.FC<IncomeFormProps> = ({ income, familyNumber }) => {
               render={({ field }) => (
                 <input
                   type="text"
-                  className="w-full px-3 py-2 border-2 border-blue-200 font-bold rounded-md bg-blue-50"
+                  className="cursor-pointer w-full px-3 py-2 border-2 border-blue-200 font-bold rounded-md bg-blue-50"
                   {...field}
                   onChange={(e) => {
                     field.onChange(e)
                     setTimeout(handleFieldChange, 100) // Submit after field updates
                   }}
-                  onBlur={(e) => {
+                  onBlur={(_e) => {
                     field.onBlur()
                     handleFieldChange()
                   }}
@@ -150,7 +150,7 @@ const IncomeForm: React.FC<IncomeFormProps> = ({ income, familyNumber }) => {
                 <input
                   type="text"
                   disabled={income.payor === null}
-                  className="w-full px-3 py-2 border-2 border-blue-200 font-bold rounded-md bg-blue-50"
+                  className="cursor-pointer w-full px-3 py-2 border-2 border-blue-200 font-bold rounded-md bg-blue-50"
                   {...field}
                   onChange={(e) => {
                     field.onChange(e)
@@ -170,7 +170,7 @@ const IncomeForm: React.FC<IncomeFormProps> = ({ income, familyNumber }) => {
               render={({ field }) => (
                 <input
                   type="tel"
-                  className="w-full px-3 py-2 border-2 border-blue-200 font-bold rounded-md bg-blue-50"
+                  className="cursor-pointer w-full px-3 py-2 border-2 border-blue-200 font-bold rounded-md bg-blue-50"
                   {...field}
                   onChange={(e) => {
                     field.onChange(parseInt(e.target.value, 10))

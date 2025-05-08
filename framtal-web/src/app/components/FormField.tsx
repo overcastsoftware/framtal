@@ -12,12 +12,15 @@ type FormFieldProps<T extends FieldValues> = {
   name: Path<T>
   label: string
   control: Control<T>
-  rules?: RegisterOptions
+  rules?: Omit<
+    RegisterOptions<T, Path<T>>,
+    'setValueAs' | 'disabled' | 'valueAsNumber' | 'valueAsDate'
+  >
   error?: FieldError
   type?: string
   placeholder?: string
   className?: string
-  onChange?: (value: any) => void
+  onChange?: (value: unknown) => void
   options?: { value: string; label: string }[]
 }
 
@@ -48,7 +51,7 @@ const FormField = <T extends FieldValues>({
   options,
 }: FormFieldProps<T>) => {
   const baseInputClassName =
-    'w-full px-3 py-2 border-2 border-blue-200 font-bold rounded-md bg-blue-50'
+    'cursor-pointer w-full px-3 py-2 border-2 border-blue-200 font-bold rounded-md bg-blue-50'
   const inputClassName = className ? `${baseInputClassName} ${className}` : baseInputClassName
 
   return (
@@ -66,7 +69,9 @@ const FormField = <T extends FieldValues>({
                 {...field}
                 onChange={(e) => {
                   field.onChange(e)
-                  onChange && onChange(e.target.value)
+                  if (onChange) {
+                    onChange(e.target.value)
+                  }
                 }}
               >
                 {options.map((option) => (
@@ -89,9 +94,10 @@ const FormField = <T extends FieldValues>({
                 if (type === 'tel' || type === 'number') {
                   field.onChange(parseInt(e.target.value) || 0)
                 } else {
-                  field.onChange(e.target.value)
+                  if (onChange) {
+                    onChange(field.value)
+                  }
                 }
-                onChange && onChange(field.value)
               }}
             />
           )

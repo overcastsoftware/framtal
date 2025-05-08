@@ -32,7 +32,7 @@ export default function LoginForm() {
   })
 
   // Handle form submission
-  const handleSubmit = (e) => {
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
 
     // Simple validation

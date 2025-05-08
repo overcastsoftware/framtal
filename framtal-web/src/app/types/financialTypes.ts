@@ -2,16 +2,74 @@ export const FinancialTypes = {
   INCOME: {
     category: 'income',
     label: 'Tekjur',
+    uri: 'tekjur',
   },
   ASSET: {
     category: 'asset',
     label: 'Eignir',
+    uri: 'eignir',
   },
   DEBT: {
     category: 'debt',
     label: 'Skuldir',
+    uri: 'skuldir',
   },
 } as const
+
+export const INCOME_TYPE: Record<string, string> = {
+  salary: "salary",
+  perdiem: "perdiem",
+  education_and_sports: "education_and_sports",
+}
+
+export const INCOME_TYPE_LABELS: Record<string, string> = {
+  salary: 'Launatekjur og starfstengdar greiðslur',
+  perdiem: 'Ökutækjastyrkur, dagpeningar, hlunnindi',
+  education_and_sports:
+    'Lífeyrisgreiðslur. Greiðslur frá Tryggingastofnun. Aðrar bótagreiðslur, styrkir o.fl.',
+}
+
+export const ASSET_TYPES: Record<string, { label: string }> = {
+  domestic_property: {
+    label: 'Fasteignir á Íslandi',
+  },
+  foreign_property: {
+    label: 'Fasteignir erlendis',
+  },
+  vehicle: {
+    label: 'Bifreiðir',
+  },
+  cash: {
+    label: 'Handbært fé',
+  },
+  stocks: {
+    label: 'Hlutabréf',
+  },
+  other: {
+    label: 'Aðrar eignir',
+  },
+}
+
+export const DEBT_TYPES: Record<string, { label: string }> = {
+  property: {
+    label: 'Húsnæðislán',
+  },
+  vehicle: {
+    label: 'Bílalán',
+  },
+  student: {
+    label: 'Námslán',
+  },
+  credit_card: {
+    label: 'Kreditkort',
+  },
+  tax: {
+    label: 'Skattskuldir',
+  },
+  other: {
+    label: 'Aðrar skuldir',
+  },
+}
 
 // Common types
 export type Entity = {
@@ -82,5 +140,5 @@ export type CardItem = {
   assetIdentifier?: string
   identifier?: string
   totalCost: number
-  lender: Lender
+  lender?: Lender
 }

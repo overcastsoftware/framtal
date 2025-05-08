@@ -90,10 +90,7 @@ const NewDebtForm: React.FC<NewDebtFormProps> = ({ applicationId, nationalId, fa
   if (!showForm) {
     return (
       <div className="mt-6 flex justify-end">
-        <button
-          className="px-6 py-3 bg-white font-bold border border-blue-300 rounded-lg hover:bg-blue-200"
-          onClick={() => setShowForm(true)}
-        >
+        <button className="btn-ghost" onClick={() => setShowForm(true)}>
           Bæta við gögnum +
         </button>
       </div>
@@ -117,7 +114,7 @@ const NewDebtForm: React.FC<NewDebtFormProps> = ({ applicationId, nationalId, fa
         )}
         <button
           onClick={() => setShowForm(false)}
-          className="text-red-500 hover:text-red-700 font-bold text-sm"
+          className="btn-link text-red-500 hover:text-red-700 font-bold text-sm"
           title="Hætta við"
           style={{ position: 'absolute', right: '0', top: '0' }}
         >

@@ -38,7 +38,7 @@ const DisplayCard: React.FC<DisplayCardProps> = ({
         <div className="flex justify-between gap-2 lg:mt-2">
           <span className="text-primary-dark-400 font-medium flex-1">Tegund</span>
           <span className="text-md text-right font-medium text-primary-header flex-1">
-            Eftirstöðvar
+            Vaxtagjöld
           </span>
         </div>
       )
